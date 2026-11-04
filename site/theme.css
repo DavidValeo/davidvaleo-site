@@ -1,0 +1,18 @@
+/* Your terminal's look. Optional: delete everything here and nothing breaks.
+   Remove the comment marks around a line to use it. Colours are any CSS colour. */
+
+/*
+:root{
+  --phos:#3dff7e;   normal text: P1 green. Amber: #ffb000  White: #e8f0ff
+  --dim:#1d8f47;    dim text (lines starting with ~)
+  --err:#ff5f56;    error text (lines starting with !)
+}
+*/
+
+/* Amber monitor, ready to use: remove the comment marks below. */
+/*
+:root{--phos:#ffb000;--dim:#a06a00}
+.line{text-shadow:0 0 6px rgba(255,176,0,.9),0 0 22px rgba(255,176,0,.35)}
+.line.dim{text-shadow:0 0 6px rgba(160,106,0,.8)}
+.cursor{box-shadow:0 0 6px rgba(255,176,0,.9),0 0 22px rgba(255,176,0,.35)}
+*/

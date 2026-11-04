@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!--
+  PHOSPHOR-9: a 1979 video terminal for your website.
+  https://github.com/GaijinSystems/phosphor  -  GNU AGPL v3 or later (see LICENSE)
+
+  Your words live in site/. This page only lists the files to load, in order:
+  engine, commands, machine, then your site files. Works opened straight from disk
+  (double-click) or from any web server.
+-->
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>PHOSPHOR-9</title>
+<link rel="stylesheet" href="engine/phosphor.css">
+<link rel="stylesheet" href="site/theme.css">
+</head>
+<body>
+<div id="stage">
+  <div id="bezel">
+    <div id="screen" aria-label="Terminal">
+      <div id="crt">
+        <div id="term"><div id="out"></div></div>
+        <div id="glow" aria-hidden="true"></div>
+        <div class="fx flicker"></div>
+        <div class="band b2"></div>
+        <div class="fx scan"></div>
+        <div class="fx vig"></div>
+      </div>
+    </div>
+    <div class="badge">PHOSPHOR-9</div>
+  </div>
+  <div id="cablewrap"><svg id="cable" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><g id="sway"></g></svg></div>
+</div>
+<input id="kb" type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="go" aria-label="Terminal input">
+<noscript><p style="color:#3dff7e;font-family:monospace;text-align:center">this terminal needs javascript.</p></noscript>
+
+<!-- the engine -->
+<script src="engine/phosphor.js"></script>
+<!-- built-in commands (switch single ones off with "commands: -name" in site/config.js) -->
+<script src="engine/commands/files.js"></script>
+<script src="engine/commands/shell.js"></script>
+<script src="engine/commands/people.js"></script>
+<script src="engine/commands/system.js"></script>
+<!-- the machine behind the glass -->
+<script src="machines/v7-1979/machine.js"></script>
+<script src="machines/v7-1979/fs.js"></script>
+<script src="machines/v7-1979/eggs.js"></script>
+<!-- your site (loaded last, so it wins over the machine) -->
+<script src="site/config.js"></script>
+<script src="site/content.js"></script>
+<script src="site/home.js"></script>
+<script>Phosphor.start()</script>
+</body>
+</html>

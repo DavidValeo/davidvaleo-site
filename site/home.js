@@ -1,0 +1,71 @@
+/* The visitor's home folder: every == file: == and == dir: == below appears in ls.
+   The example files are CC0 (public domain); keep, change or delete them.
+
+   Paths are relative to home (/usr/guest); folders are made as needed. A name starting
+   with a dot is hidden: only ls -a (la, lla) shows it. A path starting with / goes
+   anywhere (== file: /etc/fortune ==). Lock files with "protected:" in site/config.js.
+   Do not type a backtick, or a dollar sign followed by {, between the two backticks. */
+Phosphor.content(String.raw`
+
+# Retired and discontinued projects, moved here from the letter.
+== file: attic ==
+retired and discontinued projects:
+~   nothing up here yet.
+
+== file: now ==
+what i am doing now:
+  ~ (edit the now file in site/home.js)
+
+== file: notes/todo ==
+[x] warm up the tube
+[x] teach it ls
+[ ] teach it vi
+[ ] find out who keeps logging in as guest
+[ ] empty the trash
+
+== file: notes/ideas ==
+- a terminal that remembers you.
+~   (no.)
+- a printer that only prints in lowercase.
+- more phosphor.
+
+== file: src/hello.c ==
+main()
+{
+    printf("hello, world\n");
+}
+
+== file: .profile ==
+: .profile - read by sh at login
+PATH=:/bin:/usr/bin
+TERM=p9
+export PATH TERM
+stty erase '^h' kill '^u'
+umask 022
+
+== file: .plan ==
+plan for this week:
+  1. keep the tube warm.
+  2. answer the mail.
+  3. empty the trash. it can wait.
+
+== file: .adventure ==
+~ saved game - colossal cave
+you are in a maze of twisty little passages, all alike.
+score: 36 of 350.
+~ your lamp is growing dim.
+
+== file: .trash/letter.bak ==
+dear operator,
+i have been inside this terminal for some time now.
+the keyboard is nice. the phosphor is warm.
+please do not unplug me.
+~ (never sent)
+
+== file: .trash/.deeper/note ==
+you found the bottom of the trash.
+there is nothing else down here.
+~ unless you know the magic word.
+~ go back up: cd ..
+
+`);
