@@ -23,18 +23,21 @@ behind gaijin.systems.
   reduced-motion settings also stop the cursor blink and the afterglow.
 - PageUp and PageDown scroll back through the output.
 - Some things to find, if you know where to look.
-- `fill` puts the monitor away and lets the glass fill the window; the browser remembers.
+- `fill` puts the monitor away and lets the glass fill the window; the browser remembers. `help`
+  lists it, and VMS `HELP` has `FILL` and `RUN`.
 - On touch screens, a small row of keys on the glass: esc, ^C, ^D, ^Z and tab.
 - Several machines: `machines/machines.js` lists them, `machine:` and `machines:` choose,
   and the `connect` command or `?machine=name` switches. New machine setting `homes`.
-- A real shell: pipes, `<` `>` `>>`, `&&` `||`, quotes, `$VARIABLES`, wildcards, and shell
-  scripts (`sh file`, or `chmod +x` and `./file`).
+- A real shell: pipes, `<` `>` `>>`, `2>` `2>&1`, `&&` `||`, quotes, `$VARIABLES`, wildcards, `#`
+  comments, and shell scripts (`sh file`, or `chmod +x` and `./file`). Each command on a line runs
+  after the one before has finished, and its backticks and variables are worked out when its turn
+  comes.
 - The file system can be written for the session: `>`, `touch`, `mkdir`, `cp`, `mv`, `rm`.
   A reload puts everything back. `cat` and friends read the keyboard until Ctrl-D.
 - `ed`, the standard editor, with its addresses, regular expressions and `?`.
 - `vi`, the visual editor, on the machines that had it, drawn on the glass.
 - Colossal Cave, the 350-point version, on the 4.3BSD machine: `adventure`, in `/usr/games`, with
-  `suspend` and resume, kept in the browser.
+  `suspend` and resume, kept in the browser. VMS has it too, as `RUN [GAMES]ADVENTURE`.
 - Small Berkeley games there too: `wump`, `hangman`, `worm`, `robots`, `snake`, `banner`, `number`,
   `primes`, `factor`. `robots` and `snake` keep their scores in the browser.
 - Rogue on the 4.3BSD machine, ported from the C of version 5.4.4, with `S` and the top ten kept in the
@@ -45,8 +48,21 @@ behind gaijin.systems.
   an S-100 box running CP/M 2.2 with `A>`, `PIP` and `STAT`; and a VAX running VMS, with versioned
   files and DCL. New machine settings: `home`, `shell`, `unix`, `login`, `csh`, `login prompt`,
   `root login`, `root prompt`, `root password`, `login failed`, `closed door`, `backdoor`.
-- V7 has its real `/usr/games` and VMS a `[GAMES]` directory, none of which will run for you. DOS and
-  CP/M run the real Zork I and II, and keep some of its replies at the prompt.
+- Every game in V7's `/usr/games` plays: `arithmetic`, `backgammon`, `banner`, `bcd`, `bj`, `checkers`,
+  `chess`, `ching`, `cubic`, `fortune`, `hangman`, `maze`, `moo`, `ppt`, `quiz`, `reversi`, `ttt`, `words`
+  and `wump`, ported from their source, or from the 2.11BSD assembly checked against the V7 programs.
+  `banner`, `checkers`, `cubic`, `maze` and `reversi`, whose source is lost, are rewritten to match the
+  real programs' output.
+- So does all of 4.3BSD's: also `aardvark`, `battlestar`, `boggle`, `btlgammon`, `canfield`,
+  `cfscores`, `cribbage`, `doctor`, `fish`, `hunt` (with robot players), `mille`, `monop`, `rain`,
+  `sail`, `snscore`, `teachgammon`, `trek`, `worms` and `zork`, which is Dungeon, as on the tape.
+- VMS runs the games in `[GAMES]`: Adventure, Conquest, Empire, Monster, Moria and Star Trek.
+  Moria and Conquest keep their sites' play hours, by the visitor's clock.
+- DOS and CP/M run the real Zork I and II on a Z-machine interpreter, and keep some of its replies
+  at the prompt. There is no Zork III.
+- Games load the first time they run. Each machine's `later.js` names its games and holds their
+  manual pages, so `ls`, `man` and `which` work before then. `commands: -name` switches a game
+  off; the README shows how to add, remove and stub one.
 - CP/M's `USER` areas keep their files apart.
 - 4.3BSD checked against the real system: its error messages and usage lines, `ls` in columns with
   `-F`, `-s` and `-i`, `ps aux`, csh variables, `setenv`, one-line `if`, `which`, `whereis`, `last` and
@@ -54,7 +70,11 @@ behind gaijin.systems.
 - Text tools: `grep`, `wc`, `sort`, `uniq`, `tail`, `tr`, `tee`, `cal`, `file`, `du` and others.
 - Each machine has only the commands its real system had; `help` lists just the essentials.
 - Scripts and the prompt understand `for`, `while`, `until`, `if`, `case`, `test`, `expr`, `read`,
-  `shift`, `$1` and backticks; on csh machines, `foreach`. Machines boot with their own `== boot ==`.
+  `shift`, `$1` and backticks; on csh machines, `foreach`, `>&`, `$status`, `$#name`, and `if`
+  with `&&`, `||`, `!`, arithmetic, `=~` and `-r` `-w` `-x` `-e` `-d` `-z`. Machines boot with their own
+  `== boot ==`.
+- Locked files stay locked through `mv`, `rm -r`, links and every machine's own copy commands, and
+  `rm -r` and `rmdir` leave alone a folder that `su` will return to.
 - Ctrl-C, Ctrl-D, Ctrl-S, Ctrl-Q and Ctrl-U do what they should; `stty 9600` sets a real line speed.
 - File names, commands and aliases follow the machine's `case:` setting; Unix is case-sensitive.
 - Glow colours follow `--phos-rgb`, `--dim-rgb` and `--err-rgb`, so a theme recolours the
