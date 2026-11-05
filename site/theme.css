@@ -3,20 +3,21 @@
 
    --phos  normal text. P1 green: #3dff7e  Amber: #ffb000  White: #e8f0ff
    --dim   dim text (lines starting with ~)
-   --err   error text (lines starting with !) */
+   --err   error text (lines starting with !)
+   --phos-rgb, --dim-rgb, --err-rgb  the same three colours as numbers, for the glow */
 
 /*
 :root{
   --phos:#3dff7e;
   --dim:#1d8f47;
   --err:#ff5f56;
+  --phos-rgb:61,255,126;
+  --dim-rgb:29,143,71;
+  --err-rgb:255,95,86;
 }
 */
 
 /* Amber monitor, ready to use: remove the comment marks below. */
 /*
-:root{--phos:#ffb000;--dim:#a06a00}
-.line{text-shadow:0 0 6px rgba(255,176,0,.9),0 0 22px rgba(255,176,0,.35)}
-.line.dim{text-shadow:0 0 6px rgba(160,106,0,.8)}
-.cursor{box-shadow:0 0 6px rgba(255,176,0,.9),0 0 22px rgba(255,176,0,.35)}
+:root{--phos:#ffb000;--dim:#a06a00;--phos-rgb:255,176,0;--dim-rgb:160,106,0}
 */

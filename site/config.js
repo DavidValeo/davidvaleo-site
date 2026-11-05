@@ -6,6 +6,11 @@
    backticks below: either one stops the file from loading. */
 Phosphor.content(String.raw`
 
+# The machine behind the glass, and which others the connect command offers (see
+# machines/machines.js). Unset: the first one, and all of them. One machine: no connect.
+# machine:  v7
+# machines: v7
+
 # Your name. The first word (up to 8 letters) is the owner's login, shown in ls -l,
 # who and on the mail. {owner} in any section's text becomes that word.
 name:      operator

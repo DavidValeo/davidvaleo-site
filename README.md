@@ -25,15 +25,16 @@ site/                 YOURS: everything you are meant to change
   content.js          the welcome message, the about file, the letter, your commands
   home.js             the visitor's home folder: files, folders, hidden things
   theme.css           colours (optional)
-machines/v7-1979/     the imaginary computer: its year, self-test, boot log, system files
+machines/             the imaginary computers: machines.js lists them, one folder for each
+  v7-1979/            its year, self-test, boot log, system files
 engine/               the terminal itself; you should not need to touch it
   phosphor.css
   phosphor.js
   commands/           the built-in commands, a few per file
 ```
 
-`index.html` loads the engine, then the commands, then the machine, then your site.
-Your site loads last, so anything you set wins over the machine.
+`index.html` loads the engine, the commands, the list of machines and your site; the
+engine then loads the chosen machine. Anything you set wins over the machine.
 
 ## Writing content
 
@@ -73,11 +74,13 @@ At the top of a file, before its first `== section ==`, one per line:
 | `source:` | Where the `source` command points. Must start with `http://` or `https://`. See [Licence](#licence). |
 | `commands:` | Switch commands off or on: `commands: -ping, -ifconfig`. Works on the built-in commands and the machine's (`-sudo`); your own `== command: ==` sections are never switched off, so delete those instead. |
 | `protected:` | Locked files and folders: listed by `ls`, but `cat` says *can't open*. Paths work (`.trash/core`); a trailing `/` makes a locked folder. |
+| `machine:` `machines:` | Which machine the terminal starts on, and which ones the `connect` command offers: `machines: v7, bsd`. Unset, the first and all of them. With one machine there is no `connect`. |
 | `hostname:` | The machine's name. Normally taken from your domain (`example.com` becomes `example`). |
 | `cord turns:` `cord width:` `cord thickness:` `cord gap:` `cord straight:` `cord sway:` | The coiled cable under the monitor: `turns` is a count, the rest are in screen pixels. Values outside a sensible range are pulled back into it. |
 
-The machine sets a few more (`year:`, `installed:`, `user:`, `offline:`); you can override
-those too.
+The machine sets a few more (`year:`, `installed:`, `user:`, `homes:`, `case:`, `offline:`);
+you can override those too. `case:` is `sensitive`, where `FILE` and `file` differ, as on
+Unix, or `ignore`, where they are the same, as on DOS.
 
 ### Sections
 
@@ -119,9 +122,17 @@ a little extra space between them.
 
 ## Commands
 
-Built in: `about` `alias` `cat` `cd` `clear` `date` `dmesg` `echo` `exit` `help`
-`hostname` `ifconfig` `ls` `mail` `man` `ping` `ps` `pwd` `rm` `sound` `source` `su`
-`uptime` `who` `whoami`, plus `sudo` and a couple of magic words from the machine.
+Built in: `about` `alias` `cal` `cat` `cd` `chmod` `clear` `cp` `date` `dmesg` `echo` `env`
+`exit` `false` `file` `grep` `head` `help` `hostname` `ifconfig` `ls` `mail` `man` `mkdir`
+`mv` `ping` `printenv` `ps` `pwd` `rm` `rmdir` `sh` `sleep` `sort` `sound` `source` `stty`
+`su` `tail` `tee` `touch` `tr` `true` `tty` `uniq` `uptime` `wc` `who` `whoami`, plus `sudo`
+and a couple of magic words from the machine. A machine can switch off the ones it would
+not have had: the 1979 machine has no `head` or `printenv`.
+
+The shell understands pipes, `<` `>` `>>`, `&&` `||`, `;`, quotes, `$VARIABLES`, wildcards
+and scripts (`sh file`, or `chmod +x file` and `./file`). Visitors can change files in their
+home folder and `/tmp`; a reload puts everything back. Ctrl-C interrupts, Ctrl-D ends input
+or logs out, Ctrl-S and Ctrl-Q pause and resume output, and `stty 300` sets a real line speed.
 Every listed command has a manual page (`man ls`) and a usage line (`ls -h`), except that
 `echo -h` prints `-h`, as it should. PageUp and PageDown scroll back through the output
 once it has finished typing.
@@ -141,8 +152,8 @@ Phosphor.command({names:['roll'],help:'roll a die',
 `machines/v7-1979/` describes the computer behind the glass: a PDP-11/70 running
 Version 7 Unix in 1979. `machine.js` holds its settings and text (the self-test, `dmesg`,
 the `ps` table, `sudo`), `fs.js` builds its system folders, and `eggs.js` holds the hidden
-commands. To make a different machine, copy the folder, change it, and point the
-`<script>` tags in `index.html` at the copy.
+commands. To make a different machine, copy the folder, change it, and add it to
+`machines/machines.js`. Visitors can reach a machine directly with `?machine=name`.
 
 ## Looks
 

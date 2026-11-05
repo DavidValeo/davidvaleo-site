@@ -22,4 +22,15 @@ behind gaijin.systems.
 - Screen readers hear each finished line; links show a focus outline and open with Enter;
   reduced-motion settings also stop the cursor blink and the afterglow.
 - PageUp and PageDown scroll back through the output.
+- Several machines: `machines/machines.js` lists them, `machine:` and `machines:` choose,
+  and the `connect` command or `?machine=name` switches. New machine setting `homes`.
+- A real shell: pipes, `<` `>` `>>`, `&&` `||`, quotes, `$VARIABLES`, wildcards, and shell
+  scripts (`sh file`, or `chmod +x` and `./file`).
+- The file system can be written for the session: `>`, `touch`, `mkdir`, `cp`, `mv`, `rm`.
+  A reload puts everything back. `cat` and friends read the keyboard until Ctrl-D.
+- Text tools: `grep`, `wc`, `sort`, `uniq`, `head`, `tail`, `tr`, `tee`, `cal`, `file`, `sleep`.
+- Ctrl-C, Ctrl-D, Ctrl-S, Ctrl-Q and Ctrl-U do what they should; `stty 9600` sets a real line speed.
+- File names, commands and aliases follow the machine's `case:` setting; Unix is case-sensitive.
+- Glow colours follow `--phos-rgb`, `--dim-rgb` and `--err-rgb`, so a theme recolours the
+  whole tube, and the amber example is one line.
 - `alias name='a ; b'` works at the prompt: `;` inside quotes no longer splits the line.
