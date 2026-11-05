@@ -43,6 +43,9 @@ behind gaijin.systems.
   an S-100 box running CP/M 2.2 with `A>`, `PIP` and `STAT`; and a VAX running VMS, with versioned
   files and DCL. New machine settings: `home`, `shell`, `unix`, `login`, `csh`, `login prompt`,
   `root login`, `root prompt`, `root password`, `login failed`, `closed door`, `backdoor`.
+- V7 has its real `/usr/games` and VMS a `[GAMES]` directory, none of which will run for you. DOS and
+  CP/M have Zork on the disk and no story disk to go with it, and some of its replies at the prompt.
+- CP/M's `USER` areas keep their files apart.
 - Text tools: `grep`, `wc`, `sort`, `uniq`, `tail`, `tr`, `tee`, `cal`, `file`, `du` and others.
 - Each machine has only the commands its real system had; `help` lists just the essentials.
 - Scripts and the prompt understand `for`, `while`, `until`, `if`, `case`, `test`, `expr`, `read`,

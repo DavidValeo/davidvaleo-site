@@ -147,7 +147,7 @@ Phosphor.command({names:['roll'],help:'roll a die',
 ## The machine
 
 `machines/v7-1979/` describes one computer behind the glass: a PDP-11/70 running
-Version 7 Unix in 1979. `machines/bsd-1987/` is another: a VAX-11/780 running 4.3BSD. `machines/dos-1988/` is a PC running MS-DOS 3.30, `machines/irix-1993/` a Silicon Graphics Crimson, `machines/cpm-1982/` an S-100 box running CP/M 2.2, and `machines/vms-1987/` a VAX running VMS. `machine.js` holds its settings and text (the self-test, `dmesg`,
+Version 7 Unix in 1979. `machines/bsd-1987/` is another: a VAX-11/780 running 4.3BSD. `machines/dos-1988/` is a PC running MS-DOS 3.30, `machines/irix-1993/` a Silicon Graphics Crimson, `machines/cpm-1982/` an S-100 box running CP/M 2.2, and `machines/vms-1988/` a VAX running VMS. `machine.js` holds its settings and text (the self-test, `dmesg`,
 the `ps` table, `sudo`), and `fs.js` builds its system folders. To make a different machine, copy the folder, change it, and add it to
 `machines/machines.js`. Visitors can reach a machine directly with `?machine=name`.
 
@@ -180,6 +180,9 @@ new release. Leave `site/` alone. Changes are listed in [CHANGELOG.md](CHANGELOG
   and Don Woods and translated to C by Jim Gillogly. It keeps its BSD licence, in those files.
 - **The smaller games** in `machines/bsd-1987/` (`games.js`, `banner-font.js`) come from the Berkeley
   distribution, and keep their BSD licence too.
+- **The Zork text** in `machines/shared/zork.js` is quoted from Infocom's source for Zork I, under the
+  MIT licence (copyright Microsoft), which is in that file. Zork is a trademark, and the licence does
+  not cover the name.
 - **The example content** in `site/` is dedicated to the public domain under
   [CC0 1.0](site/LICENSE). Copy any of it without credit.
 - **Your own content** is yours. Replacing the examples in `site/` with your own words
@@ -188,3 +191,5 @@ new release. Leave `site/` alone. Changes are listed in [CHANGELOG.md](CHANGELOG
 The AGPL asks that people using a changed version can get its source. The `source`
 command handles that: it prints the address set by `source:` in `site/config.js`. If
 you change the terminal's code, point that setting at wherever your changed copy lives.
+If you switch `source` off and you have changed the code, offer the source some other way,
+such as a link on the page.
