@@ -80,3 +80,9 @@ behind gaijin.systems.
 - Glow colours follow `--phos-rgb`, `--dim-rgb` and `--err-rgb`, so a theme recolours the
   whole tube, and the amber example is one line.
 - `alias name='a ; b'` works at the prompt: `;` inside quotes no longer splits the line.
+- A seventh machine, `linux`: a KVM server running Debian 13 "trixie", on its serial console, with the
+  visitor's own date and year. bash's prompt, tab completion, `history`, `!!` and `$(command)`; GNU's `ls`,
+  `cat`, `rm` and `mkdir` messages and `--help`; `uname`, `ip`, `hostname -I`, `free`, `df`, `uptime`, `w`,
+  `ps aux`, `top`, `systemctl`, `journalctl`, `neofetch`, and `sudo` and `apt`, which know a guest when they
+  see one. In `/usr/games`, `frotz` with Zork I and II, `sl`, `cowsay` and `fortune`; and `cmatrix`.
+  New machine setting `shell: bash`; a machine's `year` may be `new Date().getFullYear()`.

@@ -2,8 +2,8 @@
 
 A 1979 video terminal for your website. Visitors land at a glowing green screen with a
 coiled cable, log in as `guest`, and poke around a small Version 7 Unix machine: `ls`,
-`cat`, `mail`, `man`, `who`, `ps`, a few secrets. You fill it with your own words. Five more
-machines can be plugged in, from CP/M to IRIX, and most of them come with their games.
+`cat`, `mail`, `man`, `who`, `ps`, a few secrets. You fill it with your own words. Six more
+machines can be plugged in, from CP/M to a Debian server of today, and most of them come with their games.
 
 Plain HTML, CSS and JavaScript. No build step, no frameworks, no server code, and no
 requests to anyone else's servers.
@@ -156,7 +156,9 @@ its real system had, and no others apart from the terminal's own: on the
 The shell understands pipes, redirection, quotes, variables, wildcards and scripts. Visitors
 can change files in their home folder and `/tmp`, and a reload puts everything back.
 On the Unix machines, the commands `help` lists have a manual page (`man ls`) and a usage
-line (`ls -h`), except that `echo -h` prints `-h`, as it should. PageUp and PageDown scroll back through the output
+line (`ls -h`), except that `echo -h` prints `-h`, as it should; on Linux, where `-h` means
+something else to GNU's tools, the usage line is `ls --help`. The Linux machine's bash also
+completes names with tab (twice lists the choices), repeats with `!!` and takes `$(command)`. PageUp and PageDown scroll back through the output
 once it has finished typing.
 
 To add a command that prints text, use a `== command: ==` section. To add one that does
@@ -179,9 +181,13 @@ Phosphor.command({names:['roll'],help:'roll a die',
 | `vms` | VAX-11/785, VAX/VMS V4.5 | 1988 | `[GAMES]`, started with `RUN` |
 | `irix` | Silicon Graphics Crimson, IRIX 4.0.5 | 1993 | graphics demos, which need a display it doesn't have |
 | `cpm` | S-100 Z80, CP/M 2.2 | 1982 | `ZORK1` in user area 0, `ZORK2` in user area 3 |
+| `linux` | KVM virtual server, Debian 13 "trixie" | the visitor's own | `frotz`, `sl`, `cowsay`, `fortune` in `/usr/games`, and `cmatrix` |
 
 Each one has the commands, messages and file tree of its real system; V7 and 4.3BSD were
-checked side by side with the real systems running in a simulator. Each folder's `machine.js` holds its settings and text (the
+checked side by side with the real systems running in a simulator, and the Debian machine's
+package versions and `apt`'s messages were taken from Debian 13 itself. It is reached on its serial console, boots
+when the terminal does, and follows the visitor's clock, year and all; its guest is not in
+the sudoers file, so `sudo` and `apt install` say no, as they would. Each folder's `machine.js` holds its settings and text (the
 self-test, the boot log, `dmesg`, the `ps` table), `fs.js` builds its system folders, and
 `later.js`, where it has one, names its games.
 
@@ -211,7 +217,8 @@ catalog and offers all of them; with one machine in the list there is no `connec
    ```
 
    `name` is what `connect` shows. `year` is the machine's clock and `{year}`; its
-   `installed:` date must fall before that year starts, or on January 1. `files` load in
+   `installed:` date must fall before that year starts, or on January 1. A machine of today
+   can take the visitor's own year with `year:new Date().getFullYear()`, as `linux` does. `files` load in
    this order, from the folder (a path like `../shared/zork.js` reaches another folder).
    The first machine in the catalog is the default, so add yours lower down unless you
    mean that.
@@ -219,9 +226,9 @@ catalog and offers all of them; with one machine in the list there is no `connec
    - `machine.js` is text in the same format as `site/`: settings first, then sections
      (`== banner ==`, `== boot ==`, `== dmesg ==` and the rest). The settings a machine can
      set besides the site's are `installed`, `user`, `homes` or `home`, `case`, `offline`,
-     `shell` (`dos` or `dcl`), `unix: no` (leave out the Unix commands), `csh`, `perror`,
+     `shell` (`dos`, `dcl` or `bash`), `unix: no` (leave out the Unix commands), `csh`, `perror`,
      `login`, `login prompt`, `login failed`, `root login`, `root prompt`, `root password`,
-     `backdoor`, `closed door`, `not found`, `mail notice` and `ls columns`; the six
+     `backdoor`, `closed door`, `not found`, `mail notice` and `ls columns`; the seven
      machines between them use each one, so look there for an example.
      `commands: -vi, -whoami` leaves out the engine's commands the real system did not have.
    - `fs.js` builds the system folders with `P.sys(path,'d')` for a folder and
@@ -321,11 +328,21 @@ anywhere. On CP/M, `ZORK1` from user area 0, and `USER 3` then `ZORK2`.
 **IRIX** has `flight`, `buttonfly`, `dog`, `ideas`, `arena`, `newave` and `insect`, which
 want a graphics display and say so.
 
+**Debian 13**, what the administrator installed (`ls /usr/games`):
+
+| Game | |
+|---|---|
+| `frotz` | the Z-machine interpreter, with Zork I and II in `INFOCOM_PATH`: `frotz zork1.z3` |
+| `sl` | a steam locomotive, for those who type `sl` for `ls` (new drawings, after Toyoda Masashi's program) |
+| `cowsay`, `cowthink` | a cow says or thinks what you give it: `fortune \| cowsay` |
+| `fortune` | a saying, from a small set of old quotations chosen for this terminal |
+| `cmatrix` | characters falling down the glass, in `/usr/bin` as Debian puts it (written for this terminal) |
+
 ### Full screen, and phones
 
 The games that draw on the whole screen (`rogue`, `hunt`, `sail`, `mille`, `backgammon`,
 `teachgammon`, `canfield`, `cribbage`, `battlestar`'s flights, `robots`, `snake`, `worm`,
-`hangman`, `rain`, `worms`, Empire, Moria, Conquest, and Zork's status line) take over the
+`hangman`, `rain`, `worms`, Empire, Moria, Conquest, `sl`, `cmatrix`, and Zork's status line) take over the
 glass and give it back when they end. Most of the others are a line at a time and work at
 any width. Several were written for an 80 by 24 terminal: `rogue`, `mille`, `backgammon`,
 `hunt`, `sail` and Moria shrink their type to show all of it while it stays readable, and
@@ -411,7 +428,7 @@ A game is a file that defines a command, and an entry that names it:
    ```
 
    The first argument is the file, or a list of files that load in order, relative to the
-   machine's folder (`'../shared/x.js'` for a shared one). On V7 and 4.3BSD the `game`
+   machine's folder (`'../shared/x.js'` for a shared one). On V7, 4.3BSD and Linux the `game`
    helper gives the program file its path (`/usr/games`), so it shows in `ls` and `which`.
    On VMS the helper is `image('games/coin.js','coin')`, and `RUN [GAMES]COIN` also needs
    `['coin',1024]` added to the list of images in its `fs.js`. DOS, CP/M and IRIX have no
@@ -466,8 +483,8 @@ how. Changes are listed in [CHANGELOG.md](CHANGELOG.md).
   [GNU Affero General Public License, version 3 or later](LICENSE).
 - **The games** keep the notices they came with, in their own files, and each is under
   those terms, not the AGPL; the new code written for them (the Z-machine, the DDL
-  interpreter, the robots in `hunt` and Conquest's scheduler, and the five V7 games rewritten
-  without source) is under the AGPL with the rest. The table below sums up what each notice
+  interpreter, the robots in `hunt` and Conquest's scheduler, the five V7 games rewritten
+  without source, and Debian's `frotz`, `sl`, `cowsay`, `fortune` and `cmatrix` programs) is under the AGPL with the rest. The table below sums up what each notice
   says and where the doubts are. It is a summary, not legal advice: if you publish the games,
   read the notices and decide for yourself, and remove any you are not comfortable with
   (see [Removing a game](#removing-a-game)).
@@ -485,12 +502,15 @@ how. Changes are listed in [CHANGELOG.md](CHANGELOG.md).
 | Colossal Cave (4.3BSD and VMS) | NetBSD | BSD licence, kept | |
 | 4.3BSD: `wump`, `number`, `primes`, `factor`, `banner`, `hangman`, `worm`, `robots`, `snake` (`games.js`, `banner-font.js`) | NetBSD | BSD licence, kept | |
 | Rogue | Rogue 5.4.4 | BSD licence, kept, with the notice for the parts based on the work of Nicholas J. Kisseberth | |
-| Zork I and II (DOS, CP/M) | Infocom's story files, release 119 and 63 | MIT licence (Microsoft, 2025), kept | The licence covers the software, read here as including the story files; Zork is a trademark and the licence does not cover the name |
+| Zork I and II (DOS, CP/M, Linux) | Infocom's story files, release 119 and 63 | MIT licence (Microsoft, 2025), kept | The licence covers the software, read here as including the story files; Zork is a trademark and the licence does not cover the name |
 | VMS: Star Trek | SST2K 2.10 | BSD licence, kept | It descends from older programs whose authors' grant to relicense is not on record; Star Trek is a trademark |
 | VMS: Empire | Chuck Simmons's C Empire, in Walter Bright's VMS release | Simmons's Empire General Public License, kept, with Bright's statement | Bright calls it a copy of his copyrighted Empire, whose own sources are non-commercial |
 | VMS: Monster | Rich Skrenta's VAX Pascal | "You may freely copy, distribute and change Monster", kept | No warranty disclaimer |
 | VMS: Moria | Moria 4.8, VAX Pascal | Robert Alan Koeneke's notice, kept: may be copied and changed, not sold | Non-commercial, and it calls itself public domain while keeping all rights. This is not Umoria, the later GPL version |
 | VMS: Conquest | Conquest 4.22, Ratfor | Poskanzer and Leres's permission notice, kept | |
+| Linux: the default cow in `/usr/share/cowsay/cows` (`fs.js`) | cowsay 3.03, Tony Monroe | The same terms as Perl, the Artistic License or the GNU GPL version 1 or later, noted in the file | The `cowsay` program reading it is new. Only the default cow is there |
+| Linux: `fortune`'s sayings (`fs.js`) | Quotations from works published before 1907 | Public domain | The program is new; none of BSD's or fortune-mod's files are used |
+| Linux: `sl` | New, after Toyoda Masashi's `sl` | AGPL | Behaviour follows the original; the program and the drawings are new, so his notice is not needed, and he is credited |
 
 - **The example content** in `site/` is dedicated to the public domain under
   [CC0 1.0](site/LICENSE). Copy any of it without credit.
