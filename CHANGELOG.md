@@ -46,6 +46,9 @@ behind gaijin.systems.
 - V7 has its real `/usr/games` and VMS a `[GAMES]` directory, none of which will run for you. DOS and
   CP/M have Zork on the disk and no story disk to go with it, and some of its replies at the prompt.
 - CP/M's `USER` areas keep their files apart.
+- 4.3BSD checked against the real system: its error messages and usage lines, `ls` in columns with
+  `-F`, `-s` and `-i`, `ps aux`, csh variables, `setenv`, one-line `if`, `which`, `whereis`, `last` and
+  `limit`, and the real `/usr/games`. New machine setting `perror`.
 - Text tools: `grep`, `wc`, `sort`, `uniq`, `tail`, `tr`, `tee`, `cal`, `file`, `du` and others.
 - Each machine has only the commands its real system had; `help` lists just the essentials.
 - Scripts and the prompt understand `for`, `while`, `until`, `if`, `case`, `test`, `expr`, `read`,
