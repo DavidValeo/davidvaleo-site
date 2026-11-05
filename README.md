@@ -148,8 +148,7 @@ Phosphor.command({names:['roll'],help:'roll a die',
 
 `machines/v7-1979/` describes one computer behind the glass: a PDP-11/70 running
 Version 7 Unix in 1979. `machines/bsd-1987/` is another: a VAX-11/780 running 4.3BSD. `machines/dos-1988/` is a PC running MS-DOS 3.30, `machines/irix-1993/` a Silicon Graphics Crimson, and `machines/cpm-1979/` an S-100 box running CP/M 2.2. `machine.js` holds its settings and text (the self-test, `dmesg`,
-the `ps` table, `sudo`), `fs.js` builds its system folders, and `eggs.js` holds the hidden
-commands. To make a different machine, copy the folder, change it, and add it to
+the `ps` table, `sudo`), and `fs.js` builds its system folders. To make a different machine, copy the folder, change it, and add it to
 `machines/machines.js`. Visitors can reach a machine directly with `?machine=name`.
 
 ## Looks
@@ -175,6 +174,8 @@ new release. Leave `site/` alone. Changes are listed in [CHANGELOG.md](CHANGELOG
   [GNU Affero General Public License, version 3 or later](LICENSE).
 - **Colossal Cave** (`machines/bsd-1987/adventure.js` and `glorkz.js`) was written by Will Crowther
   and Don Woods and translated to C by Jim Gillogly. It keeps its BSD licence, in those files.
+- **The smaller games** in `machines/bsd-1987/` (`games.js`, `banner-font.js`) come from the Berkeley
+  distribution, and keep their BSD licence too.
 - **The example content** in `site/` is dedicated to the public domain under
   [CC0 1.0](site/LICENSE). Copy any of it without credit.
 - **Your own content** is yours. Replacing the examples in `site/` with your own words
