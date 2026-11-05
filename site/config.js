@@ -54,12 +54,4 @@ cord gap:       1.8
 cord straight:  7.35
 cord sway:      2.5
 
-# Shortcuts: new words = real command. Several commands: cl = clear ; ls
-== aliases ==
-cl  = clear ; ls
-cll = clear ; ls -l
-la  = ls -a
-ll  = ls -l
-lla = ls -l -a
-
 `);

@@ -96,7 +96,7 @@ A line like `== welcome ==` starts a section; the lines after it are printed as 
 | `== dir: NAME ==` | An empty folder. |
 | `== command: NAME \| HELP ==` | A new command that prints the section. `NAME, OTHER` gives it two names. Without help text it is hidden from `help`. It replaces a built-in of the same name, except the core ones (`help`, `man`, `clear`, `ls`, `cat`, `sound`, `cd`, `pwd`, `echo`, `mail`, `alias`, `source`): switch one of those off first (`commands: -mail`) and yours takes its place. |
 | `== man: NAME ==` | The description part of a manual page. Replaces a built-in page or adds a new one. |
-| `== aliases ==` | Shortcuts, one per line: `ll = ls -l`, or `cl = clear ; ls`. |
+| `== aliases ==` | Shortcuts, one per line: `ll = ls -l`, or `cl = clear ; ls`. Only useful on a machine whose shell had aliases; the 1979 machine has none. |
 
 ### Inside a section
 
@@ -146,7 +146,7 @@ Phosphor.command({names:['roll'],help:'roll a die',
 ## The machine
 
 `machines/v7-1979/` describes one computer behind the glass: a PDP-11/70 running
-Version 7 Unix in 1979. `machines/bsd-1987/` is another: a VAX-11/780 running 4.3BSD. `machine.js` holds its settings and text (the self-test, `dmesg`,
+Version 7 Unix in 1979. `machines/bsd-1987/` is another: a VAX-11/780 running 4.3BSD. `machines/dos-1988/` is a PC running MS-DOS 3.30. `machine.js` holds its settings and text (the self-test, `dmesg`,
 the `ps` table, `sudo`), `fs.js` builds its system folders, and `eggs.js` holds the hidden
 commands. To make a different machine, copy the folder, change it, and add it to
 `machines/machines.js`. Visitors can reach a machine directly with `?machine=name`.
