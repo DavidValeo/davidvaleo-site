@@ -31,8 +31,10 @@ behind gaijin.systems.
 - `ed`, the standard editor, with its addresses, regular expressions and `?`.
 - `vi`, the visual editor, on the machines that had it, drawn on the glass.
 - Each machine's year is set once, in `machines/machines.js`, and `{year}` follows it.
-- More machines: a VAX-11/780 running 4.3BSD, and a PC running MS-DOS 3.30 with `C:\>`, `dir`,
-  `edlin` and `Abort, Retry, Fail?`. New machine settings: `home`, `shell`, `unix`, `login`.
+- More machines: a VAX-11/780 running 4.3BSD; a PC running MS-DOS 3.30 with `C:\>`, `dir`, `edlin`
+  and `Abort, Retry, Fail?`; a Silicon Graphics Crimson running IRIX 4.0.5 with `hinv` and `fsn`;
+  and an S-100 box running CP/M 2.2 with `A>`, `PIP` and `STAT`. New machine settings: `home`,
+  `shell`, `unix`, `login`, `csh`.
 - Text tools: `grep`, `wc`, `sort`, `uniq`, `tail`, `tr`, `tee`, `cal`, `file`, `du` and others.
 - Each machine has only the commands its real system had; `help` lists just the essentials.
 - Ctrl-C, Ctrl-D, Ctrl-S, Ctrl-Q and Ctrl-U do what they should; `stty 9600` sets a real line speed.
