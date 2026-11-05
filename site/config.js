@@ -7,10 +7,10 @@
 Phosphor.content(String.raw`
 
 # Your name. The first word (up to 8 letters) is the owner's login, shown in ls -l,
-# who and on the mail. {owner} in any text becomes that word.
+# who and on the mail. {owner} in any section's text becomes that word.
 name:      operator
 
-# Your address, for the letter. {email} in any text becomes this.
+# Your address, for the letter. {email} in any section's text becomes this.
 email:     operator@example.com
 
 # Browser tab title, and the name on the monitor's bezel.
@@ -20,7 +20,7 @@ badge:     PHOSPHOR-9
 # Typing speed: 1 = normal, 1.25 = 25% faster.
 speed:     1
 
-# yes = everything in capitals, like an uppercase-only teletype.
+# yes = everything in capitals, like an uppercase-only teletype. Without this line: yes.
 uppercase: no
 
 # on = keyclicks from the first tap or keypress; off = silent until "sound on".
@@ -39,7 +39,8 @@ commands:
 # "can't open". Paths work (.trash/core); a trailing / makes a locked folder.
 protected: photo01.pic, photo02.pic, secrets, .trash/core
 
-# The coiled cable under the monitor, in screen pixels.
+# The coiled cable under the monitor: turns is a count, the rest are in screen pixels.
+# Values outside a sensible range are pulled back into it.
 cord turns:     7
 cord width:     18
 cord thickness: 3.2
@@ -49,8 +50,10 @@ cord sway:      2.5
 
 # Shortcuts: new words = real command. Several commands: cl = clear ; ls
 == aliases ==
-ll  = ls -l
+cl  = clear ; ls
+cll = clear ; ls -l
 la  = ls -a
+ll  = ls -l
 lla = ls -l -a
 
 `);

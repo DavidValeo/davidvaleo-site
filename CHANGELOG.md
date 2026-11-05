@@ -9,8 +9,8 @@ behind gaijin.systems.
   `site/` (your content), loaded by plain `<script>` tags: works opened from disk.
 - Built-in commands live in `engine/commands/`; switch any of them off with `commands:`.
 - The whole letter is content now (`== mail ==`), not just its project list.
-- `{site}`, `{hostname}`, `{owner}`, `{email}` and `{year}` placeholders in any text.
-- New settings: `title`, `badge`, `source`, `commands`, `hostname`; machine settings
+- `{site}`, `{hostname}`, `{owner}`, `{email}` and `{year}` placeholders in any section's text.
+- New settings: `title`, `badge`, `source`, `commands`, `hostname`, `prompt`; machine settings
   `year`, `installed`, `user`, `offline`.
 - New `source` command, pointing at the terminal's source code (GNU AGPL).
 - Files that fail to load (missing, or a stray backtick inside) are named on the screen
@@ -19,3 +19,7 @@ behind gaijin.systems.
   also removes the machine's text commands, never the site's.
 - `about` disappears when there is no `== about ==` section; `man` works with `help` off.
 - Optional `site/theme.css` for colours, with an amber example.
+- Screen readers hear each finished line; links show a focus outline and open with Enter;
+  reduced-motion settings also stop the cursor blink and the afterglow.
+- PageUp and PageDown scroll back through the output.
+- `alias name='a ; b'` works at the prompt: `;` inside quotes no longer splits the line.

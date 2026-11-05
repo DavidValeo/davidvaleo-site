@@ -1,11 +1,15 @@
 /* Your terminal's look. Optional: delete everything here and nothing breaks.
-   Remove the comment marks around a line to use it. Colours are any CSS colour. */
+   To use a block below, remove the comment marks around it. Colours are any CSS colour.
+
+   --phos  normal text. P1 green: #3dff7e  Amber: #ffb000  White: #e8f0ff
+   --dim   dim text (lines starting with ~)
+   --err   error text (lines starting with !) */
 
 /*
 :root{
-  --phos:#3dff7e;   normal text: P1 green. Amber: #ffb000  White: #e8f0ff
-  --dim:#1d8f47;    dim text (lines starting with ~)
-  --err:#ff5f56;    error text (lines starting with !)
+  --phos:#3dff7e;
+  --dim:#1d8f47;
+  --err:#ff5f56;
 }
 */
 

@@ -63,17 +63,18 @@ At the top of a file, before its first `== section ==`, one per line:
 | Setting | What it does |
 |---|---|
 | `name:` | Your name. The first word (up to 8 letters) is the owner's login, shown in `ls -l`, `who` and on the mail. |
-| `email:` | Your address. `{email}` in any text becomes this. |
+| `email:` | Your address. `{email}` in any section's text becomes this. |
 | `title:` | The browser tab title. |
 | `badge:` | The name on the monitor's bezel (desktop only). |
 | `speed:` | Typing speed. `1` is normal, `1.25` is 25% faster. |
-| `uppercase:` | `yes` prints everything in capitals, like an uppercase-only teletype. |
+| `uppercase:` | `yes` prints everything in capitals, like an uppercase-only teletype; `no` does not. Without this line, `yes`. |
+| `prompt:` | The shell prompt, normally `$ `. Use quotes to keep a trailing space: `prompt: "% "`. |
 | `sound:` | `on`: keyclicks from the first tap or keypress. `off`: silent until `sound on`. |
 | `source:` | Where the `source` command points. Must start with `http://` or `https://`. See [Licence](#licence). |
 | `commands:` | Switch commands off or on: `commands: -ping, -ifconfig`. Works on the built-in commands and the machine's (`-sudo`); your own `== command: ==` sections are never switched off, so delete those instead. |
 | `protected:` | Locked files and folders: listed by `ls`, but `cat` says *can't open*. Paths work (`.trash/core`); a trailing `/` makes a locked folder. |
 | `hostname:` | The machine's name. Normally taken from your domain (`example.com` becomes `example`). |
-| `cord turns:` `cord width:` `cord thickness:` `cord gap:` `cord straight:` `cord sway:` | The coiled cable under the monitor, in screen pixels. |
+| `cord turns:` `cord width:` `cord thickness:` `cord gap:` `cord straight:` `cord sway:` | The coiled cable under the monitor: `turns` is a count, the rest are in screen pixels. Values outside a sensible range are pulled back into it. |
 
 The machine sets a few more (`year:`, `installed:`, `user:`, `offline:`); you can override
 those too.
@@ -121,7 +122,9 @@ a little extra space between them.
 Built in: `about` `alias` `cat` `cd` `clear` `date` `dmesg` `echo` `exit` `help`
 `hostname` `ifconfig` `ls` `mail` `man` `ping` `ps` `pwd` `rm` `sound` `source` `su`
 `uptime` `who` `whoami`, plus `sudo` and a couple of magic words from the machine.
-Every listed command has a manual page (`man ls`) and a usage line (`ls -h`).
+Every listed command has a manual page (`man ls`) and a usage line (`ls -h`), except that
+`echo -h` prints `-h`, as it should. PageUp and PageDown scroll back through the output
+once it has finished typing.
 
 To add a command that prints text, use a `== command: ==` section. To add one that does
 something, write a small file like the ones in `engine/commands/` and add a `<script>`
