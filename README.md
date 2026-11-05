@@ -183,7 +183,9 @@ new release. Leave `site/` alone. Changes are listed in [CHANGELOG.md](CHANGELOG
   Nicholas J. Kisseberth, in that file.
 - **The smaller games** in `machines/bsd-1987/` (`games.js`, `banner-font.js`) come from the Berkeley
   distribution, and keep their BSD licence too.
-- **The Zork text** in `machines/shared/zork.js` is quoted from Infocom's source for Zork I, under the
+- **Zork I and II** run from Infocom's story files in `machines/shared/zork1-story.js` and
+  `zork2-story.js`, on the terminal's own interpreter, `machines/shared/zmachine.js`. Those two files
+  and the text in `machines/shared/zork.js`, quoted from Infocom's source for Zork I, are under the
   MIT licence (copyright Microsoft), which is in that file. Zork is a trademark, and the licence does
   not cover the name.
 - **The example content** in `site/` is dedicated to the public domain under
