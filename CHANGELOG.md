@@ -40,8 +40,9 @@ behind gaijin.systems.
 - Each machine's year is set once, in `machines/machines.js`, and `{year}` follows it.
 - More machines: a VAX-11/780 running 4.3BSD; a PC running MS-DOS 3.30 with `C:\>`, `dir`, `edlin`
   and `Abort, Retry, Fail?`; a Silicon Graphics Crimson running IRIX 4.0.5 with `hinv` and `fsn`;
-  and an S-100 box running CP/M 2.2 with `A>`, `PIP` and `STAT`. New machine settings: `home`,
-  `shell`, `unix`, `login`, `csh`.
+  an S-100 box running CP/M 2.2 with `A>`, `PIP` and `STAT`; and a VAX running VMS, with versioned
+  files and DCL. New machine settings: `home`, `shell`, `unix`, `login`, `csh`, `login prompt`,
+  `root login`, `root prompt`, `root password`, `login failed`, `closed door`, `backdoor`.
 - Text tools: `grep`, `wc`, `sort`, `uniq`, `tail`, `tr`, `tee`, `cal`, `file`, `du` and others.
 - Each machine has only the commands its real system had; `help` lists just the essentials.
 - Scripts and the prompt understand `for`, `while`, `until`, `if`, `case`, `test`, `expr`, `read`,

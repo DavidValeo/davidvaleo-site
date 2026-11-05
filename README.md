@@ -147,7 +147,7 @@ Phosphor.command({names:['roll'],help:'roll a die',
 ## The machine
 
 `machines/v7-1979/` describes one computer behind the glass: a PDP-11/70 running
-Version 7 Unix in 1979. `machines/bsd-1987/` is another: a VAX-11/780 running 4.3BSD. `machines/dos-1988/` is a PC running MS-DOS 3.30, `machines/irix-1993/` a Silicon Graphics Crimson, and `machines/cpm-1979/` an S-100 box running CP/M 2.2. `machine.js` holds its settings and text (the self-test, `dmesg`,
+Version 7 Unix in 1979. `machines/bsd-1987/` is another: a VAX-11/780 running 4.3BSD. `machines/dos-1988/` is a PC running MS-DOS 3.30, `machines/irix-1993/` a Silicon Graphics Crimson, `machines/cpm-1979/` an S-100 box running CP/M 2.2, and `machines/vms-1987/` a VAX running VMS. `machine.js` holds its settings and text (the self-test, `dmesg`,
 the `ps` table, `sudo`), and `fs.js` builds its system folders. To make a different machine, copy the folder, change it, and add it to
 `machines/machines.js`. Visitors can reach a machine directly with `?machine=name`.
 
