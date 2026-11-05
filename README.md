@@ -122,12 +122,12 @@ a little extra space between them.
 
 ## Commands
 
-Built in: `about` `alias` `cal` `cat` `cd` `chmod` `clear` `cp` `date` `dmesg` `echo` `env`
+Built in: `about` `alias` `cal` `cat` `cd` `chmod` `clear` `cp` `date` `dmesg` `echo` `ed` `env`
 `exit` `false` `file` `grep` `head` `help` `hostname` `ifconfig` `ls` `mail` `man` `mkdir`
 `mv` `ping` `printenv` `ps` `pwd` `rm` `rmdir` `sh` `sleep` `sort` `sound` `source` `stty`
-`su` `tail` `tee` `touch` `tr` `true` `tty` `uniq` `uptime` `wc` `who` `whoami`, plus `sudo`
+`su` `tail` `tee` `touch` `tr` `true` `tty` `uniq` `uptime` `vi` `wc` `who` `whoami`, plus `sudo`
 and a couple of magic words from the machine. A machine can switch off the ones it would
-not have had: the 1979 machine has no `head` or `printenv`.
+not have had: the 1979 machine has no `head`, `printenv` or `vi`.
 
 The shell understands pipes, `<` `>` `>>`, `&&` `||`, `;`, quotes, `$VARIABLES`, wildcards
 and scripts (`sh file`, or `chmod +x file` and `./file`). Visitors can change files in their
@@ -149,8 +149,8 @@ Phosphor.command({names:['roll'],help:'roll a die',
 
 ## The machine
 
-`machines/v7-1979/` describes the computer behind the glass: a PDP-11/70 running
-Version 7 Unix in 1979. `machine.js` holds its settings and text (the self-test, `dmesg`,
+`machines/v7-1979/` describes one computer behind the glass: a PDP-11/70 running
+Version 7 Unix in 1979. `machines/bsd-1986/` is another: a VAX-11/780 running 4.3BSD. `machine.js` holds its settings and text (the self-test, `dmesg`,
 the `ps` table, `sudo`), `fs.js` builds its system folders, and `eggs.js` holds the hidden
 commands. To make a different machine, copy the folder, change it, and add it to
 `machines/machines.js`. Visitors can reach a machine directly with `?machine=name`.

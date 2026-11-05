@@ -28,6 +28,9 @@ behind gaijin.systems.
   scripts (`sh file`, or `chmod +x` and `./file`).
 - The file system can be written for the session: `>`, `touch`, `mkdir`, `cp`, `mv`, `rm`.
   A reload puts everything back. `cat` and friends read the keyboard until Ctrl-D.
+- `ed`, the standard editor, with its addresses, regular expressions and `?`.
+- `vi`, the visual editor, on the machines that had it, drawn on the glass.
+- A second machine: a VAX-11/780 running 4.3BSD, with its own `%` prompt and file layout.
 - Text tools: `grep`, `wc`, `sort`, `uniq`, `head`, `tail`, `tr`, `tee`, `cal`, `file`, `sleep`.
 - Ctrl-C, Ctrl-D, Ctrl-S, Ctrl-Q and Ctrl-U do what they should; `stty 9600` sets a real line speed.
 - File names, commands and aliases follow the machine's `case:` setting; Unix is case-sensitive.
