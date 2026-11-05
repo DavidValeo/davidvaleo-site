@@ -22,6 +22,7 @@ behind gaijin.systems.
 - Screen readers hear each finished line; links show a focus outline and open with Enter;
   reduced-motion settings also stop the cursor blink and the afterglow.
 - PageUp and PageDown scroll back through the output.
+- On touch screens, a small row of keys on the glass: esc, ^C, ^D, ^Z and tab.
 - Several machines: `machines/machines.js` lists them, `machine:` and `machines:` choose,
   and the `connect` command or `?machine=name` switches. New machine setting `homes`.
 - A real shell: pipes, `<` `>` `>>`, `&&` `||`, quotes, `$VARIABLES`, wildcards, and shell
