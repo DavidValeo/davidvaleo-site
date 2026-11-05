@@ -163,6 +163,10 @@ exception is `ping`, on the machines that had it, which, when a visitor pings yo
 sends small `HEAD` requests for the page to your own server and times the answers. Switch it
 off with `commands: -ping` if you would rather it did not.
 
+Games that kept a save or a score file in their day keep them in the visitor's own browser
+(`localStorage`): a suspended Colossal Cave, and the `robots` and `snake` scores. The `fill`
+command remembers its setting there too. Nothing is sent anywhere, and nothing else is stored.
+
 ## Upgrading
 
 Replace `engine/` and `machines/` (and `index.html`, putting your `<title>` back in it) with the

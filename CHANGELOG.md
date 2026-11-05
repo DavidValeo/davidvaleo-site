@@ -22,6 +22,7 @@ behind gaijin.systems.
 - Screen readers hear each finished line; links show a focus outline and open with Enter;
   reduced-motion settings also stop the cursor blink and the afterglow.
 - PageUp and PageDown scroll back through the output.
+- `fill` puts the monitor away and lets the glass fill the window; the browser remembers.
 - On touch screens, a small row of keys on the glass: esc, ^C, ^D, ^Z and tab.
 - Several machines: `machines/machines.js` lists them, `machine:` and `machines:` choose,
   and the `connect` command or `?machine=name` switches. New machine setting `homes`.
@@ -31,7 +32,10 @@ behind gaijin.systems.
   A reload puts everything back. `cat` and friends read the keyboard until Ctrl-D.
 - `ed`, the standard editor, with its addresses, regular expressions and `?`.
 - `vi`, the visual editor, on the machines that had it, drawn on the glass.
-- Colossal Cave, the 350-point version, on the 4.3BSD machine: `adventure`, in `/usr/games`.
+- Colossal Cave, the 350-point version, on the 4.3BSD machine: `adventure`, in `/usr/games`, with
+  `suspend` and resume, kept in the browser.
+- Small Berkeley games there too: `wump`, `hangman`, `worm`, `robots`, `snake`, `banner`, `number`,
+  `primes`, `factor`. `robots` and `snake` keep their scores in the browser.
 - Each machine's year is set once, in `machines/machines.js`, and `{year}` follows it.
 - More machines: a VAX-11/780 running 4.3BSD; a PC running MS-DOS 3.30 with `C:\>`, `dir`, `edlin`
   and `Abort, Retry, Fail?`; a Silicon Graphics Crimson running IRIX 4.0.5 with `hinv` and `fsn`;
