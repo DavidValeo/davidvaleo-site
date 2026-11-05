@@ -37,6 +37,8 @@ behind gaijin.systems.
   `suspend` and resume, kept in the browser.
 - Small Berkeley games there too: `wump`, `hangman`, `worm`, `robots`, `snake`, `banner`, `number`,
   `primes`, `factor`. `robots` and `snake` keep their scores in the browser.
+- Rogue on the 4.3BSD machine, ported from the C of version 5.4.4, with `S` and the top ten kept in the
+  browser. It shrinks its type to show the whole 80x24 where that stays readable, and pans where not.
 - Each machine's year is set once, in `machines/machines.js`, and `{year}` follows it.
 - More machines: a VAX-11/780 running 4.3BSD; a PC running MS-DOS 3.30 with `C:\>`, `dir`, `edlin`
   and `Abort, Retry, Fail?`; a Silicon Graphics Crimson running IRIX 4.0.5 with `hinv` and `fsn`;

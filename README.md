@@ -164,7 +164,7 @@ sends small `HEAD` requests for the page to your own server and times the answer
 off with `commands: -ping` if you would rather it did not.
 
 Games that kept a save or a score file in their day keep them in the visitor's own browser
-(`localStorage`): a suspended Colossal Cave, and the `robots` and `snake` scores. The `fill`
+(`localStorage`): a suspended Colossal Cave, saved games and scores from Rogue, and the `robots` and `snake` scores. The `fill`
 command remembers its setting there too. Nothing is sent anywhere, and nothing else is stored.
 
 ## Upgrading
@@ -178,6 +178,8 @@ new release. Leave `site/` alone. Changes are listed in [CHANGELOG.md](CHANGELOG
   [GNU Affero General Public License, version 3 or later](LICENSE).
 - **Colossal Cave** (`machines/bsd-1987/adventure.js` and `glorkz.js`) was written by Will Crowther
   and Don Woods and translated to C by Jim Gillogly. It keeps its BSD licence, in those files.
+- **Rogue** (`machines/bsd-1987/rogue.js`) was written by Michael Toy, Ken Arnold and Glenn Wichman. This
+  port of version 5.4.4 keeps its BSD licence, in that file.
 - **The smaller games** in `machines/bsd-1987/` (`games.js`, `banner-font.js`) come from the Berkeley
   distribution, and keep their BSD licence too.
 - **The Zork text** in `machines/shared/zork.js` is quoted from Infocom's source for Zork I, under the
