@@ -173,6 +173,8 @@ new release. Leave `site/` alone. Changes are listed in [CHANGELOG.md](CHANGELOG
 
 - **The terminal** (`engine/`, `machines/`, `index.html`) is free software under the
   [GNU Affero General Public License, version 3 or later](LICENSE).
+- **Colossal Cave** (`machines/bsd-1987/adventure.js` and `glorkz.js`) was written by Will Crowther
+  and Don Woods and translated to C by Jim Gillogly. It keeps its BSD licence, in those files.
 - **The example content** in `site/` is dedicated to the public domain under
   [CC0 1.0](site/LICENSE). Copy any of it without credit.
 - **Your own content** is yours. Replacing the examples in `site/` with your own words

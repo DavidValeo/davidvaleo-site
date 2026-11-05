@@ -31,6 +31,7 @@ behind gaijin.systems.
   A reload puts everything back. `cat` and friends read the keyboard until Ctrl-D.
 - `ed`, the standard editor, with its addresses, regular expressions and `?`.
 - `vi`, the visual editor, on the machines that had it, drawn on the glass.
+- Colossal Cave, the 350-point version, on the 4.3BSD machine: `adventure`, in `/usr/games`.
 - Each machine's year is set once, in `machines/machines.js`, and `{year}` follows it.
 - More machines: a VAX-11/780 running 4.3BSD; a PC running MS-DOS 3.30 with `C:\>`, `dir`, `edlin`
   and `Abort, Retry, Fail?`; a Silicon Graphics Crimson running IRIX 4.0.5 with `hinv` and `fsn`;
