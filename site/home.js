@@ -2,7 +2,7 @@
    The example files are CC0 (public domain); keep, change or delete them.
 
    Paths are relative to home (/usr/guest); folders are made as needed. A name starting
-   with a dot is hidden: only ls -a (la, lla) shows it. A path starting with / goes
+   with a dot is hidden: only ls -a shows it. A path starting with / goes
    anywhere (== file: /etc/fortune ==). Lock files with "protected:" in site/config.js.
    Do not type a backtick, or a dollar sign followed by {, between the two backticks. */
 Phosphor.content(String.raw`

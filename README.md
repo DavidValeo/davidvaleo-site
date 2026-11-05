@@ -21,12 +21,12 @@ requests to anyone else's servers.
 index.html            the page; lists the files to load. Edit only the <title>
                       (shown before the script runs; "title:" in config.js wins after).
 site/                 YOURS: everything you are meant to change
-  config.js           settings: your name, email, speed, sound, locked files, aliases
+  config.js           settings: your name, email, speed, sound, locked files
   content.js          the welcome message, the about file, the letter, your commands
   home.js             the visitor's home folder: files, folders, hidden things
   theme.css           colours (optional)
 machines/             the imaginary computers: machines.js lists them, one folder for each
-  v7-1979/            its year, self-test, boot log, system files
+  v7-1979/            its self-test, boot log, system files
 engine/               the terminal itself; you should not need to touch it
   phosphor.css
   phosphor.js
@@ -125,13 +125,13 @@ a little extra space between them.
 ## Commands
 
 `help` lists what a visitor needs to get around. Behind it, each machine has the commands
-its real system had, and no others, each with a manual page and usually `name -h`: on the
+its real system had, and no others apart from the terminal's own: on the
 1979 machine there is no `vi`, and `whoami` is `who am i`. Explore; you know if you know.
 
 The shell understands pipes, redirection, quotes, variables, wildcards and scripts. Visitors
 can change files in their home folder and `/tmp`, and a reload puts everything back.
-Every listed command has a manual page (`man ls`) and a usage line (`ls -h`), except that
-`echo -h` prints `-h`, as it should. PageUp and PageDown scroll back through the output
+On the Unix machines, the commands `help` lists have a manual page (`man ls`) and a usage
+line (`ls -h`), except that `echo -h` prints `-h`, as it should. PageUp and PageDown scroll back through the output
 once it has finished typing.
 
 To add a command that prints text, use a `== command: ==` section. To add one that does
@@ -179,7 +179,8 @@ new release. Leave `site/` alone. Changes are listed in [CHANGELOG.md](CHANGELOG
 - **Colossal Cave** (`machines/bsd-1987/adventure.js` and `glorkz.js`) was written by Will Crowther
   and Don Woods and translated to C by Jim Gillogly. It keeps its BSD licence, in those files.
 - **Rogue** (`machines/bsd-1987/rogue.js`) was written by Michael Toy, Ken Arnold and Glenn Wichman. This
-  port of version 5.4.4 keeps its BSD licence, in that file.
+  port of version 5.4.4 keeps its BSD licence, and the notice for the parts based on the work of
+  Nicholas J. Kisseberth, in that file.
 - **The smaller games** in `machines/bsd-1987/` (`games.js`, `banner-font.js`) come from the Berkeley
   distribution, and keep their BSD licence too.
 - **The Zork text** in `machines/shared/zork.js` is quoted from Infocom's source for Zork I, under the
@@ -188,7 +189,7 @@ new release. Leave `site/` alone. Changes are listed in [CHANGELOG.md](CHANGELOG
 - **The example content** in `site/` is dedicated to the public domain under
   [CC0 1.0](site/LICENSE). Copy any of it without credit.
 - **Your own content** is yours. Replacing the examples in `site/` with your own words
-  does not put them under either licence.
+  does not put them under any of these licences.
 
 The AGPL asks that people using a changed version can get its source. The `source`
 command handles that: it prints the address set by `source:` in `site/config.js`. If

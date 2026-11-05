@@ -46,7 +46,7 @@ behind gaijin.systems.
   files and DCL. New machine settings: `home`, `shell`, `unix`, `login`, `csh`, `login prompt`,
   `root login`, `root prompt`, `root password`, `login failed`, `closed door`, `backdoor`.
 - V7 has its real `/usr/games` and VMS a `[GAMES]` directory, none of which will run for you. DOS and
-  CP/M have Zork on the disk and no story disk to go with it, and some of its replies at the prompt.
+  CP/M have Zork on a disk that will not run, and some of its replies at the prompt.
 - CP/M's `USER` areas keep their files apart.
 - 4.3BSD checked against the real system: its error messages and usage lines, `ls` in columns with
   `-F`, `-s` and `-i`, `ps aux`, csh variables, `setenv`, one-line `if`, `which`, `whereis`, `last` and
