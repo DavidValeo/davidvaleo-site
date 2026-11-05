@@ -96,6 +96,7 @@ A line like `== welcome ==` starts a section; the lines after it are printed as 
 | `== dir: NAME ==` | An empty folder. |
 | `== command: NAME \| HELP ==` | A new command that prints the section. `NAME, OTHER` gives it two names. Without help text it is hidden from `help`. It replaces a built-in of the same name, except the core ones (`help`, `man`, `clear`, `ls`, `cat`, `sound`, `cd`, `pwd`, `echo`, `mail`, `alias`, `source`): switch one of those off first (`commands: -mail`) and yours takes its place. |
 | `== man: NAME ==` | The description part of a manual page. Replaces a built-in page or adds a new one. |
+| `== boot ==` | A machine coming up after power-on, a line at a time; `text @300` waits 300 ms after the line. |
 | `== aliases ==` | Shortcuts, one per line: `ll = ls -l`, or `cl = clear ; ls`. Only useful on a machine whose shell had aliases; the 1979 machine has none. |
 
 ### Inside a section

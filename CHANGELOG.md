@@ -37,6 +37,8 @@ behind gaijin.systems.
   `shell`, `unix`, `login`, `csh`.
 - Text tools: `grep`, `wc`, `sort`, `uniq`, `tail`, `tr`, `tee`, `cal`, `file`, `du` and others.
 - Each machine has only the commands its real system had; `help` lists just the essentials.
+- Scripts and the prompt understand `for`, `while`, `until`, `if`, `case`, `test`, `expr`, `read`,
+  `shift`, `$1` and backticks; on csh machines, `foreach`. Machines boot with their own `== boot ==`.
 - Ctrl-C, Ctrl-D, Ctrl-S, Ctrl-Q and Ctrl-U do what they should; `stty 9600` sets a real line speed.
 - File names, commands and aliases follow the machine's `case:` setting; Unix is case-sensitive.
 - Glow colours follow `--phos-rgb`, `--dim-rgb` and `--err-rgb`, so a theme recolours the
