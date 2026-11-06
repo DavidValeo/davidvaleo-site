@@ -50,7 +50,7 @@ behind gaijin.systems.
   `root login`, `root prompt`, `root password`, `login failed`, `closed door`, `backdoor`.
 - Every game in V7's `/usr/games` plays: `arithmetic`, `backgammon`, `banner`, `bcd`, `bj`, `checkers`,
   `chess`, `ching`, `cubic`, `fortune`, `hangman`, `maze`, `moo`, `ppt`, `quiz`, `reversi`, `ttt`, `words`
-  and `wump`, ported from their source, or from the 2.11BSD assembly checked against the V7 programs.
+  and `wump`, ported from their source, or from 2.11BSD's sources checked against the V7 programs.
   `banner`, `checkers`, `cubic`, `maze` and `reversi`, whose source is lost, are rewritten to match the
   real programs' output.
 - So does all of 4.3BSD's: also `aardvark`, `battlestar`, `boggle`, `btlgammon`, `canfield`,
@@ -83,6 +83,6 @@ behind gaijin.systems.
 - A seventh machine, `linux`: a KVM server running Debian 13 "trixie", on its serial console, with the
   visitor's own date and year. bash's prompt, tab completion, `history`, `!!` and `$(command)`; GNU's `ls`,
   `cat`, `rm` and `mkdir` messages and `--help`; `uname`, `ip`, `hostname -I`, `free`, `df`, `uptime`, `w`,
-  `ps aux`, `top`, `systemctl`, `journalctl`, `neofetch`, and `sudo` and `apt`, which know a guest when they
+  `ps aux`, `top`, `systemctl`, `journalctl`, `fastfetch`, and `sudo` and `apt`, which know a guest when they
   see one. In `/usr/games`, `frotz` with Zork I and II, `sl`, `cowsay` and `fortune`; and `cmatrix`.
   New machine setting `shell: bash`; a machine's `year` may be `new Date().getFullYear()`.

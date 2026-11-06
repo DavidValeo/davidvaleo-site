@@ -49,8 +49,9 @@ engine then loads the chosen machine. Anything you set wins over the machine.
 1. **The page.** `index.html` loads the engine, the shared Unix commands (`engine/commands/`),
    the catalog (`machines/machines.js`) and your `site/` files. No machine yet.
 2. **The machine.** The engine picks one (see [Choosing machines](#choosing-machines)) and
-   loads the files its catalog entry lists, in order: its settings and text, its file tree,
-   its commands, and `later.js`, which names its games and holds their manual pages.
+   loads the files its catalog entry lists, in that order: usually `later.js` first (where it
+   has one: it names the games and holds their manual pages), then its settings and text
+   (`machine.js`), its file tree (`fs.js`) and its commands (`commands.js`).
    `connect bsd` reloads the page with `?machine=bsd`, so each machine starts from cold and
    nothing of the last one is left behind.
 3. **A game.** A game's own files load the first time someone runs it, and then stay for the
@@ -156,7 +157,7 @@ its real system had, and no others apart from the terminal's own: on the
 The shell understands pipes, redirection, quotes, variables, wildcards and scripts. Visitors
 can change files in their home folder and `/tmp`, and a reload puts everything back.
 On the Unix machines, the commands `help` lists have a manual page (`man ls`) and a usage
-line (`ls -h`), except that `echo -h` prints `-h`, as it should; on Linux, where `-h` means
+line (`ls -h`), except that `echo -h` prints `-h`, as it should, and `fill -h` simply fills the screen; on Linux, where `-h` means
 something else to GNU's tools, the usage line is `ls --help`. The Linux machine's bash also
 completes names with tab (twice lists the choices), repeats with `!!` and takes `$(command)`. PageUp and PageDown scroll back through the output
 once it has finished typing.
@@ -227,7 +228,7 @@ catalog and offers all of them; with one machine in the list there is no `connec
      (`== banner ==`, `== boot ==`, `== dmesg ==` and the rest). The settings a machine can
      set besides the site's are `installed`, `user`, `homes` or `home`, `case`, `offline`,
      `shell` (`dos`, `dcl` or `bash`), `unix: no` (leave out the Unix commands), `csh`, `perror`,
-     `login`, `login prompt`, `login failed`, `root login`, `root prompt`, `root password`,
+     `login`, `login prompt`, `login failed`, `root login`, `root prompt`, `root password`, `also root`,
      `backdoor`, `closed door`, `not found`, `mail notice` and `ls columns`; the seven
      machines between them use each one, so look there for an example.
      `commands: -vi, -whoami` leaves out the engine's commands the real system did not have.
@@ -307,7 +308,7 @@ behave like the real one; the tables say which.
 | `rogue` | Rogue 5.4.4 |
 | `sail` | Wooden Ships and Iron Men, against computer-sailed ships |
 | `trek` | Star Trek |
-| `zork` | Dungeon, as it came on the 4.3BSD tape |
+| `zork` | Dungeon, which is what `zork` was on the 4.3BSD tape: its opening and V2.0a wording, with Dungeon 2.5.6 behind them, since the tape's own FORTRAN is lost |
 
 **VAX/VMS**, `RUN [GAMES]name` (`DIR [GAMES]` lists them; `LOGIN.COM` also lets you type
 `ADVENTURE`, `STARTREK`, `EMPIRE` or `MORIA` with arguments):
@@ -319,7 +320,7 @@ behave like the real one; the tables say which.
 | `EMPIRE` | the war game, 1988 version |
 | `MONSTER` | the multi-user adventure, here with one user, and the world kept in the browser |
 | `MORIA` | Moria 4.8, from the VAX Pascal |
-| `STARTREK` | Super Star Trek |
+| `STARTREK` | Super Star Trek, from SST2K, a later descendant standing in for the lost DECUS program |
 
 **MS-DOS and CP/M**: Zork I and Zork II, Infocom's own story files on an interpreter written
 for this terminal. On DOS, `CD \ZORK` then `ZORK1` or `ZORK2`, or `C:\ZORK\ZORK1` from
@@ -345,10 +346,12 @@ The games that draw on the whole screen (`rogue`, `hunt`, `sail`, `mille`, `back
 `hangman`, `rain`, `worms`, Empire, Moria, Conquest, `sl`, `cmatrix`, and Zork's status line) take over the
 glass and give it back when they end. Most of the others are a line at a time and work at
 any width. Several were written for an 80 by 24 terminal: `rogue`, `mille`, `backgammon`,
-`hunt`, `sail` and Moria shrink their type to show all of it while it stays readable, and
-on a screen too small for that `rogue` and `mille` let the arrow keys look around,
-`backgammon`, `hunt`, Moria and Conquest follow the cursor, and `sail` says it can't sail on
-this terminal; the rest show the top left of their screen. On a phone, the row of keys on
+`hunt`, `sail`, `canfield`, `cribbage`, `battlestar`'s flights, Empire, Moria and Conquest
+shrink their type to show all of it while it stays readable, and on a screen too small for
+that `rogue` and `mille` let the arrow keys look around, `sail` says it can't sail on this
+terminal, and the others follow the cursor. `teachgammon` and the small games
+(`robots`, `snake`, `worm`, `hangman`, `rain`, `worms`) and Linux's `top`, `sl` and
+`cmatrix` use whatever size the glass is. On a phone, the row of keys on
 the glass gives esc, Ctrl-C, Ctrl-D, Ctrl-Z and tab.
 
 ### Play hours
@@ -429,7 +432,9 @@ A game is a file that defines a command, and an entry that names it:
 
    The first argument is the file, or a list of files that load in order, relative to the
    machine's folder (`'../shared/x.js'` for a shared one). On V7, 4.3BSD and Linux the `game`
-   helper gives the program file its path (`/usr/games`), so it shows in `ls` and `which`.
+   helper, defined at the top of that `later.js`, gives the program file its path
+   (`/usr/games`), so it shows in `ls` and `which`; a new `later.js` defines its own or calls
+   `Phosphor.later` directly.
    On VMS the helper is `image('games/coin.js','coin')`, and `RUN [GAMES]COIN` also needs
    `['coin',1024]` added to the list of images in its `fs.js`. DOS, CP/M and IRIX have no
    `later.js`; add one to the machine's `files` in `machines/machines.js` to give them games.
@@ -453,6 +458,12 @@ game is on every machine.
 Delete its line from the machine's `later.js` and its file from `games/` (or from `shared/`,
 if no other machine's `later.js` names it). Its entry in `fs.js`, if it has one, keeps the
 program file listed; delete that too if you want no trace.
+
+Zork on DOS and CP/M is not a command, so `commands:` can't switch it off: it runs when its
+`.COM` file is there. To remove it, delete its files from that machine's `fs.js` (on DOS,
+the `/zork` folder line and the three after it; on CP/M, the three-line list of `zork` files
+and the `forEach` that puts them), then `'../shared/zork.js'` from its `files` in
+`machines/machines.js`.
 
 ## Looks
 
@@ -491,12 +502,13 @@ how. Changes are listed in [CHANGELOG.md](CHANGELOG.md).
 
 | Games | Source | Terms | Caveats |
 |---|---|---|---|
-| V7: `backgammon`, `fortune`, `hangman`, `quiz`, `wump`, and the word list; V7 and 4.3BSD: `arithmetic`, `bcd`, `chess` | Version 7 Unix (`bcd` from the Sixth Edition) | Caldera's licence for Ancient UNIX, kept in each file | Its advertising clause conflicts with GPL-family licences such as the AGPL, and whether Caldera could grant it at all is disputed. Fortunes and quiz answers quote other people's words |
+| V7: `backgammon`, `fortune`, `hangman`, `quiz`, `wump`, and the word list; V7 and 4.3BSD: `arithmetic`, `bcd`, `chess`; 4.3BSD: `quiz` (98% the V7 program, with no notice of its own) | Version 7 Unix (`bcd` from the Sixth Edition) | Caldera's licence for Ancient UNIX, kept in each file | Its advertising clause conflicts with GPL-family licences such as the AGPL, and whether Caldera could grant it at all is disputed. Fortunes and quiz answers quote other people's words |
 | V7: `bj`, `moo`, `ttt`, `ppt`, `words` | 2.11BSD | No notice | Very probably Bell Labs code, so as above |
 | `ching` (V7 and 4.3BSD) | V7, with logic from NetBSD | Caldera and the Regents, kept | The hexagram text is the Wilhelm/Baynes translation of the I Ching (1950), which is likely still in copyright and covered by neither notice |
 | 4.3BSD: `backgammon`, `battlestar`, `boggle`, `canfield`, `cfscores`, `cribbage`, `fish`, `hunt`, `rain`, `sail`, `snscore`, `teachgammon`, `trek`, `worms` | 4.3BSD | The Regents' notice, kept | The 4.3BSD notices point to the Berkeley Software License Agreement, which is not in the source, so there is no explicit grant; the later NetBSD versions carry a BSD licence. `trek` adds its authors' own permission. Boggle, Mille Bornes, Monopoly and Wooden Ships and Iron Men are trademarks named in the games' text |
-| 4.3BSD: `mille`, `monop`, `quiz`, `fortune`, `btlgammon` | 4.3BSD | No notice in the files | As above, with nothing in the files at all; `btlgammon` is the old V7 program |
-| 4.3BSD: `doctor` | Net/2 | The Regents' four-clause BSD licence, kept | Net/2 is the release AT&T's Unix Systems Laboratories sued over |
+| 4.3BSD: `mille`, `monop`, `fortune` | 4.3BSD | No notice in the files | As above, with nothing in the files at all |
+| 4.3BSD: `btlgammon` | 4.3BSD | No notice | The old V7 program, so if it is Bell Labs code the Caldera question above applies |
+| 4.3BSD: `doctor` | 4.3BSD's `doctor.l`, which has no notice | The Regents' four-clause BSD licence from Net/2's almost identical copy, kept | Net/2 is the release AT&T's Unix Systems Laboratories sued over |
 | 4.3BSD: `aardvark` | 4.3BSD | No notice on the game; the Regents' and UCLA's on what was around it | No grant for the game text |
 | 4.3BSD: `zork` (Dungeon) | Dungeon 2.5.6 | Infocom's notice, kept: *commercial usage strictly prohibited* | Non-commercial, and no grant to copy or change it. Microsoft's 2025 MIT release of Zork I to III does not name Dungeon |
 | Colossal Cave (4.3BSD and VMS) | NetBSD | BSD licence, kept | |
@@ -507,7 +519,7 @@ how. Changes are listed in [CHANGELOG.md](CHANGELOG.md).
 | VMS: Empire | Chuck Simmons's C Empire, in Walter Bright's VMS release | Simmons's Empire General Public License, kept, with Bright's statement | Bright calls it a copy of his copyrighted Empire, whose own sources are non-commercial |
 | VMS: Monster | Rich Skrenta's VAX Pascal | "You may freely copy, distribute and change Monster", kept | No warranty disclaimer |
 | VMS: Moria | Moria 4.8, VAX Pascal | Robert Alan Koeneke's notice, kept: may be copied and changed, not sold | Non-commercial, and it calls itself public domain while keeping all rights. This is not Umoria, the later GPL version |
-| VMS: Conquest | Conquest 4.22, Ratfor | Poskanzer and Leres's permission notice, kept | |
+| VMS: Conquest | Conquest 4.22, Ratfor | Poskanzer and Leres's permission notice, kept | Permission is for use and distribution without fee |
 | Linux: the default cow in `/usr/share/cowsay/cows` (`fs.js`) | cowsay 3.03, Tony Monroe | The same terms as Perl, the Artistic License or the GNU GPL version 1 or later, noted in the file | The `cowsay` program reading it is new. Only the default cow is there |
 | Linux: `fortune`'s sayings (`fs.js`) | Quotations from works published before 1907 | Public domain | The program is new; none of BSD's or fortune-mod's files are used |
 | Linux: `sl` | New, after Toyoda Masashi's `sl` | AGPL | Behaviour follows the original; the program and the drawings are new, so his notice is not needed, and he is credited |
