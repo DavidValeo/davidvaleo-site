@@ -6,6 +6,13 @@
    backticks below: either one stops the file from loading. */
 Phosphor.content(String.raw`
 
+# Words in braces that any section's text can use, filled in when the terminal starts:
+#   {owner}     the first word of name: below (letters and digits, up to 8, lower case)
+#   {email}     email: below
+#   {hostname}  hostname: if set here, else the first part of the page's address, else {owner}
+#   {site}      the address the page was served from (not set here); {hostname} from a file
+#   {year}      the connected machine's year, from machines/machines.js (not set here)
+
 # The machine behind the glass, and which others the connect command offers (see
 # machines/machines.js). Unset: the first one, and all of them. One machine: no connect.
 # machine:  v7
