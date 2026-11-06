@@ -15,7 +15,7 @@ this terminal belongs to {owner}.
 it is always {year} in here.
 ~ (edit the about section in site/content.js)
 
-# The letter (the mail command). "you have mail." shows at login while this has text.
+# The letter (the mail command). The machine's "you have mail." shows when the guest logs in, while this has text.
 #
 # Write each paragraph as ONE line: the glass wraps it to fit, phones included.
 #

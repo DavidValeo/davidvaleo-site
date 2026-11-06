@@ -163,7 +163,7 @@ its real system had, and no others apart from the terminal's own: on the
 On the Unix machines `help` lists the terminal's own commands apart, under "the terminal's, not the
 machine's:": `about`, `mail`, `source`, `sound`, `fill`, `effects`, `connect` and your own
 `== command: ==` sections. The terminal answers them on every machine (the C128 takes only `fill`,
-`sound`, `effects`, `connect` and `source`: its disk has `ABOUT` and `LETTER` programs), their manual pages say so, and no machine has a program file
+`sound`, `effects`, `connect` and `source`: its disk has `ABOUT` and `LETTER` programs), their manual pages say so, and the Unix machines have no program file
 for them, so a file of the same name never takes their place.
 
 The shell understands pipes, redirection, quotes, variables, wildcards and scripts. Visitors
@@ -204,7 +204,9 @@ Each one has the commands, messages and file tree of its real system; V7 and 4.3
 checked side by side with the real systems running in a simulator, and the Debian machine's
 package versions and `apt`'s messages were checked against Debian 13. It is reached on its serial console, boots
 when the terminal does, and follows the visitor's clock, year and all; its guest is not in
-the sudoers file, so `sudo` and `apt install` say no, as they would. `su` (or `su -`) asks for root's password as Debian's does, and says `su: Authentication failure` when it is wrong; `exit` goes back, and `su -c` runs a single command instead. The password is the `root password:` in `machines/linux/machine.js`, and the administrator was careless with it. As root, `su` and `sudo` ask nothing (`sudo -u`, `sudo -i` and `su` to another user work too), `systemctl start`, `stop` and the rest are accepted without a word, `halt`, `poweroff`, `reboot` and `shutdown now` stop the machine, and `shutdown` with a later time says when it is scheduled. Each folder's `machine.js` holds its settings and text (the
+the sudoers file, so `sudo` and `apt install` say no, as they would. `su` (or `su -`) asks for root's password as Debian's does, and says `su: Authentication failure` when it is wrong; `exit` goes back, and `su -c` runs a single command instead. The password is the `root password:` in `machines/linux/machine.js`, and the administrator was careless with it. As root, `su` and `sudo` ask nothing (`sudo -u`, `sudo -i` and `su` to another user work too), `systemctl start`, `stop` and the rest are accepted without a word, `halt`, `poweroff`, `reboot` and `shutdown now` stop the machine, and `shutdown` with a later time says when it is scheduled.
+
+Each folder's `machine.js` holds its settings and text (the
 self-test, the boot log, `dmesg`, the `ps` table), `fs.js` builds its system folders, and
 `later.js`, where it has one, names its games.
 
@@ -221,8 +223,8 @@ password. `HELP ?` lists the topics, `FILL`, `SOUND`, `EFFECTS` and `CONNECT` am
 `ENABLE` turns the `@` prompt into `$` and `DISABLE` turns it back, for anyone, as the real EXEC does; only
 OPERATOR has the WHEEL and OPERATOR capabilities that make it matter, and with them the locked files open and any
 directory can be written.
-`LOGIN OPERATOR` takes the `root password:` in `machines/tops20-1986/machine.js` (with `root login: operator`
-and `root prompt: $`); the site keeps it less carefully than it should. The
+`LOGIN OPERATOR` takes the `root password:` in `machines/tops20-1986/machine.js` (with `root login: operator`;
+OPERATOR still starts at `@` until `ENABLE`); the site keeps it less carefully than it should. The
 messages were checked against TOPS-20 running under KLH10 (the Panda distribution) and the
 6.1 EXEC's source. The recognition is the machine's: its `commands.js` sets
 `Phosphor.recognize(key, line)`, which the engine asks about Escape, Tab and `?` at the prompt.

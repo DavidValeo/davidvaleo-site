@@ -39,7 +39,7 @@ main()
 so you know the word.
 there is not much of a secret. there never was. the machine is warm, and now it is yours.
 ~ the old hands synced three times before they threw the switch.
-~ on the newer machines, there is /etc/halt.
+~ on the newer machines, there is halt.
 ~ a reload brings everything back.
 
 == file: .profile ==
