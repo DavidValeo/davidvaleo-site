@@ -22,7 +22,7 @@ it is always {year} in here.
 # Project rows: name, a run of spaces, then the status or date. Pad every row to the same
 # width (41 characters here) so the right-hand column lines up; the ~~ marks are not
 # printed and do not count, and {year} counts as the four digits it becomes. On a narrow screen the run of spaces shrinks to fit.
-# ~~text~~ strikes text through: here, the real date, then the in-character one, in
+# ~~text~~ strikes text through: here, the real date, then the in-character one: the same month and day, in
 # whatever year the machine is.
 # Retired projects move to the attic file (site/home.js).
 == mail ==
@@ -34,7 +34,7 @@ here is what is on the bench:
 ~ tap or click a title to visit.
 
 my next project               coming soon -> https://example.com
-my first project    ~~2025-06-01~~ {year}-01-01 -> https://example.com
+my first project    ~~2025-06-01~~ {year}-06-01 -> https://example.com
 
 ~ no terminal should be without one!
 
