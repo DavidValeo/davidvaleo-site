@@ -46,7 +46,7 @@ behind gaijin.systems.
 - `vi`, the visual editor, on the machines that had it, drawn on the glass.
 - Colossal Cave, the 350-point version, on the 4.3BSD machine: `adventure`, in `/usr/games`, with
   `suspend` and resume, kept in the browser. VMS has it too, as `RUN [GAMES]ADVENTURE`.
-- Small Berkeley games there too: `wump`, `hangman`, `worm`, `robots`, `snake`, `banner`, `number`,
+- Small Berkeley games there too: `wump` (V7's, as 4.3BSD shipped it), `hangman`, `worm`, `robots`, `snake`, `banner`, `number`,
   `primes`, `factor`. `robots` and `snake` keep their scores in the browser.
 - Rogue on the 4.3BSD machine, ported from the C of version 5.4.4, with `S` and the top ten kept in the
   browser. It shrinks its type to show the whole 80x24 where that stays readable, and pans where not.
@@ -94,8 +94,14 @@ behind gaijin.systems.
   `ps aux`, `top`, `systemctl`, `journalctl`, `fastfetch`, and `sudo` and `apt`, which know a guest when they
   see one. In `/usr/games`, `frotz` with Zork I and II, `sl`, `cowsay` and `fortune`; and `cmatrix`.
   New machine setting `shell: bash`; a machine's `year` may be `new Date().getFullYear()`.
+- NetHack 3.6.7 on the Linux machine, in `/usr/games`, translated from its C, with saves, bones and scores
+  kept in the browser.
 - `machine: random` starts on a machine picked at random, the same one for the rest of the browser tab.
-- On phones, the monitor stays in view when the soft keyboard opens.
+- On phones, the monitor stays in view when the soft keyboard opens; on a short screen the cable is put
+  away to make room, and a phone held sideways gets the whole width.
+- On a phone, a full-screen program wider than the glass (`rogue`, `backgammon`, `canfield`, NetHack, Empire,
+  Moria, Conquest and others) pans with a sideways swipe, with a little momentum; faint ‹ › marks show where
+  more is cut off, and the next key or a resize goes back to following the cursor.
 - An eighth machine, `tops20`: a DECSYSTEM-2060 running TOPS-20 V6.1 in 1986, with the EXEC's `@`, Escape
   recognition and guide words, `?` for what comes next, generation numbers, `UNDELETE` and `EXPUNGE`,
   `SYSTAT`, `FINGER`, `MM`, and `ADVENTURE` and `DUNGEON` in `<GAMES>`. A machine can now answer Escape,

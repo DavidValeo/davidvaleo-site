@@ -2,7 +2,7 @@
 
 A 1979 video terminal for your website. Visitors land at a glowing green screen with a
 coiled cable, log in as `guest`, and poke around a small Version 7 Unix machine: `ls`,
-`cat`, `mail`, `man`, `who`, `ps`, a few secrets. You fill it with your own words. Eight more
+`cat`, `mail`, `man`, `who`, `ps`, a few secrets. You fill it with your own words. Nine more
 machines can be plugged in, from CP/M, an Apple IIe and a Commodore 128 to a Debian server of today, and most of them come with their games.
 
 Plain HTML, CSS and JavaScript. No build step, no frameworks, no server code, and no
@@ -189,7 +189,7 @@ Phosphor.command({names:['roll'],help:'roll a die',
 | `dos` | IBM PC/AT, MS-DOS 3.30 | 1988 | `C:\ZORK` |
 | `vms` | VAX-11/785, VAX/VMS V4.6 | 1988 | `[GAMES]`, started with `RUN` |
 | `irix` | Silicon Graphics Crimson, IRIX 4.0.5 | 1993 | graphics demos, which need a display it doesn't have |
-| `linux` | KVM virtual server, Debian 13 "trixie" | the visitor's own | `frotz`, `sl`, `cowsay`, `fortune` in `/usr/games`, and `cmatrix` |
+| `linux` | KVM virtual server, Debian 13 "trixie" | the visitor's own | `frotz`, `sl`, `cowsay`, `fortune` and `nethack` in `/usr/games`, and `cmatrix` |
 
 Each one has the commands, messages and file tree of its real system; V7 and 4.3BSD were
 checked side by side with the real systems running in a simulator, and the Debian machine's
@@ -402,7 +402,8 @@ behave like the real one; the tables say which.
 | `doctor` | an ELIZA, from the Franz Lisp |
 | `factor`, `primes`, `number` | numbers into factors, primes and words |
 | `fish` | Go Fish |
-| `hangman`, `wump` | the Berkeley versions |
+| `hangman` | the Berkeley version |
+| `wump` | hunt the wumpus: V7's, as 4.3BSD shipped it |
 | `hunt` | the maze shoot-out, here against three robot players (the robots are new; the game had none) |
 | `mille` | Mille Bornes |
 | `monop` | Monopoly, for one to nine players at one keyboard |
@@ -468,19 +469,23 @@ want a graphics display and say so.
 | `cowsay`, `cowthink` | a cow says or thinks what you give it: `fortune \| cowsay` |
 | `fortune` | a saying, from a small set of old quotations chosen for this terminal |
 | `cmatrix` | characters falling down the glass, in `/usr/bin` as Debian puts it (written for this terminal) |
+| `nethack` | NetHack 3.6.7, the tty game as Debian 13's `nethack-console` has it, with saves, bones and scores kept in the browser |
 
 ### Full screen, and phones
 
 The games that draw on the whole screen (`rogue`, `hunt`, `sail`, `mille`, `backgammon`,
 `teachgammon`, `canfield`, `cribbage`, `battlestar`'s flights, `robots`, `snake`, `worm`,
-`hangman`, `rain`, `worms`, Empire, Moria, Conquest, `sl`, `cmatrix`, and Zork's status line) take over the
+`hangman`, `rain`, `worms`, Empire, Moria, Conquest, `nethack`, `sl`, `cmatrix`, and Zork's status line) take over the
 glass and give it back when they end. Most of the others are a line at a time and work at
 any width. Several were written for an 80 by 24 terminal: `rogue`, `mille`, `backgammon`,
-`hunt`, `sail`, `canfield`, `cribbage`, `battlestar`'s flights, Empire, Moria and Conquest
-shrink their type to show all of it while it stays readable, and on a screen too small for
-that `rogue` and `mille` let the arrow keys look around, `sail` says it can't sail on this
-terminal, and the others follow the cursor. `teachgammon` and the small games
-(`robots`, `snake`, `worm`, `hangman`, `rain`, `worms`) and Linux's `top`, `sl` and
+`teachgammon`, `hunt`, `sail`, `canfield`, `cribbage`, `battlestar`'s flights, Empire, Moria, Conquest and
+`nethack` shrink their type to show all of it while it stays readable, and on a screen too small for
+that `sail` says it can't sail on this terminal and the others follow the cursor; `rogue` and
+`mille` also let the arrow keys look around. On a phone, a sideways swipe pans such a screen
+(with a little momentum, none in lite effects or with reduced motion), a faint ‹ or › shows at
+a side that has more, and the next key goes back to following the cursor. `robots`, `snake` and `worm` take the size of the
+glass when they start and keep it, as the originals did; after a resize they shrink their type
+or follow the cursor in the same way. `hangman`, `rain`, `worms` and Linux's `top`, `sl` and
 `cmatrix` use whatever size the glass is. On a phone, the row of keys on
 the glass gives esc, Ctrl-C, Ctrl-D, Ctrl-Z and tab.
 
@@ -504,7 +509,7 @@ To open them all the time:
 
 Games that kept a save file or a score file in their day keep it in the visitor's own
 browser (`localStorage`), under keys starting `phosphor-9/` and then the game's name:
-`phosphor-9/rogue/...`, `phosphor-9/moria/files`, `phosphor-9/zork1/save/...` and so on.
+`phosphor-9/rogue/...`, `phosphor-9/moria/files`, `phosphor-9/zork1/save/...`, `phosphor-9/nethack/files` and so on.
 Nothing is sent anywhere, and clearing the site's data in the browser clears them.
 The C128's disk is a save file too: what the visitor writes, renames or scratches is
 kept under `phosphor-9/c128/disk`; the files the disk came with (the games, and the programs and files
@@ -556,7 +561,9 @@ A game is a file that defines a command, and an entry that names it:
    ```
 
    `Phosphor.ask(prompt, function(line){...})` reads a line; `Phosphor.program(...)` takes
-   the whole screen (see `engine/phosphor.js` and the games already there for both).
+   the whole screen (see `engine/phosphor.js` and the games already there for both). A
+   full-screen program that shows part of a wider screen can pass its view through
+   `S.pan(left, max, cursorColumn)`, so a sideways swipe pans it.
 2. Add it to the machine's `later.js`:
 
    ```js
@@ -644,14 +651,16 @@ how. Changes are listed in [CHANGELOG.md](CHANGELOG.md).
 - **The games** keep the notices they came with, in their own files, and each is under
   those terms, not the AGPL; the new code written for them (the Z-machine, the DDL
   interpreter, the robots in `hunt` and Conquest's scheduler, the five V7 games rewritten
-  without source, Debian's `frotz`, `sl`, `cowsay`, `fortune` and `cmatrix` programs, the Apple's and the Commodores' BASICs, and the C128's READ program) is under the AGPL with the rest. The table below sums up what each notice
+  without source, Debian's `frotz`, `sl`, `cowsay`, `fortune` and `cmatrix` programs, the Apple's and the Commodores' BASICs, and the C128's READ program) is under the AGPL with the rest.
+  NetHack is the exception: its file, including the C library, file system and vt100 written for
+  its port, is under the NetHack General Public License, as the file says. The table below sums up what each notice
   says and where the doubts are. It is a summary, not legal advice: if you publish the games,
   read the notices and decide for yourself, and remove any you are not comfortable with
   (see [Removing a game](#removing-a-game)).
 
 | Games | Source | Terms | Caveats |
 |---|---|---|---|
-| V7: `backgammon`, `fortune`, `hangman`, `quiz`, `wump`, and the word list; V7 and 4.3BSD: `arithmetic`, `bcd`, `chess`; 4.3BSD: `quiz` (98% the V7 program, with no notice of its own) | Version 7 Unix (`bcd` from the Sixth Edition) | Caldera's licence for Ancient UNIX, kept in each file | Its advertising clause conflicts with GPL-family licences such as the AGPL, and whether Caldera could grant it at all is disputed. Fortunes and quiz answers quote other people's words |
+| V7: `backgammon`, `fortune`, `hangman`, `quiz`, `wump`, and the word list; 4.3BSD: `wump` (the V7 program); V7 and 4.3BSD: `arithmetic`, `bcd`, `chess`; 4.3BSD: `quiz` (98% the V7 program, with no notice of its own) | Version 7 Unix (`bcd` from the Sixth Edition) | Caldera's licence for Ancient UNIX, kept in each file | Its advertising clause conflicts with GPL-family licences such as the AGPL, and whether Caldera could grant it at all is disputed. Fortunes and quiz answers quote other people's words |
 | V7: `bj`, `moo`, `ttt`, `ppt`, `words` | 2.11BSD | No notice | Very probably Bell Labs code, so as above |
 | `ching` (V7 and 4.3BSD) | V7, with logic from NetBSD | Caldera and the Regents, kept | The hexagram text is the Wilhelm/Baynes translation of the I Ching (1950), which is likely still in copyright and covered by neither notice |
 | 4.3BSD: `backgammon`, `battlestar`, `boggle`, `canfield`, `cfscores`, `cribbage`, `fish`, `hunt`, `rain`, `sail`, `snscore`, `teachgammon`, `trek`, `worms` | 4.3BSD | The Regents' notice, kept | The 4.3BSD notices point to the Berkeley Software License Agreement, which is not in the source, so there is no explicit grant; the later NetBSD versions carry a BSD licence. `trek` adds its authors' own permission. Boggle, Mille Bornes, Monopoly and Wooden Ships and Iron Men are trademarks named in the games' text |
@@ -661,7 +670,7 @@ how. Changes are listed in [CHANGELOG.md](CHANGELOG.md).
 | 4.3BSD: `aardvark` | 4.3BSD | No notice on the game; the Regents' and UCLA's on what was around it | No grant for the game text |
 | 4.3BSD: `zork` (Dungeon) | Dungeon 2.5.6 | Infocom's notice, kept: *commercial usage strictly prohibited* | Non-commercial, and no grant to copy or change it. Microsoft's 2025 MIT release of Zork I to III does not name Dungeon |
 | Colossal Cave (4.3BSD and VMS) | NetBSD | BSD licence, kept | |
-| 4.3BSD: `wump`, `number`, `primes`, `factor`, `banner`, `hangman`, `worm`, `robots`, `snake` (`games.js`, `banner-font.js`) | NetBSD | BSD licence, kept | |
+| 4.3BSD: `number`, `primes`, `factor`, `banner`, `hangman`, `worm`, `robots`, `snake` (`games.js`, `banner-font.js`) | NetBSD | BSD licence, kept | |
 | Rogue | Rogue 5.4.4 | BSD licence, kept, with the notice for the parts based on the work of Nicholas J. Kisseberth | |
 | Zork I and II (DOS, CP/M, Linux, Apple IIe) | Infocom's story files, release 119 and 63 | MIT licence (Microsoft, 2025), kept | The licence covers the software, read here as including the story files; Zork is a trademark and the licence does not cover the name |
 | Apple IIe: `GUESS`, `BAGELS`, `LANDER`, `KINGDOM` | New, for this terminal | AGPL, with the rest of `machines/` | |
@@ -674,6 +683,7 @@ how. Changes are listed in [CHANGELOG.md](CHANGELOG.md).
 | Linux: the default cow in `/usr/share/cowsay/cows` (`fs.js`) | cowsay 3.03, Tony Monroe | The same terms as Perl, the Artistic License or the GNU GPL version 1 or later, noted in the file | The `cowsay` program reading it is new. Only the default cow is there |
 | Linux: `fortune`'s sayings (`fs.js`) | Quotations from works published before 1912 | Public domain | The program is new; none of BSD's or fortune-mod's files are used |
 | Linux: `sl` | New, after Toyoda Masashi's `sl` | AGPL | Behaviour follows the original; the program and the drawings are new, so his notice is not needed, and he is credited |
+| Linux: `nethack` | NetHack 3.6.7 (`nethack-367-src.tgz` from nethack.org) | NetHack General Public License, kept, with every source file's notice; the patches against 3.6.7 and the helper C files used are in a comment at the end of the file | Copyleft: the NGPL wants the whole of any work containing NetHack under identical terms, so it is kept in its own file, loaded only when it runs. The file points to the upstream source for the rest, and the NGPL allows that pointer only for noncommercial distribution: a commercial site must offer the complete source itself |
 
 - **The example content** in `site/` is dedicated to the public domain under
   [CC0 1.0](site/LICENSE). Copy any of it without credit.
