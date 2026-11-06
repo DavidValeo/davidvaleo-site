@@ -96,6 +96,7 @@ At the top of a file, before its first `== section ==`, one per line:
 | `uppercase:` | `yes` prints everything in capitals, like an uppercase-only teletype; `no` does not. Without this line, `yes`. |
 | `prompt:` | The shell prompt, normally `$ `. Use quotes to keep a trailing space: `prompt: "% "`. |
 | `sound:` | `on`: keyclicks from the first tap or keypress. `off`: silent until `sound on`. |
+| `effects:` | `auto` (the default), `full` or `lite`; see [Looks](#looks). A visitor's own choice with the `effects` command wins in their browser. |
 | `source:` | Where the `source` command points. Must start with `http://` or `https://`. See [Licence](#licence). |
 | `commands:` | Switch commands off or on: `commands: -ping, -sudo`. Works on the built-in commands, the machine's (`-sudo`) and the games (`-rogue`); see [Switching a game off](#switching-a-game-off). Without the `-`, it switches back on one the machine has switched off (`commands: vi`). Your own `== command: ==` sections are never switched off, so delete those instead. |
 | `protected:` | Locked files and folders: listed by `ls`, but `cat` says *can't open*. Paths work (`.trash/core`); a trailing `/` makes a locked folder. |
@@ -150,7 +151,9 @@ a little extra space between them.
 ## Commands
 
 `help` lists what a visitor needs to get around, including `fill`, which puts the monitor
-away and lets the glass fill the window (`fill` again brings it back; the browser remembers).
+away and lets the glass fill the window (`fill` again brings it back; the browser remembers),
+and `effects`, which shows or switches the tube effects (`effects lite`, `full` or `auto`; see
+[Looks](#looks)).
 Behind it, each machine has the commands
 its real system had, and no others apart from the terminal's own: on the
 1979 machine there is no `vi`, and `whoami` is `who am i`. Explore; you know if you know.
@@ -180,7 +183,7 @@ Phosphor.command({names:['roll'],help:'roll a die',
 | `v7` | PDP-11/70, Version 7 Unix | 1979 | `/usr/games` |
 | `bsd` | VAX-11/780, 4.3BSD | 1987 | `/usr/games` |
 | `dos` | IBM PC/AT, MS-DOS 3.30 | 1988 | `C:\ZORK` |
-| `vms` | VAX-11/785, VAX/VMS V4.5 | 1988 | `[GAMES]`, started with `RUN` |
+| `vms` | VAX-11/785, VAX/VMS V4.6 | 1988 | `[GAMES]`, started with `RUN` |
 | `irix` | Silicon Graphics Crimson, IRIX 4.0.5 | 1993 | graphics demos, which need a display it doesn't have |
 | `cpm` | S-100 Z80, CP/M 2.2 | 1982 | `ZORK1` in user area 0, `ZORK2` in user area 3 |
 | `linux` | KVM virtual server, Debian 13 "trixie" | the visitor's own | `frotz`, `sl`, `cowsay`, `fortune` in `/usr/games`, and `cmatrix` |
@@ -249,6 +252,37 @@ To keep a machine off your site, leave it out of `machines:`. To take it out of 
 template, delete its line from `machines/machines.js` and its folder (not `shared/`, which
 other machines use). `?machine=` with a name that is not in the catalog starts the default
 machine.
+
+### Keeping Linux current
+
+The other machines are fixed in their year. `linux` takes the visitor's year, but what it
+shows (Debian 13.7, kernel 6.12.111, its package versions, and the apt and
+unattended-upgrades logs, last run on 14 October 2026) was taken from Debian when this
+release was made. Left alone, it ages into a server nobody patches, which is believable for
+a while. Refresh it about once per Debian release, when a new major version comes out (Debian
+14 "forky" is expected around 2027), or sooner if you like. In `machines/linux/`:
+
+1. Start the current Debian in a container, for example
+   `podman run --rm -it debian:trixie` (or the new release's name), and run `apt-get update`.
+2. Take the release and versions from it, not from memory: `/etc/os-release`,
+   `/etc/debian_version`, `bash --version`, `ls --version`, `apt --version`,
+   `apt-cache policy` for each package the machine lists (in `commands.js`), and the
+   kernel package's version and date (`apt-cache show linux-image-amd64`).
+3. Update the kernel string and its build date (the boot text in `machine.js`, `uname`, and
+   `/boot` and `/proc` in `fs.js`), `os-release`, `/etc/debian_version` and the motd.
+4. Update the package list and versions, and the logs in `/var/log` (`apt/history.log`,
+   `dpkg.log`, `unattended-upgrades/`) so their last run is a few weeks before the refresh.
+5. Check the messages a visitor is likely to see against the container, as a non-root user:
+   `sudo`, `su`, `apt install`, `apt update`, `dpkg`, and `man` for a missing page. Check that
+   each program the machine runs is still packaged (`neofetch`, for example, was dropped in
+   Debian 13, and `fastfetch` took its place).
+6. For a new major release, also update the codename everywhere (`grep -ri trixie`),
+   the `name:` in `machines/machines.js`, and the Debian rows in this README.
+7. Run the machine and check its boot, `uname -a`, `cat /etc/os-release`, `apt list --installed`
+   and `fastfetch`, then add a line to the changelog.
+
+Its folder, `machines/linux`, has no year in its name, unlike the others, because its year is
+the visitor's. A refresh changes only the text inside it.
 
 ## Games
 
@@ -472,6 +506,18 @@ that puts the `zork` files), then `'../shared/zork.js'` from its `files` in
 `site/theme.css` overrides the engine's colours. It includes a ready-made amber monitor:
 remove the comment marks around it.
 
+The tube effects come in two strengths. `full` draws a double glow round the text, a bright
+band rolling down the glass, a flicker, and a cable that sways. `lite` looks much the same for
+far less drawing: one small glow, the band moving in small steps (five a second) without
+blending, the flicker held at its average and the cable still, one inner shadow on the glass
+instead of two, and no afterglow behind scrolling text (`clear` still fades). It is for browsers that draw the page without a graphics chip, where `full`
+keeps half a processor core or more busy even while nothing is typed. The `effects:` setting picks one; `auto`, the default, uses `full`
+unless the browser's WebGL is a software renderer (SwiftShader, llvmpipe and the like) or
+missing, or the screen's warm-up draws at under 25 frames a second; then `lite`. Visitors can
+switch with the `effects` command, and their browser remembers. A reduced-motion setting in the
+browser or system also stops the band, the flicker, the sway, the cursor blink and the afterglow,
+whichever effects are in use. The styles are in `engine/phosphor.css`, under `html.lite`.
+
 ## Privacy
 
 The terminal makes no requests to other servers: no fonts, analytics or trackers. The one
@@ -480,7 +526,7 @@ sends small `HEAD` requests for the page to your own server and times the answer
 off with `commands: -ping` if you would rather it did not.
 
 Games that kept a save or a score file in their day keep them in the visitor's own browser
-(`localStorage`; see [Saves](#saves)). The `fill` command remembers its setting there too.
+(`localStorage`; see [Saves](#saves)). The `fill` and `effects` commands remember their settings there too.
 Nothing is sent anywhere, and nothing else is stored.
 
 ## Upgrading

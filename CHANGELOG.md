@@ -25,6 +25,11 @@ behind gaijin.systems.
 - Some things to find, if you know where to look.
 - `fill` puts the monitor away and lets the glass fill the window; the browser remembers. `help`
   lists it, and VMS `HELP` has `FILL` and `RUN`.
+- `lite` tube effects for browsers that draw without a graphics chip: one small glow, a stepped,
+  unblended band, a still flicker and cable, a lighter inner shadow, no afterglow when scrolling. New setting `effects:` (`auto`,
+  `full`, `lite`); `auto` picks `lite` for a software or missing WebGL, or a slow warm-up. The
+  `effects` command shows or switches it and the browser remembers; `help` lists it, VMS `HELP`
+  has `EFFECTS`.
 - On touch screens, a small row of keys on the glass: esc, ^C, ^D, ^Z and tab.
 - Several machines: `machines/machines.js` lists them, `machine:` and `machines:` choose,
   and the `connect` command or `?machine=name` switches. New machine setting `homes`.

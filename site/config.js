@@ -31,6 +31,11 @@ uppercase: no
 # on = keyclicks from the first tap or keypress; off = silent until "sound on".
 sound:     on
 
+# Tube effects. full: the double glow, rolling band, flicker and swaying cable. lite: the same
+# look for much less drawing. auto: lite when the browser draws without a graphics chip.
+# Visitors can switch with the effects command.
+effects:   auto
+
 # Where the source command sends people. The licence (GNU AGPL) asks that anyone using
 # a changed copy can get its source: if you change the code, point this at your copy.
 source:    https://github.com/GaijinSystems/phosphor
