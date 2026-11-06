@@ -102,7 +102,7 @@ At the top of a file, before its first `== section ==`, one per line:
 | `protected:` | Locked files and folders: listed by `ls`, but `cat` says *can't open*. Paths work (`.trash/core`); a trailing `/` makes a locked folder. |
 | `machine:` `machines:` | Which machine the terminal starts on, and which ones the `connect` command offers: `machines: v7, bsd`. Unset, the first and all of them. With one machine there is no `connect`. `machine: random` picks one of the allowed machines when the address doesn't name one, and keeps that pick for the rest of the browser tab, so a reload boots the same machine and a new tab picks again. |
 | `hostname:` | The machine's name. Normally taken from your domain (`example.com` becomes `example`). |
-| `cord turns:` `cord width:` `cord thickness:` `cord gap:` `cord straight:` `cord sway:` | The coiled cable under the monitor: `turns` is a count, the rest are in screen pixels. Values outside a sensible range are pulled back into it. |
+| `cord turns:` `cord desktop:` `cord width:` `cord thickness:` `cord gap:` `cord straight:` `cord sway:` | The coiled cable under the monitor: `turns` is a count, and `desktop` is the count on a wide screen (`turns` is used on phones, and wherever `desktop` is unset); the rest are in screen pixels. Values outside a sensible range are pulled back into it. |
 
 A machine's year lives in `machines/machines.js`, and `{year}` in any text follows it. The
 machine sets a few more (`installed:`, `user:`, `homes:`, `case:`, `offline:`);

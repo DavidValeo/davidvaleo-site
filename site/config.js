@@ -50,9 +50,11 @@ commands:
 # "can't open". Paths work (.trash/core); a trailing / makes a locked folder.
 protected: photo01.pic, photo02.pic, secrets, .trash/core
 
-# The coiled cable under the monitor: turns is a count, the rest are in screen pixels.
+# The coiled cable under the monitor: turns is a count (desktop: the count on a wide screen;
+# turns is used on phones and wherever desktop is unset); the rest are in screen pixels.
 # Values outside a sensible range are pulled back into it.
 cord turns:     7
+cord desktop:   13
 cord width:     18
 cord thickness: 3.2
 cord gap:       1.8

@@ -5,6 +5,8 @@
 First public release of PHOSPHOR-9 as a template, split out of the single-file terminal
 behind gaijin.systems.
 
+- On a desktop the monitor sits at the top of the window, centred across, and the cable hangs below it. A new
+  `cord desktop:` setting gives the coil its own number of turns on a wide screen.
 - Split into `engine/` (the terminal), `machines/v7-1979/` (the imaginary computer) and
   `site/` (your content), loaded by plain `<script>` tags: works opened from disk.
 - Built-in commands live in `engine/commands/`; switch any of them off with `commands:`.
