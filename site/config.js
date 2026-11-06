@@ -41,7 +41,7 @@ effects:   auto
 source:    https://github.com/GaijinSystems/phosphor
 
 # Switch commands off (or back on): a comma list, minus to remove. Works on the built-in
-# commands and the machine's (sudo), not on your own == command: == sections.
+# commands, the machine's (sudo) and the games (rogue), not on your own == command: == sections.
 # e.g.  commands: -ping      (ping, on the machines that have it, is the only command that
 # makes network requests)
 commands:

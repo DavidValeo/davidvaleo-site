@@ -106,8 +106,8 @@ behind gaijin.systems.
   recognition and guide words, `?` for what comes next, generation numbers, `UNDELETE` and `EXPUNGE`,
   `SYSTAT`, `FINGER`, `MM`, and `ADVENTURE` and `DUNGEON` in `<GAMES>`. A machine can now answer Escape,
   Tab and `?` at the prompt itself (`Phosphor.recognize`).
-- A new machine, an Apple IIe with DOS 3.3 (`apple2`): its own 40-column screen, Applesoft BASIC, the monitor and a
+- A ninth machine, an Apple IIe with DOS 3.3 (`apple2`): its own 40-column screen, Applesoft BASIC, the monitor and a
   disk kept in the browser, with Zork I and II and four new BASIC games on it.
-- A Commodore 128 (`c128`, 1986): BASIC 7.0 on its screen editor, in 40 columns or, with Escape then X,
+- A tenth, a Commodore 128 (`c128`, 1986): BASIC 7.0 on its screen editor, in 40 columns or, with Escape then X,
   80; a 1571 disk kept in the browser; and `GO 64` for a Commodore 64 with BASIC V2. Six of David Ahl's
   type-in games are on the disk.

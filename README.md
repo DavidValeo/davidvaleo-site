@@ -242,7 +242,7 @@ on dark grey, after booting the disk in drive 8, whose `WELCOME` program prints 
 `== welcome ==`. It was bought for Christmas 1985, so its clock says 1986. Typing goes onto the
 screen, not into a line: the cursor keys move anywhere, and Return enters whichever line the
 cursor is on, so a line listed above can be changed and entered again. Home is HOME (with Shift,
-CLR), Insert is INST, Ctrl-C is RUN/STOP, F1 to F8 are the function keys, and Ctrl-1 to Ctrl-8,
+CLR), Insert is INST, Ctrl-C is RUN/STOP (twice within a second, RUN/STOP and RESTORE), F1 to F8 are the function keys, and Ctrl-1 to Ctrl-8,
 Ctrl-9, Ctrl-0 and Alt-1 to Alt-8 are the colour and reverse keys. Capitals type as letters, so
 caps lock does no harm.
 
@@ -301,7 +301,7 @@ catalog and offers all of them; with one machine in the list there is no `connec
      set besides the site's are `installed`, `user`, `homes` or `home`, `case`, `offline`,
      `shell` (`dos`, `dcl` or `bash`), `unix: no` (leave out the Unix commands), `csh`, `perror`,
      `login`, `login prompt`, `login failed`, `root login`, `root prompt`, `root password`, `also root`,
-     `backdoor`, `closed door`, `not found`, `mail notice` and `ls columns`; the
+     `backdoor`, `closed door`, `not found`, `mail notice`, `ls columns` and `disk full`; the
      machines between them use each one, so look there for an example.
      `commands: -vi, -whoami` leaves out the engine's commands the real system did not have.
    - `fs.js` builds the system folders with `P.sys(path,'d')` for a folder and
@@ -427,8 +427,8 @@ behave like the real one; the tables say which.
 | `STARTREK` | Super Star Trek, from SST2K, a later descendant standing in for the DECUS program, whose source was not found |
 
 **TOPS-20**, in `<GAMES>` (`DIR <GAMES>` lists them; `LOGIN.CMD` puts `GAMES:` in `SYS:`, so the
-name at the `@` starts one, as does `RUN GAMES:name`). The other names there are a real site's,
-and say no during prime time:
+name at the `@` starts one, as does `RUN GAMES:name`). The other names there are a real site's:
+during prime time they say games may not be played, and after it that execute access is required:
 
 | Game | |
 |---|---|
@@ -634,8 +634,8 @@ sends small `HEAD` requests for the page to your own server and times the answer
 off with `commands: -ping` if you would rather it did not.
 
 Games that kept a save or a score file in their day keep them in the visitor's own browser
-(`localStorage`; see [Saves](#saves)). The `fill` and `effects` commands remember their settings there too.
-Nothing is sent anywhere, and nothing else is stored.
+(`localStorage`; see [Saves](#saves)). The `fill` and `effects` commands remember their settings there too, and `machine: random`
+keeps its pick for the tab in the browser's session storage. Nothing is sent anywhere, and nothing else is stored.
 
 ## Upgrading
 
@@ -683,7 +683,7 @@ how. Changes are listed in [CHANGELOG.md](CHANGELOG.md).
 | Linux: the default cow in `/usr/share/cowsay/cows` (`fs.js`) | cowsay 3.03, Tony Monroe | The same terms as Perl, the Artistic License or the GNU GPL version 1 or later, noted in the file | The `cowsay` program reading it is new. Only the default cow is there |
 | Linux: `fortune`'s sayings (`fs.js`) | Quotations from works published before 1912 | Public domain | The program is new; none of BSD's or fortune-mod's files are used |
 | Linux: `sl` | New, after Toyoda Masashi's `sl` | AGPL | Behaviour follows the original; the program and the drawings are new, so his notice is not needed, and he is credited |
-| Linux: `nethack` | NetHack 3.6.7 (`nethack-367-src.tgz` from nethack.org) | NetHack General Public License, kept, with every source file's notice; the patches against 3.6.7 and the helper C files used are in a comment at the end of the file | Copyleft: the NGPL wants the whole of any work containing NetHack under identical terms, so it is kept in its own file, loaded only when it runs. The file points to the upstream source for the rest, and the NGPL allows that pointer only for noncommercial distribution: a commercial site must offer the complete source itself |
+| Linux: `nethack` | NetHack 3.6.7 (`nethack-367-src.tgz` from nethack.org) | NetHack General Public License, kept, with every source file's notice; the patch against 3.6.7, the new `fakecap.c` and the C library headers it was built against are in a comment at the end of the file | Copyleft: the NGPL wants the whole of any work containing NetHack under identical terms, so it is kept in its own file, loaded only when it runs. The file points to the upstream source for the rest, and the NGPL allows that pointer only for noncommercial distribution: a commercial site must offer the complete source itself |
 
 - **The example content** in `site/` is dedicated to the public domain under
   [CC0 1.0](site/LICENSE). Copy any of it without credit.
