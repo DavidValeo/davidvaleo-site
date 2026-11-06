@@ -30,7 +30,8 @@ placeholder and generic line in it, so nothing is missed.
 - `attic`: `nothing up here yet.`
 - `notes/todo`, `notes/ideas`, `src/hello.c`, `.plan` and `.profile`: example files.
 - `secrets`, `.trash/letter.bak` and `.trash/.deeper/note`: the example puzzle. The note points to `/etc` and
-  the old root password that V7, 4.3BSD and IRIX keep in `/etc/rc.old`; `secrets` is locked until you are root.
+  the root password the machines leave lying about (`/etc/rc.old` on V7, 4.3BSD and IRIX, a cron job in
+  `/etc/cron.d` on Debian, `<SYSTEM>PTYCON.ATO` on TOPS-20); `secrets` is locked until you are root.
   Keep, change or delete it as a whole.
 
 ## Look (`site/theme.css`)

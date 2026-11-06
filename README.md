@@ -202,7 +202,7 @@ Each one has the commands, messages and file tree of its real system; V7 and 4.3
 checked side by side with the real systems running in a simulator, and the Debian machine's
 package versions and `apt`'s messages were checked against Debian 13. It is reached on its serial console, boots
 when the terminal does, and follows the visitor's clock, year and all; its guest is not in
-the sudoers file, so `sudo` and `apt install` say no, as they would. Each folder's `machine.js` holds its settings and text (the
+the sudoers file, so `sudo` and `apt install` say no, as they would. `su` (or `su -`) asks for root's password as Debian's does, and says `su: Authentication failure` when it is wrong; `exit` goes back. The password is the `root password:` in `machines/linux/machine.js`, and the administrator was careless with it. As root, `sudo` asks nothing, and `halt`, `poweroff`, `reboot` and `shutdown now` stop the machine. Each folder's `machine.js` holds its settings and text (the
 self-test, the boot log, `dmesg`, the `ps` table), `fs.js` builds its system folders, and
 `later.js`, where it has one, names its games.
 
@@ -215,7 +215,11 @@ and gives you your line back. File names are `NAME.TYP.n` in directories like `<
 `DELETE` only marks a file, `UNDELETE` brings it back and `EXPUNGE` makes it go. `SYSTAT`,
 `FINGER`, `MM` (the mail) and `LOGOUT` are there, and after `LOGOUT`, `LOGIN GUEST` with any
 password. `HELP ?` lists the topics, `FILL`, `SOUND`, `EFFECTS` and `CONNECT` among them; bare
-`CONNECT` lists the other machines, and `CONNECT <DIR>` moves you to a directory you own. The
+`CONNECT` lists the other machines, and `CONNECT <DIR>` moves you to a directory you own.
+`ENABLE` turns the `@` prompt into `$` and `DISABLE` turns it back, for anyone, as the real EXEC does; only
+OPERATOR has the WHEEL and OPERATOR capabilities that make it matter, and with them the locked files open.
+`LOGIN OPERATOR` takes the `root password:` in `machines/tops20-1986/machine.js` (with `root login: operator`
+and `root prompt: $`); the site keeps it less carefully than it should. The
 messages were checked against TOPS-20 running under KLH10 (the Panda distribution) and the
 6.1 EXEC's source. The recognition is the machine's: its `commands.js` sets
 `Phosphor.recognize(key, line)`, which the engine asks about Escape, Tab and `?` at the prompt.
@@ -240,7 +244,8 @@ and `CONNECT` answer on the Apple's screen. A program can use them too, after an
 `RUN ZORK I` and `RUN ZORK II` start Infocom's games. The BASIC interpreter, the 6502 behind `CALL` and the monitor's
 `G`, and the disk are written for this terminal and contain nothing of Apple's or Microsoft's; the ROM is not there,
 so memory above `$C000` reads as zeros, and the `GR` and `HGR` graphics are accepted but draw nothing. Its output
-was checked line for line against an Apple IIe running DOS 3.3 in MAME.
+was checked line for line against an Apple IIe running DOS 3.3 in MAME. `XYZZY`, `PLUGH` and `PR#7` at the `]`
+prompt get the terminal's own answers (the `JOKES` table in `apple.js`).
 
 ### Commodore 128
 
@@ -268,7 +273,9 @@ screens, the messages, the editor's ways and what programs print. The characters
 this terminal too; Commodore's ROMs are not used. `SOUND`, `PLAY` and the SID's registers make
 their notes while the keyclicks are on, and `FAST` blanks the 40-column screen, as it did, until
 `SLOW`. Bitmap graphics and sprites are not there: `GRAPHIC 1` to `4` answer `?UNIMPLEMENTED
-COMMAND ERROR`, and `DRAW` and the rest `?NO GRAPHICS AREA ERROR`.
+COMMAND ERROR`, and `DRAW` and the rest `?NO GRAPHICS AREA ERROR`. `SYS 32800,123,45,6` shows the credits
+that Commodore's programmers hid in the ROM, as the real machine does. A few other machines' commands typed at
+`READY.` get an answer from a Commodore owner of 1985; their texts are the `RIVALS` table in `screen.js`.
 
 ### Choosing machines
 

@@ -115,3 +115,6 @@ behind gaijin.systems.
 - A tenth, a Commodore 128 (`c128`, 1986): BASIC 7.0 on its screen editor, in 40 columns or, with Escape then X,
   80; a 1571 disk kept in the browser; and `GO 64` for a Commodore 64 with BASIC V2. Six of David Ahl's
   type-in games are on the disk.
+- Debian 13 and TOPS-20 have a super-user too, for those who look in the right place; on TOPS-20 that is
+  OPERATOR, `ENABLE` and the `$` prompt. TOPS-20's `LOGIN` now says `?Incorrect password`, as the 6.1 EXEC does.
+- The C128 keeps its ROM's secret, and the Apple IIe and the Commodores have opinions about other machines.
