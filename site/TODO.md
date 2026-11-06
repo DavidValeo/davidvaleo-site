@@ -1,6 +1,6 @@
 # To do: the example text in site/
 
-Everything in `site/` is example content (CC0, see `site/LICENSE`) for a site to replace. This lists every
+Everything in this folder is example content (CC0, see `LICENSE` here) for a site to replace. This lists every
 placeholder and generic line in it, so nothing is missed.
 
 ## Settings (`site/config.js`)

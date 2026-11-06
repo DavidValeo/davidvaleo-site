@@ -117,7 +117,7 @@ A line like `== welcome ==` starts a section; the lines after it are printed as 
 | Section | What it is |
 |---|---|
 | `== welcome ==` | Printed after login (also `/etc/motd`). |
-| `== about ==` | What the `about` command prints (there is no about file: the terminal prints it). |
+| `== about ==` | What the `about` command prints (no about file: the terminal prints it; the C128's disk has an `ABOUT` program instead). |
 | `== mail ==` | The letter. `you have mail.` shows at login while it has text. |
 | `== file: NAME ==` | A file in the home folder. `NAME` may be a path (`notes/todo`); folders are made as needed. A name starting with a dot is hidden (`ls -a`). A path starting with `/` goes anywhere. |
 | `== dir: NAME ==` | An empty folder. |
@@ -161,8 +161,9 @@ its real system had, and no others apart from the terminal's own: on the
 
 On the Unix machines `help` lists the terminal's own commands apart, under "the terminal's, not the
 machine's:": `about`, `mail`, `source`, `sound`, `fill`, `effects`, `connect` and your own
-`== command: ==` sections. The terminal answers them on every machine, their manual pages say so,
-and no machine has a program file for them, so a file of the same name never takes their place.
+`== command: ==` sections. The terminal answers them on every machine (the C128 takes only `fill`,
+`sound`, `effects`, `connect` and `source`: its disk has `ABOUT` and `LETTER` programs), their manual pages say so, and no machine has a program file
+for them, so a file of the same name never takes their place.
 
 The shell understands pipes, redirection, quotes, variables, wildcards and scripts. Visitors
 can change files in their home folder and `/tmp`, and a reload puts everything back.
