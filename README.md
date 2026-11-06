@@ -222,8 +222,9 @@ catalog and offers all of them; with one machine in the list there is no `connec
    `installed:` date must fall before that year starts, or on January 1. A machine of today
    can take the visitor's own year with `year:new Date().getFullYear()`, as `linux` does. `files` load in
    this order, from the folder (a path like `../shared/zork.js` reaches another folder).
-   The first machine in the catalog is the default, so add yours lower down unless you
-   mean that.
+   Machines are listed oldest first, and `connect` always lists them by year, whatever order
+   a site's `machines:` gives. With no `machine:` setting, the oldest allowed machine is the
+   default.
 3. Change its files:
    - `machine.js` is text in the same format as `site/`: settings first, then sections
      (`== banner ==`, `== boot ==`, `== dmesg ==` and the rest). The settings a machine can
