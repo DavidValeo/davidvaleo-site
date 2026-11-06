@@ -4,7 +4,7 @@
    followed by {, anywhere between the two backticks below. */
 Phosphor.content(String.raw`
 
-# Printed after login (and kept in /etc/motd).
+# Printed after login (and kept in /etc/motd, on the Unix machines).
 == welcome ==
 welcome to {site}.
 ~ type help and press return.

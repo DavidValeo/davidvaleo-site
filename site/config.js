@@ -15,6 +15,7 @@ Phosphor.content(String.raw`
 
 # The machine behind the glass, and which others the connect command offers (see
 # machines/machines.js). Unset: the first one, and all of them. One machine: no connect.
+# machine: random picks one of them for each browser tab (the C128 sits out the draw).
 # machine:  v7
 # machines: v7
 

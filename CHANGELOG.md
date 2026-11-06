@@ -41,7 +41,8 @@ behind gaijin.systems.
   after the one before has finished, and its backticks and variables are worked out when its turn
   comes.
 - The file system can be written for the session: `>`, `touch`, `mkdir`, `cp`, `mv`, `rm`.
-  A reload puts everything back. `cat` and friends read the keyboard until Ctrl-D.
+  A reload puts everything back. A file holds up to 4 MB; past that, the machine says its disk is full.
+  `cat` and friends read the keyboard until Ctrl-D.
 - `ed`, the standard editor, with its addresses, regular expressions and `?`.
 - `vi`, the visual editor, on the machines that had it, drawn on the glass.
 - Colossal Cave, the 350-point version, on the 4.3BSD machine: `adventure`, in `/usr/games`, with
@@ -55,7 +56,8 @@ behind gaijin.systems.
   and `Abort, Retry, Fail?`; a Silicon Graphics Crimson running IRIX 4.0.5 with `hinv` and `fsn`;
   an S-100 box running CP/M 2.2 with `A>`, `PIP` and `STAT`; and a VAX running VMS, with versioned
   files and DCL. New machine settings: `home`, `shell`, `unix`, `login`, `csh`, `login prompt`,
-  `root login`, `root prompt`, `root password`, `login failed`, `closed door`, `backdoor`.
+  `root login`, `root prompt`, `root password`, `login failed`, `closed door`, `backdoor`, `also root`,
+  `not found`, `mail notice`, `ls columns`, `disk full`.
 - Every game in V7's `/usr/games` plays: `arithmetic`, `backgammon`, `banner`, `bcd`, `bj`, `checkers`,
   `chess`, `ching`, `cubic`, `fortune`, `hangman`, `maze`, `moo`, `ppt`, `quiz`, `reversi`, `ttt`, `words`
   and `wump`, ported from their source, or from 2.11BSD's sources checked against the V7 programs.
@@ -115,6 +117,7 @@ behind gaijin.systems.
 - A tenth, a Commodore 128 (`c128`, 1986): BASIC 7.0 on its screen editor, in 40 columns or, with Escape then X,
   80; a 1571 disk kept in the browser; and `GO 64` for a Commodore 64 with BASIC V2. Six of David Ahl's
   type-in games are on the disk.
-- Debian 13 and TOPS-20 have a super-user too, for those who look in the right place; on TOPS-20 that is
-  OPERATOR, `ENABLE` and the `$` prompt. TOPS-20's `LOGIN` now says `?Incorrect password`, as the 6.1 EXEC does.
+- Debian 13 and TOPS-20 have a super-user too, for those who look in the right place: on Debian, `su`,
+  `su -c`, and as root `sudo`, `systemctl` and `shutdown`; on TOPS-20, OPERATOR, `ENABLE` and the `$` prompt.
+  TOPS-20's `LOGIN` now says `?Incorrect password`, as the 6.1 EXEC does.
 - The C128 keeps its ROM's secret, and the Apple IIe and the Commodores have opinions about other machines.

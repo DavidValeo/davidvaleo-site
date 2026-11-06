@@ -21,13 +21,15 @@ placeholder and generic line in it, so nothing is missed.
   - the paragraph `this is the letter every visitor finds waiting. say hello, ...` is a placeholder;
   - the rows `my next project ... coming soon -> https://example.com` and
     `my first project ~~2025-06-01~~ {year}-06-01 -> https://example.com` are examples;
-  - `to reach the operator, write to:` and `~ no terminal should be without one!` are generic.
+  - `welcome to {site}!`, `here is what is on the bench:`, `~ tap or click a title to visit.`,
+    `~ no terminal should be without one!`, `to reach the operator, write to:`, `{email} -> mailto:{email}` and
+    `~ no modem detected. copy it down by hand.` are generic.
 - `== command: motto | words to live by ==` (`keep the tube warm.`): an example of a command of your own.
 
 ## The home folder (`site/home.js`)
 
-- `now`: the line `~ (edit the now file in site/home.js)` is a placeholder.
-- `attic`: `nothing up here yet.`
+- `now`: `what i am doing now:` is generic; the line `~ (edit the now file in site/home.js)` is a placeholder.
+- `attic`: `retired and discontinued projects:` and `nothing up here yet.`
 - `notes/todo`, `notes/ideas`, `src/hello.c`, `.plan` and `.profile`: example files.
 - `secrets`, `.trash/letter.bak` and `.trash/.deeper/note`: the example puzzle. The note points to `/etc` and
   the root password the machines leave lying about (`/etc/rc.old` on V7, 4.3BSD and IRIX, a cron job in

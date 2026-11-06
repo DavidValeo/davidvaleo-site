@@ -59,7 +59,8 @@ engine then loads the chosen machine. Anything you set wins over the machine.
 3. **A game.** A game's own files load the first time someone runs it, and then stay for the
    visit. Until then `ls /usr/games`, `man rogue` and `which rogue` already work, and a visitor
    who never plays downloads none of it. If a game's file fails to arrive, the program says
-   it cannot execute (on VMS, that the image could not be activated) and the prompt comes back;
+   it cannot execute (on VMS, that the image could not be activated; on TOPS-20, that the program
+   could not be loaded) and the prompt comes back;
    Ctrl-C stops the wait.
 
 ## Writing content
@@ -101,7 +102,7 @@ At the top of a file, before its first `== section ==`, one per line:
 | `source:` | Where the `source` command points. Must start with `http://` or `https://`. See [Licence](#licence). |
 | `commands:` | Switch commands off or on: `commands: -ping, -sudo`. Works on the built-in commands, the machine's (`-sudo`) and the games (`-rogue`); see [Switching a game off](#switching-a-game-off). Without the `-`, it switches back on one the machine has switched off (`commands: vi`). Your own `== command: ==` sections are never switched off, so delete those instead. |
 | `protected:` | Locked files and folders: listed by `ls`, but `cat` says *can't open*. Paths work (`.trash/core`); a trailing `/` makes a locked folder. |
-| `machine:` `machines:` | Which machine the terminal starts on, and which ones the `connect` command offers: `machines: v7, bsd`. Unset, the first and all of them. With one machine there is no `connect`. `machine: random` picks one of the allowed machines when the address doesn't name one, and keeps that pick for the rest of the browser tab, so a reload boots the same machine and a new tab picks again. The Commodore 128 sits out the draw: give a machine `random:false` in `machines/machines.js` to leave it out the same way. The address, `connect` and these settings still reach it, and if it is the only machine allowed, random picks it. |
+| `machine:` `machines:` | Which machine the terminal starts on, and which ones the `connect` command offers: `machines: v7, bsd`. Unset, the first and all of them. With one machine there is no `connect`. `machine: random` picks one of the allowed machines when the address doesn't name one, and keeps that pick for the rest of the browser tab, so a reload boots the same machine and a new tab picks again. The Commodore 128 sits out the draw: give a machine `random:false` in `machines/machines.js` to leave it out the same way. The address, `connect` and these settings still reach it, and if only such machines are allowed, random picks among them. |
 | `hostname:` | The machine's name. Normally taken from your domain (`example.com` becomes `example`). |
 | `cord turns:` `cord desktop:` `cord width:` `cord thickness:` `cord gap:` `cord straight:` `cord sway:` | The coiled cable under the monitor: `turns` is a count, and `desktop` is the count on a wide screen (`turns` is used on phones, and wherever `desktop` is unset); the rest are in screen pixels. Values outside a sensible range are pulled back into it. |
 
@@ -116,9 +117,9 @@ A line like `== welcome ==` starts a section; the lines after it are printed as 
 
 | Section | What it is |
 |---|---|
-| `== welcome ==` | Printed after login (also `/etc/motd`). |
+| `== welcome ==` | Printed after login (also `/etc/motd`, on the Unix machines). |
 | `== about ==` | What the `about` command prints (no about file: the terminal prints it; the C128's disk has an `ABOUT` program instead). |
-| `== mail ==` | The letter. `you have mail.` shows at login while it has text. |
+| `== mail ==` | The letter. `you have mail.`, in the machine's words, shows when the guest logs in, while it has text. |
 | `== file: NAME ==` | A file in the home folder. `NAME` may be a path (`notes/todo`); folders are made as needed. A name starting with a dot is hidden (`ls -a`). A path starting with `/` goes anywhere. |
 | `== dir: NAME ==` | An empty folder. |
 | `== command: NAME \| HELP ==` | A new command that prints the section. `NAME, OTHER` gives it two names. Without help text it is hidden from `help`. It replaces a built-in of the same name, except the core ones (`help`, `man`, `clear`, `ls`, `cat`, `sound`, `cd`, `pwd`, `echo`, `mail`, `alias`, `source`): switch one of those off first (`commands: -mail`) and yours takes its place. |
@@ -166,7 +167,8 @@ machine's:": `about`, `mail`, `source`, `sound`, `fill`, `effects`, `connect` an
 for them, so a file of the same name never takes their place.
 
 The shell understands pipes, redirection, quotes, variables, wildcards and scripts. Visitors
-can change files in their home folder and `/tmp`, and a reload puts everything back.
+can change files in their home folder and `/tmp`, and a reload puts everything back. A file holds
+at most 4 MB; past that, the write stops and the machine says its disk is full.
 On the Unix machines, the commands `help` lists have a manual page (`man ls`) and a usage
 line (`ls -h`), except that `echo -h` prints `-h`, as it should, and `fill -h` simply fills the screen; on Linux, where `-h` means
 something else to GNU's tools, the usage line is `ls --help`. The Linux machine's bash also
@@ -202,7 +204,7 @@ Each one has the commands, messages and file tree of its real system; V7 and 4.3
 checked side by side with the real systems running in a simulator, and the Debian machine's
 package versions and `apt`'s messages were checked against Debian 13. It is reached on its serial console, boots
 when the terminal does, and follows the visitor's clock, year and all; its guest is not in
-the sudoers file, so `sudo` and `apt install` say no, as they would. `su` (or `su -`) asks for root's password as Debian's does, and says `su: Authentication failure` when it is wrong; `exit` goes back. The password is the `root password:` in `machines/linux/machine.js`, and the administrator was careless with it. As root, `sudo` asks nothing, and `halt`, `poweroff`, `reboot` and `shutdown now` stop the machine. Each folder's `machine.js` holds its settings and text (the
+the sudoers file, so `sudo` and `apt install` say no, as they would. `su` (or `su -`) asks for root's password as Debian's does, and says `su: Authentication failure` when it is wrong; `exit` goes back, and `su -c` runs a single command instead. The password is the `root password:` in `machines/linux/machine.js`, and the administrator was careless with it. As root, `su` and `sudo` ask nothing (`sudo -u`, `sudo -i` and `su` to another user work too), `systemctl start`, `stop` and the rest are accepted without a word, `halt`, `poweroff`, `reboot` and `shutdown now` stop the machine, and `shutdown` with a later time says when it is scheduled. Each folder's `machine.js` holds its settings and text (the
 self-test, the boot log, `dmesg`, the `ps` table), `fs.js` builds its system folders, and
 `later.js`, where it has one, names its games.
 
@@ -217,7 +219,8 @@ and gives you your line back. File names are `NAME.TYP.n` in directories like `<
 password. `HELP ?` lists the topics, `FILL`, `SOUND`, `EFFECTS` and `CONNECT` among them; bare
 `CONNECT` lists the other machines, and `CONNECT <DIR>` moves you to a directory you own.
 `ENABLE` turns the `@` prompt into `$` and `DISABLE` turns it back, for anyone, as the real EXEC does; only
-OPERATOR has the WHEEL and OPERATOR capabilities that make it matter, and with them the locked files open.
+OPERATOR has the WHEEL and OPERATOR capabilities that make it matter, and with them the locked files open and any
+directory can be written.
 `LOGIN OPERATOR` takes the `root password:` in `machines/tops20-1986/machine.js` (with `root login: operator`
 and `root prompt: $`); the site keeps it less carefully than it should. The
 messages were checked against TOPS-20 running under KLH10 (the Panda distribution) and the
@@ -244,7 +247,7 @@ and `CONNECT` answer on the Apple's screen. A program can use them too, after an
 `RUN ZORK I` and `RUN ZORK II` start Infocom's games. The BASIC interpreter, the 6502 behind `CALL` and the monitor's
 `G`, and the disk are written for this terminal and contain nothing of Apple's or Microsoft's; the ROM is not there,
 so memory above `$C000` reads as zeros, and the `GR` and `HGR` graphics are accepted but draw nothing. Its output
-was checked line for line against an Apple IIe running DOS 3.3 in MAME. `XYZZY`, `PLUGH` and `PR#7` at the `]`
+was checked line for line against an Apple IIe running DOS 3.3 in MAME. `XYZZY`, `PLUGH` and `PR#7` (or `IN#7`) at the `]`
 prompt get the terminal's own answers (the `JOKES` table in `apple.js`).
 
 ### Commodore 128
@@ -273,7 +276,7 @@ screens, the messages, the editor's ways and what programs print. The characters
 this terminal too; Commodore's ROMs are not used. `SOUND`, `PLAY` and the SID's registers make
 their notes while the keyclicks are on, and `FAST` blanks the 40-column screen, as it did, until
 `SLOW`. Bitmap graphics and sprites are not there: `GRAPHIC 1` to `4` answer `?UNIMPLEMENTED
-COMMAND ERROR`, and `DRAW` and the rest `?NO GRAPHICS AREA ERROR`. `SYS 32800,123,45,6` shows the credits
+COMMAND ERROR`, and `DRAW` and the rest `?NO GRAPHICS AREA ERROR`. `SYS 32800,123,45,6`, in C128 mode, shows the credits
 that Commodore's programmers hid in the ROM, as the real machine does. A few other machines' commands typed at
 `READY.` get an answer from a Commodore owner of 1985; their texts are the `RIVALS` table in `screen.js`.
 
@@ -316,7 +319,11 @@ catalog and offers all of them; with one machine in the list there is no `connec
      `shell` (`dos`, `dcl` or `bash`), `unix: no` (leave out the Unix commands), `csh`, `perror`,
      `login`, `login prompt`, `login failed`, `root login`, `root prompt`, `root password`, `also root`,
      `backdoor`, `closed door`, `not found`, `mail notice`, `ls columns` and `disk full`; the
-     machines between them use each one, so look there for an example.
+     machines between them use each one, so look there for an example. `root login` (normally
+     `root`) with `root password` is an account that logs in as the super-user, at the `root prompt`
+     (normally `# `), and the Unix machines' `su` takes the same password; at the login prompt it
+     counts case unless the machine has `case: ignore`. `also root: name/password` adds a second
+     such account, and `disk full` is what a write says when a file passes 4 MB.
      `commands: -vi, -whoami` leaves out the engine's commands the real system did not have.
    - `fs.js` builds the system folders with `P.sys(path,'d')` for a folder and
      `P.sys(path,'f',{body:[...]})` for a file, and `P.programs(...)` makes a program file for
@@ -501,7 +508,9 @@ a side that has more, and the next key goes back to following the cursor. `robot
 glass when they start and keep it, as the originals did; after a resize they shrink their type
 or follow the cursor in the same way. `hangman`, `rain`, `worms` and Linux's `top`, `sl` and
 `cmatrix` use whatever size the glass is. On a phone, the row of keys on
-the glass gives esc, Ctrl-C, Ctrl-D, Ctrl-Z and tab.
+the glass gives esc, Ctrl-C, Ctrl-D, Ctrl-Z and tab. When the phone's keyboard opens, the monitor shrinks to sit
+above it, and puts the cable away if that leaves too little height; a phone held sideways gets the whole
+width, with no cable.
 
 ### Play hours
 
@@ -682,8 +691,8 @@ how. Changes are listed in [CHANGELOG.md](CHANGELOG.md).
 | 4.3BSD: `btlgammon` | 4.3BSD | No notice | The old V7 program, so if it is Bell Labs code the Caldera question above applies |
 | 4.3BSD: `doctor` | 4.3BSD's `doctor.l`, which has no notice | The Regents' four-clause BSD licence from Net/2's almost identical copy, kept | Net/2 is the release AT&T's Unix Systems Laboratories sued over |
 | 4.3BSD: `aardvark` | 4.3BSD | No notice on the game; the Regents' and UCLA's on what was around it | No grant for the game text |
-| 4.3BSD: `zork` (Dungeon) | Dungeon 2.5.6 | Infocom's notice, kept: *commercial usage strictly prohibited* | Non-commercial, and no grant to copy or change it. Microsoft's 2025 MIT release of Zork I to III does not name Dungeon |
-| Colossal Cave (4.3BSD and VMS) | NetBSD | BSD licence, kept | |
+| 4.3BSD: `zork`, TOPS-20: `DUNGEON` (Dungeon) | Dungeon 2.5.6 | Infocom's notice, kept: *commercial usage strictly prohibited* | Non-commercial, and no grant to copy or change it. Microsoft's 2025 MIT release of Zork I to III does not name Dungeon |
+| Colossal Cave (4.3BSD, VMS and TOPS-20) | NetBSD | BSD licence, kept | |
 | 4.3BSD: `number`, `primes`, `factor`, `banner`, `hangman`, `worm`, `robots`, `snake` (`games.js`, `banner-font.js`) | NetBSD | BSD licence, kept | |
 | Rogue | Rogue 5.4.4 | BSD licence, kept, with the notice for the parts based on the work of Nicholas J. Kisseberth | |
 | Zork I and II (DOS, CP/M, Linux, Apple IIe) | Infocom's story files, release 119 and 63 | MIT licence (Microsoft, 2025), kept | The licence covers the software, read here as including the story files; Zork is a trademark and the licence does not cover the name |
