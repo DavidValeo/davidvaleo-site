@@ -184,6 +184,7 @@ Phosphor.command({names:['roll'],help:'roll a die',
 | `bsd` | VAX-11/780, 4.3BSD | 1987 | `/usr/games` |
 | `dos` | IBM PC/AT, MS-DOS 3.30 | 1988 | `C:\ZORK` |
 | `vms` | VAX-11/785, VAX/VMS V4.6 | 1988 | `[GAMES]`, started with `RUN` |
+| `tops20` | DECSYSTEM-2060, TOPS-20 V6.1 | 1986 | `<GAMES>`, started by name |
 | `irix` | Silicon Graphics Crimson, IRIX 4.0.5 | 1993 | graphics demos, which need a display it doesn't have |
 | `cpm` | S-100 Z80, CP/M 2.2 | 1982 | `ZORK1` in user area 0, `ZORK2` in user area 3 |
 | `linux` | KVM virtual server, Debian 13 "trixie" | the visitor's own | `frotz`, `sl`, `cowsay`, `fortune` in `/usr/games`, and `cmatrix` |
@@ -195,6 +196,20 @@ when the terminal does, and follows the visitor's clock, year and all; its guest
 the sudoers file, so `sudo` and `apt install` say no, as they would. Each folder's `machine.js` holds its settings and text (the
 self-test, the boot log, `dmesg`, the `ps` table), `fs.js` builds its system folders, and
 `later.js`, where it has one, names its games.
+
+### TOPS-20
+
+The DEC-20's EXEC finishes words for you. Type the start of a command and press Escape (Tab
+does the same here): it fills in the rest, with guide words in parentheses, as in
+`DIRECTORY (OF FILES)`; Escape again gives the default, `*.*.*`. `?` lists what can come next
+and gives you your line back. File names are `NAME.TYP.n` in directories like `<GUEST>`;
+`DELETE` only marks a file, `UNDELETE` brings it back and `EXPUNGE` makes it go. `SYSTAT`,
+`FINGER`, `MM` (the mail) and `LOGOUT` are there, and after `LOGOUT`, `LOGIN GUEST` with any
+password. `HELP ?` lists the topics, `FILL`, `SOUND`, `EFFECTS` and `CONNECT` among them; bare
+`CONNECT` lists the other machines, and `CONNECT <DIR>` moves you to a directory you own. The
+messages were checked against TOPS-20 running under KLH10 (the Panda distribution) and the
+6.1 EXEC's source. The recognition is the machine's: its `commands.js` sets
+`Phosphor.recognize(key, line)`, which the engine asks about Escape, Tab and `?` at the prompt.
 
 ### Choosing machines
 
@@ -234,7 +249,7 @@ catalog and offers all of them; with one machine in the list there is no `connec
      set besides the site's are `installed`, `user`, `homes` or `home`, `case`, `offline`,
      `shell` (`dos`, `dcl` or `bash`), `unix: no` (leave out the Unix commands), `csh`, `perror`,
      `login`, `login prompt`, `login failed`, `root login`, `root prompt`, `root password`, `also root`,
-     `backdoor`, `closed door`, `not found`, `mail notice` and `ls columns`; the seven
+     `backdoor`, `closed door`, `not found`, `mail notice` and `ls columns`; the eight
      machines between them use each one, so look there for an example.
      `commands: -vi, -whoami` leaves out the engine's commands the real system did not have.
    - `fs.js` builds the system folders with `P.sys(path,'d')` for a folder and
@@ -357,6 +372,15 @@ behave like the real one; the tables say which.
 | `MONSTER` | the multi-user adventure, here with one user, and the world kept in the browser |
 | `MORIA` | Moria 4.8, from the VAX Pascal |
 | `STARTREK` | Super Star Trek, from SST2K, a later descendant standing in for the DECUS program, whose source was not found |
+
+**TOPS-20**, in `<GAMES>` (`DIR <GAMES>` lists them; `LOGIN.CMD` puts `GAMES:` in `SYS:`, so the
+name at the `@` starts one, as does `RUN GAMES:name`). The other names there are a real site's,
+and say no during prime time:
+
+| Game | |
+|---|---|
+| `ADVENTURE` | Colossal Cave, the same port as on 4.3BSD |
+| `DUNGEON` | the same Dungeon as 4.3BSD's `zork`, opening as the DEC-20's did, with its own welcome and first room; ^C goes back to the EXEC |
 
 **MS-DOS and CP/M**: Zork I and Zork II, Infocom's own story files on an interpreter written
 for this terminal. On DOS, `CD \ZORK` then `ZORK1` or `ZORK2`, or `C:\ZORK\ZORK1` from

@@ -93,3 +93,7 @@ behind gaijin.systems.
   New machine setting `shell: bash`; a machine's `year` may be `new Date().getFullYear()`.
 - `machine: random` starts on a machine picked at random, the same one for the rest of the browser tab.
 - On phones, the monitor stays in view when the soft keyboard opens.
+- An eighth machine, `tops20`: a DECSYSTEM-2060 running TOPS-20 V6.1 in 1986, with the EXEC's `@`, Escape
+  recognition and guide words, `?` for what comes next, generation numbers, `UNDELETE` and `EXPUNGE`,
+  `SYSTAT`, `FINGER`, `MM`, and `ADVENTURE` and `DUNGEON` in `<GAMES>`. A machine can now answer Escape,
+  Tab and `?` at the prompt itself (`Phosphor.recognize`).
