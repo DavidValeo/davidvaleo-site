@@ -23,7 +23,7 @@ index.html            the page; lists the files to load. Edit only the <title>
                       (shown before the script runs; "title:" in config.js wins after).
 site/                 YOURS: everything you are meant to change
   config.js           settings: your name, email, speed, sound, locked files
-  content.js          the welcome message, the about file, the letter, your commands
+  content.js          the welcome message, the about section, the letter, your commands
   home.js             the visitor's home folder: files, folders, hidden things
   theme.css           colours (optional)
 machines/             the imaginary computers: machines.js lists them, one folder for each
@@ -100,7 +100,7 @@ At the top of a file, before its first `== section ==`, one per line:
 | `source:` | Where the `source` command points. Must start with `http://` or `https://`. See [Licence](#licence). |
 | `commands:` | Switch commands off or on: `commands: -ping, -sudo`. Works on the built-in commands, the machine's (`-sudo`) and the games (`-rogue`); see [Switching a game off](#switching-a-game-off). Without the `-`, it switches back on one the machine has switched off (`commands: vi`). Your own `== command: ==` sections are never switched off, so delete those instead. |
 | `protected:` | Locked files and folders: listed by `ls`, but `cat` says *can't open*. Paths work (`.trash/core`); a trailing `/` makes a locked folder. |
-| `machine:` `machines:` | Which machine the terminal starts on, and which ones the `connect` command offers: `machines: v7, bsd`. Unset, the first and all of them. With one machine there is no `connect`. `machine: random` picks one of the allowed machines when the address doesn't name one, and keeps that pick for the rest of the browser tab, so a reload boots the same machine and a new tab picks again. |
+| `machine:` `machines:` | Which machine the terminal starts on, and which ones the `connect` command offers: `machines: v7, bsd`. Unset, the first and all of them. With one machine there is no `connect`. `machine: random` picks one of the allowed machines when the address doesn't name one, and keeps that pick for the rest of the browser tab, so a reload boots the same machine and a new tab picks again. The Commodore 128 sits out the draw: give a machine `random:false` in `machines/machines.js` to leave it out the same way. The address, `connect` and these settings still reach it, and if it is the only machine allowed, random picks it. |
 | `hostname:` | The machine's name. Normally taken from your domain (`example.com` becomes `example`). |
 | `cord turns:` `cord desktop:` `cord width:` `cord thickness:` `cord gap:` `cord straight:` `cord sway:` | The coiled cable under the monitor: `turns` is a count, and `desktop` is the count on a wide screen (`turns` is used on phones, and wherever `desktop` is unset); the rest are in screen pixels. Values outside a sensible range are pulled back into it. |
 
@@ -116,7 +116,7 @@ A line like `== welcome ==` starts a section; the lines after it are printed as 
 | Section | What it is |
 |---|---|
 | `== welcome ==` | Printed after login (also `/etc/motd`). |
-| `== about ==` | The `about` file and command. |
+| `== about ==` | What the `about` command prints (there is no about file: the terminal prints it). |
 | `== mail ==` | The letter. `you have mail.` shows at login while it has text. |
 | `== file: NAME ==` | A file in the home folder. `NAME` may be a path (`notes/todo`); folders are made as needed. A name starting with a dot is hidden (`ls -a`). A path starting with `/` goes anywhere. |
 | `== dir: NAME ==` | An empty folder. |
@@ -157,6 +157,11 @@ and `effects`, which shows or switches the tube effects (`effects lite`, `full` 
 Behind it, each machine has the commands
 its real system had, and no others apart from the terminal's own: on the
 1979 machine there is no `vi`, and `whoami` is `who am i`. Explore; you know if you know.
+
+On the Unix machines `help` lists the terminal's own commands apart, under "the terminal's, not the
+machine's:": `about`, `mail`, `source`, `sound`, `fill`, `effects`, `connect` and your own
+`== command: ==` sections. The terminal answers them on every machine, their manual pages say so,
+and no machine has a program file for them, so a file of the same name never takes their place.
 
 The shell understands pipes, redirection, quotes, variables, wildcards and scripts. Visitors
 can change files in their home folder and `/tmp`, and a reload puts everything back.

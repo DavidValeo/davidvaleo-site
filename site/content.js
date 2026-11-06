@@ -1,4 +1,4 @@
-/* Your terminal's words: the welcome message, the about file and the letter.
+/* Your terminal's words: the welcome message, the about section and the letter.
    The example text below is CC0 (public domain); replace it with your own. See README.md
    for the full list of sections and markup. Do not type a backtick, or a dollar sign
    followed by {, anywhere between the two backticks below. */
@@ -9,7 +9,7 @@ Phosphor.content(String.raw`
 welcome to {site}.
 ~ type help and press return.
 
-# The about file and the about command.
+# What the about command prints.
 == about ==
 this terminal belongs to {owner}.
 it is always {year} in here.

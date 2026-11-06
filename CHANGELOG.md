@@ -97,6 +97,10 @@ behind gaijin.systems.
 - NetHack 3.6.7 on the Linux machine, in `/usr/games`, translated from its C, with saves, bones and scores
   kept in the browser.
 - `machine: random` starts on a machine picked at random, the same one for the rest of the browser tab.
+  The Commodore 128 is left out of the draw (`random:false` in the catalog).
+- `help` on the Unix machines lists the terminal's own commands apart, and their manual pages say the
+  terminal answers them. No machine has an about file (`about` is a command; the C128's ABOUT
+  program stays), and `mail` has no program file.
 - On phones, the monitor stays in view when the soft keyboard opens; on a short screen the cable is put
   away to make room, and a phone held sideways gets the whole width.
 - On a phone, a full-screen program wider than the glass (`rogue`, `backgammon`, `canfield`, NetHack, Empire,
