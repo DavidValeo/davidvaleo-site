@@ -108,6 +108,8 @@ behind gaijin.systems.
 - On a phone, a full-screen program wider than the glass (`rogue`, `backgammon`, `canfield`, NetHack, Empire,
   Moria, Conquest and others) pans with a sideways swipe, with a little momentum; faint ‹ › marks show where
   more is cut off, and the next key or a resize goes back to following the cursor.
+- On a phone, typing into a full-screen program (the C128, the Apple IIe, `rogue`, NetHack and the rest) sends
+  each letter once, while the keyboard is still suggesting the word.
 - An eighth machine, `tops20`: a DECSYSTEM-2060 running TOPS-20 V6.1 in 1986, with the EXEC's `@`, Escape
   recognition and guide words, `?` for what comes next, generation numbers, `UNDELETE` and `EXPUNGE`,
   `SYSTAT`, `FINGER`, `MM`, and `ADVENTURE` and `DUNGEON` in `<GAMES>`. A machine can now answer Escape,
