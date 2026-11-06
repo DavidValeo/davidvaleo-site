@@ -2,8 +2,8 @@
 
 A 1979 video terminal for your website. Visitors land at a glowing green screen with a
 coiled cable, log in as `guest`, and poke around a small Version 7 Unix machine: `ls`,
-`cat`, `mail`, `man`, `who`, `ps`, a few secrets. You fill it with your own words. Six more
-machines can be plugged in, from CP/M to a Debian server of today, and most of them come with their games.
+`cat`, `mail`, `man`, `who`, `ps`, a few secrets. You fill it with your own words. Eight more
+machines can be plugged in, from CP/M, an Apple IIe and a Commodore 128 to a Debian server of today, and most of them come with their games.
 
 Plain HTML, CSS and JavaScript. No build step, no frameworks, no server code, and no
 requests to anyone else's servers.
@@ -181,12 +181,14 @@ Phosphor.command({names:['roll'],help:'roll a die',
 | Name | Machine | Year | Its games |
 |---|---|---|---|
 | `v7` | PDP-11/70, Version 7 Unix | 1979 | `/usr/games` |
+| `cpm` | S-100 Z80, CP/M 2.2 | 1982 | `ZORK1` in user area 0, `ZORK2` in user area 3 |
+| `apple2` | Apple IIe, DOS 3.3 | 1984 | `ZORK I`, `ZORK II` and four BASIC games on the disk, started with `RUN` |
+| `tops20` | DECSYSTEM-2060, TOPS-20 V6.1 | 1986 | `<GAMES>`, started by name |
+| `c128` | Commodore 128 with a 1571 drive, BASIC 7.0; `GO 64` makes it a Commodore 64 | 1986 | on its disk: `DIRECTORY` lists them |
 | `bsd` | VAX-11/780, 4.3BSD | 1987 | `/usr/games` |
 | `dos` | IBM PC/AT, MS-DOS 3.30 | 1988 | `C:\ZORK` |
 | `vms` | VAX-11/785, VAX/VMS V4.6 | 1988 | `[GAMES]`, started with `RUN` |
-| `tops20` | DECSYSTEM-2060, TOPS-20 V6.1 | 1986 | `<GAMES>`, started by name |
 | `irix` | Silicon Graphics Crimson, IRIX 4.0.5 | 1993 | graphics demos, which need a display it doesn't have |
-| `cpm` | S-100 Z80, CP/M 2.2 | 1982 | `ZORK1` in user area 0, `ZORK2` in user area 3 |
 | `linux` | KVM virtual server, Debian 13 "trixie" | the visitor's own | `frotz`, `sl`, `cowsay`, `fortune` in `/usr/games`, and `cmatrix` |
 
 Each one has the commands, messages and file tree of its real system; V7 and 4.3BSD were
@@ -210,6 +212,56 @@ password. `HELP ?` lists the topics, `FILL`, `SOUND`, `EFFECTS` and `CONNECT` am
 messages were checked against TOPS-20 running under KLH10 (the Panda distribution) and the
 6.1 EXEC's source. The recognition is the machine's: its `commands.js` sets
 `Phosphor.recognize(key, line)`, which the engine asks about Escape, Tab and `?` at the prompt.
+
+### Apple IIe
+
+The Apple has no terminal: the glass is its own monitor, 40 columns by 24 rows, and it boots from its disk with
+the Apple ][ title, DOS 3.3 and the `]` prompt. Caps lock is down, as the manual asks, so everything typed comes out in
+capitals. Applesoft BASIC works as it did: type numbered lines to make a program, `LIST`, `RUN`, `NEW`, `SAVE NAME`
+and `LOAD NAME`, `CATALOG` to see the disk, and the messages are the real ones, down to `?SYNTAX ERROR IN 10`. Escape
+then I, J, K or M moves the cursor about the screen, and the right arrow copies what it passes over into the line,
+which is how you mend a line you have listed. Ctrl-C stops a program (`BREAK IN 20`). `CALL -151` gives the monitor's `*`
+(`300.30F` to look at memory, `300:A9 C1` to change it, `300L` to list it, `300G` to run it), and `3D0G` goes back to
+BASIC. The disk lives in your browser: what you save, delete or lock is still there next time, and clearing the site's
+data gives you the original disk back.
+
+The terminal's own commands are typed at the `]` prompt as words of their own: `HELP`, `MAIL`, `ABOUT`, `SOURCE`
+and your own text commands show on the terminal's glass, and a key brings the Apple back; `FILL`, `SOUND`, `EFFECTS`
+and `CONNECT` answer on the Apple's screen. A program can use them too, after an ampersand: `& "MAIL"`. They come from
+`PHOSPHOR`, the program the disk's `HELLO` loads at boot, the way a utility of the time hooked itself to DOS and to `&`.
+
+`RUN ZORK I` and `RUN ZORK II` start Infocom's games. The BASIC interpreter, the 6502 behind `CALL` and the monitor's
+`G`, and the disk are written for this terminal and contain nothing of Apple's or Microsoft's; the ROM is not there,
+so memory above `$C000` reads as zeros, and the `GR` and `HGR` graphics are accepted but draw nothing. Its output
+was checked line for line against an Apple IIe running DOS 3.3 in MAME.
+
+### Commodore 128
+
+The C128 has no shell and no login: it comes up at `READY.` on its 40-column screen, light green
+on dark grey, after booting the disk in drive 8, whose `WELCOME` program prints your
+`== welcome ==`. It was bought for Christmas 1985, so its clock says 1986. Typing goes onto the
+screen, not into a line: the cursor keys move anywhere, and Return enters whichever line the
+cursor is on, so a line listed above can be changed and entered again. Home is HOME (with Shift,
+CLR), Insert is INST, Ctrl-C is RUN/STOP, F1 to F8 are the function keys, and Ctrl-1 to Ctrl-8,
+Ctrl-9, Ctrl-0 and Alt-1 to Alt-8 are the colour and reverse keys. Capitals type as letters, so
+caps lock does no harm.
+
+`DIRECTORY` lists the disk. `ABOUT` and `LETTER` are programs that print those sections
+(`RUN"ABOUT"`), your files are sequential files on it (`RUN"READ"` shows one), and the games are
+there too. `DSAVE"NAME"` keeps a program, `DLOAD"NAME"` brings it back, and `SCRATCH`, `RENAME`
+and `HEADER` work on the disk, which is kept in the browser (see [Saves](#saves)). Escape then X
+switches to the 80-column screen, light cyan on black. `GO 64`, answered with Y, makes it a
+Commodore 64, light blue on blue, with BASIC V2 (`LOAD"$",8` then `LIST` for the directory,
+`LOAD"NAME",8`), until `RESET`, which is the reset button, or a reload.
+
+The terminal's own commands are words typed at `READY.`: `FILL`, `SOUND ON` and `SOUND OFF`,
+`EFFECTS` (with `AUTO`, `FULL` or `LITE`), `CONNECT` and `SOURCE`; `HELP` lists them. Both BASICs
+were written for this terminal and checked against a C128 running in the VICE emulator: the boot
+screens, the messages, the editor's ways and what programs print. The characters are drawn for
+this terminal too; Commodore's ROMs are not used. `SOUND`, `PLAY` and the SID's registers make
+their notes while the keyclicks are on, and `FAST` blanks the 40-column screen, as it did, until
+`SLOW`. Bitmap graphics and sprites are not there: `GRAPHIC 1` to `4` answer `?UNIMPLEMENTED
+COMMAND ERROR`, and `DRAW` and the rest `?NO GRAPHICS AREA ERROR`.
 
 ### Choosing machines
 
@@ -249,7 +301,7 @@ catalog and offers all of them; with one machine in the list there is no `connec
      set besides the site's are `installed`, `user`, `homes` or `home`, `case`, `offline`,
      `shell` (`dos`, `dcl` or `bash`), `unix: no` (leave out the Unix commands), `csh`, `perror`,
      `login`, `login prompt`, `login failed`, `root login`, `root prompt`, `root password`, `also root`,
-     `backdoor`, `closed door`, `not found`, `mail notice` and `ls columns`; the eight
+     `backdoor`, `closed door`, `not found`, `mail notice` and `ls columns`; the
      machines between them use each one, so look there for an example.
      `commands: -vi, -whoami` leaves out the engine's commands the real system did not have.
    - `fs.js` builds the system folders with `P.sys(path,'d')` for a folder and
@@ -382,9 +434,27 @@ and say no during prime time:
 | `ADVENTURE` | Colossal Cave, the same port as on 4.3BSD |
 | `DUNGEON` | the same Dungeon as 4.3BSD's `zork`, opening as the DEC-20's did, with its own welcome and first room; ^C goes back to the EXEC |
 
+**Commodore 128**, on the disk in drive 8 (`DIRECTORY`; `RUN"HELLO"`, or as a C64 `LOAD"HELLO",8`
+and `RUN`). They are David Ahl's own programs from *BASIC Computer Games* (1978), as a 40-column
+owner typed them in:
+
+| Game | |
+|---|---|
+| `HELLO` | a conversation with a computer that solves problems |
+| `NICOMACHUS` | it guesses your number from three remainders |
+| `ONE CHECK` | solitaire checkers: jump to clear the board |
+| `BUZZWORD` | phrases for reports and speeches |
+| `DIAMOND` | a page of diamonds |
+| `SINE WAVE` | the words, swinging down the screen |
+
 **MS-DOS and CP/M**: Zork I and Zork II, Infocom's own story files on an interpreter written
 for this terminal. On DOS, `CD \ZORK` then `ZORK1` or `ZORK2`, or `C:\ZORK\ZORK1` from
 anywhere. On CP/M, `ZORK1` from user area 0, and `USER 3` then `ZORK2`.
+
+**Apple IIe**, on the disk (`CATALOG` lists it; `RUN` and the name starts one, and `LIST` shows how it is made):
+`GUESS` (a number from 1 to 100), `BAGELS` (three digits, from clues), `LANDER` (bring a craft down on the Moon) and
+`KINGDOM` (ten years of land, grain and people), written for this terminal as type-in games of the time were; and
+`ZORK I` and `ZORK II`, the same story files as on DOS and CP/M.
 
 **IRIX** has `flight`, `buttonfly`, `dog`, `ideas`, `arena`, `newave` and `insect`, which
 want a graphics display and say so.
@@ -436,6 +506,9 @@ Games that kept a save file or a score file in their day keep it in the visitor'
 browser (`localStorage`), under keys starting `phosphor-9/` and then the game's name:
 `phosphor-9/rogue/...`, `phosphor-9/moria/files`, `phosphor-9/zork1/save/...` and so on.
 Nothing is sent anywhere, and clearing the site's data in the browser clears them.
+The C128's disk is a save file too: what the visitor writes, renames or scratches is
+kept under `phosphor-9/c128/disk`; the files the disk came with (the games, and the programs and files
+made from `site/`) are made again at each power-on. The Apple IIe's disk is kept under `phosphor-9/apple2/disk`.
 
 ### Switching a game off
 
@@ -525,6 +598,10 @@ the `/zork` folder line and the three after it; on CP/M, the three-line `forEach
 that puts the `zork` files), then `'../shared/zork.js'` from its `files` in
 `machines/machines.js`.
 
+On the Apple IIe, the games are files on its disk: delete their entries from `machines/apple2-1984/disk.js` (a
+visitor's browser keeps the disk it already has until its site data is cleared). The C128's games are entries in
+`machines/c128-1986/games.js`; delete one there.
+
 ## Looks
 
 `site/theme.css` overrides the engine's colours. It includes a ready-made amber monitor:
@@ -567,7 +644,7 @@ how. Changes are listed in [CHANGELOG.md](CHANGELOG.md).
 - **The games** keep the notices they came with, in their own files, and each is under
   those terms, not the AGPL; the new code written for them (the Z-machine, the DDL
   interpreter, the robots in `hunt` and Conquest's scheduler, the five V7 games rewritten
-  without source, and Debian's `frotz`, `sl`, `cowsay`, `fortune` and `cmatrix` programs) is under the AGPL with the rest. The table below sums up what each notice
+  without source, Debian's `frotz`, `sl`, `cowsay`, `fortune` and `cmatrix` programs, the Apple's and the Commodores' BASICs, and the C128's READ program) is under the AGPL with the rest. The table below sums up what each notice
   says and where the doubts are. It is a summary, not legal advice: if you publish the games,
   read the notices and decide for yourself, and remove any you are not comfortable with
   (see [Removing a game](#removing-a-game)).
@@ -586,7 +663,9 @@ how. Changes are listed in [CHANGELOG.md](CHANGELOG.md).
 | Colossal Cave (4.3BSD and VMS) | NetBSD | BSD licence, kept | |
 | 4.3BSD: `wump`, `number`, `primes`, `factor`, `banner`, `hangman`, `worm`, `robots`, `snake` (`games.js`, `banner-font.js`) | NetBSD | BSD licence, kept | |
 | Rogue | Rogue 5.4.4 | BSD licence, kept, with the notice for the parts based on the work of Nicholas J. Kisseberth | |
-| Zork I and II (DOS, CP/M, Linux) | Infocom's story files, release 119 and 63 | MIT licence (Microsoft, 2025), kept | The licence covers the software, read here as including the story files; Zork is a trademark and the licence does not cover the name |
+| Zork I and II (DOS, CP/M, Linux, Apple IIe) | Infocom's story files, release 119 and 63 | MIT licence (Microsoft, 2025), kept | The licence covers the software, read here as including the story files; Zork is a trademark and the licence does not cover the name |
+| Apple IIe: `GUESS`, `BAGELS`, `LANDER`, `KINGDOM` | New, for this terminal | AGPL, with the rest of `machines/` | |
+| C128: `HELLO`, `NICOMACHUS`, `ONE CHECK`, `BUZZWORD`, `DIAMOND`, `SINE WAVE` | *BASIC Computer Games* (1978), the listings Vintage BASIC carries | Public domain: on 15 June 2022 David Ahl placed everything he had written or edited in the public domain; the book credits each of these to him alone. Quoted in `games.js` | He asks that his work be used for educational and historical purposes and not for profit, which is a wish, not a condition. Only his own programs are used: the book's other games are other people's |
 | VMS: Star Trek | SST2K 2.10 | BSD licence, kept | It descends from older programs whose authors' grant to relicense is not on record; Star Trek is a trademark |
 | VMS: Empire | Chuck Simmons's C Empire, in Walter Bright's VMS release | Simmons's Empire General Public License, kept, with Bright's statement | Bright calls it a copy of his copyrighted Empire, whose own sources are non-commercial |
 | VMS: Monster | Rich Skrenta's VAX Pascal | "You may freely copy, distribute and change Monster", kept | No warranty disclaimer |
