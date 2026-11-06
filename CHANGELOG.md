@@ -25,7 +25,8 @@ behind gaijin.systems.
   reduced-motion settings also stop the cursor blink and the afterglow.
 - PageUp and PageDown scroll back through the output.
 - Some things to find, if you know where to look.
-- `fill` puts the monitor away and lets the glass fill the window; the browser remembers. `help`
+- `fill` puts the cable away and makes the monitor, bezel and all, as big as the window allows; the
+  browser remembers. `help`
   lists it, and VMS `HELP` has `FILL` and `RUN`.
 - `lite` tube effects for browsers that draw without a graphics chip: one small glow, a stepped,
   unblended band, a still flicker and cable, a lighter inner shadow, no afterglow when scrolling. New setting `effects:` (`auto`,

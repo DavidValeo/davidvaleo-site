@@ -150,8 +150,8 @@ a little extra space between them.
 
 ## Commands
 
-`help` lists what a visitor needs to get around, including `fill`, which puts the monitor
-away and lets the glass fill the window (`fill` again brings it back; the browser remembers),
+`help` lists what a visitor needs to get around, including `fill`, which puts the cable
+away and makes the monitor, bezel and all, as big as the window allows (`fill` again puts it back; the browser remembers),
 and `effects`, which shows or switches the tube effects (`effects lite`, `full` or `auto`; see
 [Looks](#looks)).
 Behind it, each machine has the commands
