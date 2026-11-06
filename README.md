@@ -26,6 +26,7 @@ site/                 YOURS: everything you are meant to change
   content.js          the welcome message, the about section, the letter, your commands
   home.js             the visitor's home folder: files, folders, hidden things
   theme.css           colours (optional)
+  TODO.md             every example and placeholder line above, to replace (not loaded)
 machines/             the imaginary computers: machines.js lists them, one folder for each
   machines.js         the catalog: each machine's name, year, folder and files
   v7-1979/            one machine:
