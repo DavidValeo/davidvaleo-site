@@ -86,3 +86,5 @@ behind gaijin.systems.
   `ps aux`, `top`, `systemctl`, `journalctl`, `fastfetch`, and `sudo` and `apt`, which know a guest when they
   see one. In `/usr/games`, `frotz` with Zork I and II, `sl`, `cowsay` and `fortune`; and `cmatrix`.
   New machine setting `shell: bash`; a machine's `year` may be `new Date().getFullYear()`.
+- `machine: random` starts on a machine picked at random, the same one for the rest of the browser tab.
+- On phones, the monitor stays in view when the soft keyboard opens.

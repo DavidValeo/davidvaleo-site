@@ -49,9 +49,10 @@ engine then loads the chosen machine. Anything you set wins over the machine.
 1. **The page.** `index.html` loads the engine, the shared Unix commands (`engine/commands/`),
    the catalog (`machines/machines.js`) and your `site/` files. No machine yet.
 2. **The machine.** The engine picks one (see [Choosing machines](#choosing-machines)) and
-   loads the files its catalog entry lists, in that order: usually `later.js` first (where it
-   has one: it names the games and holds their manual pages), then its settings and text
-   (`machine.js`), its file tree (`fs.js`) and its commands (`commands.js`).
+   loads the files its catalog entry lists, in the order listed: usually `later.js` first, where
+   there is one (it names the games and holds their manual pages), then its settings and text
+   (`machine.js`), its commands (`commands.js`) and its file tree (`fs.js`), in whichever order
+   that machine's entry gives.
    `connect bsd` reloads the page with `?machine=bsd`, so each machine starts from cold and
    nothing of the last one is left behind.
 3. **A game.** A game's own files load the first time someone runs it, and then stay for the
@@ -98,7 +99,7 @@ At the top of a file, before its first `== section ==`, one per line:
 | `source:` | Where the `source` command points. Must start with `http://` or `https://`. See [Licence](#licence). |
 | `commands:` | Switch commands off or on: `commands: -ping, -sudo`. Works on the built-in commands, the machine's (`-sudo`) and the games (`-rogue`); see [Switching a game off](#switching-a-game-off). Without the `-`, it switches back on one the machine has switched off (`commands: vi`). Your own `== command: ==` sections are never switched off, so delete those instead. |
 | `protected:` | Locked files and folders: listed by `ls`, but `cat` says *can't open*. Paths work (`.trash/core`); a trailing `/` makes a locked folder. |
-| `machine:` `machines:` | Which machine the terminal starts on, and which ones the `connect` command offers: `machines: v7, bsd`. Unset, the first and all of them. With one machine there is no `connect`. |
+| `machine:` `machines:` | Which machine the terminal starts on, and which ones the `connect` command offers: `machines: v7, bsd`. Unset, the first and all of them. With one machine there is no `connect`. `machine: random` picks one of the allowed machines when the address doesn't name one, and keeps that pick for the rest of the browser tab, so a reload boots the same machine and a new tab picks again. |
 | `hostname:` | The machine's name. Normally taken from your domain (`example.com` becomes `example`). |
 | `cord turns:` `cord width:` `cord thickness:` `cord gap:` `cord straight:` `cord sway:` | The coiled cable under the monitor: `turns` is a count, the rest are in screen pixels. Values outside a sensible range are pulled back into it. |
 
@@ -186,7 +187,7 @@ Phosphor.command({names:['roll'],help:'roll a die',
 
 Each one has the commands, messages and file tree of its real system; V7 and 4.3BSD were
 checked side by side with the real systems running in a simulator, and the Debian machine's
-package versions and `apt`'s messages were taken from Debian 13 itself. It is reached on its serial console, boots
+package versions and `apt`'s messages were checked against Debian 13. It is reached on its serial console, boots
 when the terminal does, and follows the visitor's clock, year and all; its guest is not in
 the sudoers file, so `sudo` and `apt install` say no, as they would. Each folder's `machine.js` holds its settings and text (the
 self-test, the boot log, `dmesg`, the `ps` table), `fs.js` builds its system folders, and
@@ -320,7 +321,7 @@ behave like the real one; the tables say which.
 | `EMPIRE` | the war game, 1988 version |
 | `MONSTER` | the multi-user adventure, here with one user, and the world kept in the browser |
 | `MORIA` | Moria 4.8, from the VAX Pascal |
-| `STARTREK` | Super Star Trek, from SST2K, a later descendant standing in for the lost DECUS program |
+| `STARTREK` | Super Star Trek, from SST2K, a later descendant standing in for the DECUS program, whose source was not found |
 
 **MS-DOS and CP/M**: Zork I and Zork II, Infocom's own story files on an interpreter written
 for this terminal. On DOS, `CD \ZORK` then `ZORK1` or `ZORK2`, or `C:\ZORK\ZORK1` from
@@ -461,8 +462,8 @@ program file listed; delete that too if you want no trace.
 
 Zork on DOS and CP/M is not a command, so `commands:` can't switch it off: it runs when its
 `.COM` file is there. To remove it, delete its files from that machine's `fs.js` (on DOS,
-the `/zork` folder line and the three after it; on CP/M, the three-line list of `zork` files
-and the `forEach` that puts them), then `'../shared/zork.js'` from its `files` in
+the `/zork` folder line and the three after it; on CP/M, the three-line `forEach` statement
+that puts the `zork` files), then `'../shared/zork.js'` from its `files` in
 `machines/machines.js`.
 
 ## Looks
@@ -519,9 +520,9 @@ how. Changes are listed in [CHANGELOG.md](CHANGELOG.md).
 | VMS: Empire | Chuck Simmons's C Empire, in Walter Bright's VMS release | Simmons's Empire General Public License, kept, with Bright's statement | Bright calls it a copy of his copyrighted Empire, whose own sources are non-commercial |
 | VMS: Monster | Rich Skrenta's VAX Pascal | "You may freely copy, distribute and change Monster", kept | No warranty disclaimer |
 | VMS: Moria | Moria 4.8, VAX Pascal | Robert Alan Koeneke's notice, kept: may be copied and changed, not sold | Non-commercial, and it calls itself public domain while keeping all rights. This is not Umoria, the later GPL version |
-| VMS: Conquest | Conquest 4.22, Ratfor | Poskanzer and Leres's permission notice, kept | Permission is for use and distribution without fee |
+| VMS: Conquest | Conquest 4.22, Ratfor | Poskanzer and Leres's permission notice, kept | Keep the notice in all copies and supporting documentation |
 | Linux: the default cow in `/usr/share/cowsay/cows` (`fs.js`) | cowsay 3.03, Tony Monroe | The same terms as Perl, the Artistic License or the GNU GPL version 1 or later, noted in the file | The `cowsay` program reading it is new. Only the default cow is there |
-| Linux: `fortune`'s sayings (`fs.js`) | Quotations from works published before 1907 | Public domain | The program is new; none of BSD's or fortune-mod's files are used |
+| Linux: `fortune`'s sayings (`fs.js`) | Quotations from works published before 1912 | Public domain | The program is new; none of BSD's or fortune-mod's files are used |
 | Linux: `sl` | New, after Toyoda Masashi's `sl` | AGPL | Behaviour follows the original; the program and the drawings are new, so his notice is not needed, and he is credited |
 
 - **The example content** in `site/` is dedicated to the public domain under
