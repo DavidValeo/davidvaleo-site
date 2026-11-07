@@ -328,7 +328,8 @@ up arrow (or `^`) types the power sign, which the Model III shows as an arrow.
 The terminal's own commands are words typed at `TRSDOS Ready` or at `>`: `ABOUT`, `MAIL`, `SOURCE` and your own text
 commands show on the terminal's glass, and a key brings the Model III back; `FILL`, `SOUND`, `EFFECTS` and `CONNECT`
 answer on its screen, and TRSDOS's `HELP` lists them after its own. They come from `PHOSPHOR/CMD`, which TRSDOS runs at
-boot (its `AUTO`), as utilities of the time hooked themselves in. `ZORK1` and `ZORK2` start Infocom's games. BASIC,
+boot (its `AUTO`), as utilities of the time hooked themselves in; killing or overwriting it turns them off from the
+next boot, and clearing the site's data in the browser brings the disk back as it came. `ZORK1` and `ZORK2` start Infocom's games. BASIC,
 TRSDOS and the disk are written for this terminal and contain nothing of Tandy's or Microsoft's, and the boot screen's
 picture is drawn for it; the screens, prompts, messages and what BASIC prints were checked against a Model III running
 TRSDOS 1.3 in xtrs, and its ROM BASIC in MAME. A few Commodore words typed at a prompt get an answer from a Model III
@@ -405,7 +406,7 @@ never there when paged, an hour a call, and two doors, Star Haul and Deep Mine. 
 its main menu, `?` lists them under their own heading, and `+++` on a line by itself talks to the modem: `ATH`
 hangs up, `ATO` goes back on line. Goodbye ends in `NO CARRIER`, and after it, or a hang-up, the terminal goes back
 to the machine the visitor came from. What a caller adds (handle, posts, wall, comments, door games) is kept in the
-browser only. The sysop is `{owner}`, and the password is `PASSWORD` in `machines/shared/bbs.js` (or `password:` in
+browser only. The sysop is `{owner}`, and the password is set by `var PASSWORD` in `machines/shared/bbs.js` (or `password:` in
 `== board ==`, or, on the bbs machine, a `root password:` in site/); someone left it in a log in the file area.
 
 The board can also be reached from MS-DOS and CP/M: `TERM` is a terminal program on each (`C:\COMM\TERM.EXE`,

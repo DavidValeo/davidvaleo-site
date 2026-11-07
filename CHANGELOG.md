@@ -119,7 +119,7 @@ behind gaijin.systems.
 - A tenth, a Commodore 128 (`c128`, 1986): BASIC 7.0 on its screen editor, in 40 columns or, with Escape then X,
   80; a 1571 disk kept in the browser; and `GO 64` for a Commodore 64 with BASIC V2. Six of David Ahl's
   type-in games are on the disk.
-- An eleventh, `vm370`: IBM VM/370 Release 6 with CMS (1979), on a typewriter terminal: LOGON, the CP and CMS
+- An eleventh, an IBM System/370 Model 158 running VM/370 Release 6 with CMS (`vm370`, 1980), on a typewriter terminal: LOGON, the CP and CMS
   commands, the ready message, minidisks with LINK and ACCESS, the CMS editor, EXECs, the letter in the reader,
   and the guest's A-disk kept in the browser; checked against Release 6 under Hercules. A machine can now answer
   an empty line itself (`Phosphor.blank`).
