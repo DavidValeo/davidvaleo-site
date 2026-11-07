@@ -2,8 +2,8 @@
 
 A 1979 video terminal for your website. Visitors land at a glowing green screen with a
 coiled cable, log in as `guest`, and poke around a small Version 7 Unix machine: `ls`,
-`cat`, `mail`, `man`, `who`, `ps`, a few secrets. You fill it with your own words. Nine more
-machines can be plugged in, from CP/M, an Apple IIe and a Commodore 128 to a Debian server of today, and most of them come with their games.
+`cat`, `mail`, `man`, `who`, `ps`, a few secrets. You fill it with your own words. Twelve more
+machines can be plugged in, from an IBM mainframe, Multics, a TRS-80, an Apple IIe and a Commodore 128 to a Debian server of today, and a dial-up bulletin board too; most of them come with their games.
 
 Plain HTML, CSS and JavaScript. No build step, no frameworks, no server code, and no
 requests to anyone else's servers.
@@ -102,7 +102,7 @@ At the top of a file, before its first `== section ==`, one per line:
 | `source:` | Where the `source` command points. Must start with `http://` or `https://`. See [Licence](#licence). |
 | `commands:` | Switch commands off or on: `commands: -ping, -sudo`. Works on the built-in commands, the machine's (`-sudo`) and the games (`-rogue`); see [Switching a game off](#switching-a-game-off). Without the `-`, it switches back on one the machine has switched off (`commands: vi`). Your own `== command: ==` sections are never switched off, so delete those instead. |
 | `protected:` | Locked files and folders: listed by `ls`, but `cat` says *can't open*. Paths work (`.trash/core`); a trailing `/` makes a locked folder. |
-| `machine:` `machines:` | Which machine the terminal starts on, and which ones the `connect` command offers: `machines: v7, bsd`. Unset, the first and all of them. With one machine there is no `connect`. `machine: random` picks one of the allowed machines when the address doesn't name one, and keeps that pick for the rest of the browser tab, so a reload boots the same machine and a new tab picks again. The Commodore 128 sits out the draw: give a machine `random:false` in `machines/machines.js` to leave it out the same way. The address, `connect` and these settings still reach it, and if only such machines are allowed, random picks among them. |
+| `machine:` `machines:` | Which machine the terminal starts on, and which ones the `connect` command offers: `machines: v7, bsd`. Unset, the first and all of them. With one machine there is no `connect`. `machine: random` picks one of the allowed machines when the address doesn't name one, and keeps that pick for the rest of the browser tab, so a reload boots the same machine and a new tab picks again. The Commodore 128 and the bulletin board sit out the draw: give a machine `random:false` in `machines/machines.js` to leave it out the same way. The address, `connect` and these settings still reach it, and if only such machines are allowed, random picks among them. |
 | `hostname:` | The machine's name. Normally taken from your domain (`example.com` becomes `example`). |
 | `cord turns:` `cord desktop:` `cord width:` `cord thickness:` `cord gap:` `cord straight:` `cord sway:` | The coiled cable under the monitor: `turns` is a count, and `desktop` is the count on a wide screen (`turns` is used on phones, and wherever `desktop` is unset); the rest are in screen pixels. Values outside a sensible range are pulled back into it. |
 
@@ -126,6 +126,7 @@ A line like `== welcome ==` starts a section; the lines after it are printed as 
 | `== man: NAME ==` | The description part of a manual page. Replaces a built-in page or adds a new one. |
 | `== boot ==` | A machine coming up after power-on, a line at a time; `text @300` waits 300 ms after the line. |
 | `== aliases ==` | Shortcuts, one per line: `ll = ls -l`, or `cl = clear ; ls`. Only useful on a machine whose shell had aliases; the 1979 machine has none. |
+| `== board ==` | The bulletin board's settings, one per line: `name:` (Afterglow BBS), `number:` (555-0142), `sysop:` ({owner}) and `password:` (the sysop's). Unset, the defaults in brackets. |
 
 ### Inside a section
 
@@ -190,6 +191,9 @@ Phosphor.command({names:['roll'],help:'roll a die',
 | Name | Machine | Year | Its games |
 |---|---|---|---|
 | `v7` | PDP-11/70, Version 7 Unix | 1979 | `/usr/games` |
+| `vm370` | IBM System/370 Model 158, VM/370 Release 6 with CMS | 1980 | none: Release 6 came with no games |
+| `trs80` | Radio Shack TRS-80 Model III, TRSDOS 1.3 and Level II BASIC | 1981 | on its disk: `DIR` lists them; `BASIC` then `RUN"NAME/BAS"`, and `ZORK1`, `ZORK2` |
+| `multics` | Honeywell Level 68, Multics MR8.0 | 1981 | none |
 | `cpm` | S-100 Z80, CP/M 2.2 | 1982 | `ZORK1` in user area 0, `ZORK2` in user area 3 |
 | `apple2` | Apple IIe, DOS 3.3 | 1984 | `ZORK I`, `ZORK II` and four BASIC games on the disk, started with `RUN` |
 | `tops20` | DECSYSTEM-2060, TOPS-20 V6.1 | 1986 | `<GAMES>`, started by name |
@@ -197,10 +201,11 @@ Phosphor.command({names:['roll'],help:'roll a die',
 | `bsd` | VAX-11/780, 4.3BSD | 1987 | `/usr/games` |
 | `dos` | IBM PC/AT, MS-DOS 3.30 | 1988 | `C:\ZORK` |
 | `vms` | VAX-11/785, VAX/VMS V4.6 | 1988 | `[GAMES]`, started with `RUN` |
+| `bbs` | A bulletin board, dialled on a 2400 bps modem | 1990 | two doors: Star Haul and Deep Mine |
 | `irix` | Silicon Graphics Crimson, IRIX 4.0.5 | 1993 | graphics demos, which need a display it doesn't have |
 | `linux` | KVM virtual server, Debian 13 "trixie" | the visitor's own | `frotz`, `sl`, `cowsay`, `fortune` and `nethack` in `/usr/games`, and `cmatrix` |
 
-Each one has the commands, messages and file tree of its real system; V7 and 4.3BSD were
+Each one has the commands, messages and file tree of its real system (the bulletin board is invented); V7 and 4.3BSD were
 checked side by side with the real systems running in a simulator, and the Debian machine's
 package versions and `apt`'s messages were checked against Debian 13. It is reached on its serial console, boots
 when the terminal does, and follows the visitor's clock, year and all; its guest is not in
@@ -228,6 +233,106 @@ OPERATOR still starts at `@` until `ENABLE`); the site keeps it less carefully t
 messages were checked against TOPS-20 running under KLH10 (the Panda distribution) and the
 6.1 EXEC's source. The recognition is the machine's: its `commands.js` sets
 `Phosphor.recognize(key, line)`, which the engine asks about Escape, Tab and `?` at the prompt.
+
+### VM/370
+
+IBM's virtual machine system, as a university or company ran it at the end of the 1970s: a System/370 Model 158
+running VM/370 Release 6 (1979), reached from a typewriter terminal, so everything comes a line at a time. CP, the
+Control Program, says `VM/370 ONLINE` and logs the guest on; the log message (the site's `== welcome ==`, under the
+operator's own lines) and `LOGON AT` follow, CMS is loaded, and the first line after that, an empty one the terminal
+types on arrival, runs the guest's `PROFILE EXEC`. After that each command is answered with the ready message,
+`R; T=0.01/0.01 10:21:55` (processor time and the time of day), or `R(00028); ...` when it failed, and the messages
+are CP's and CMS's own (`FILE NOT FOUND.`; `CP SET EMSG ON` adds their codes, `DMSLST002E`); a command it does not
+know gets `UNKNOWN CP/CMS COMMAND`. An empty line gets `CMS`, or `CP` in CP mode.
+
+Files are `NAME TYPE MODE` on minidisks: `LISTFILE` (or `L`) lists the A-disk, `LISTFILE * * *` every disk,
+`TYPE README MEMO` shows a file, and `COPYFILE`, `RENAME`, `ERASE`, `STATE`, `QUERY DISK`, `ACCESS`, `RELEASE`,
+`FORMAT`, `PRINT`, `PUNCH`, `DISK DUMP` and `DISK LOAD` do what they did. `EDIT` is the CMS editor of 1979 on a
+typewriter: `INPUT` (an empty line ends it), `TOP`, `NEXT`, `UP`, `LOCATE /x/`, `FIND`, `CHANGE /a/b/ * *`,
+`DELETE`, `REPLACE`, `TYPE`, `SAVE`, `FILE` and `QUIT`. `EXEC` runs the CMS EXEC language of the time (`&TYPE`,
+`&IF`, `&GOTO`, `&LOOP`, `&READ`, `&STACK`, `&1` to `&30`), and an EXEC runs by its name alone. The site's files are
+on the guest's A-disk (`notes/todo` is `TODO NOTES`, `src/hello.c` is `HELLO C`), and what the visitor writes,
+renames or erases there is kept in the browser (see [Saves](#saves)); the files the site gives come back afresh
+unless the visitor has replaced or erased them.
+
+The letter arrives in the reader, as mail did: `QUERY READER ALL` shows it, `READCARD *` reads it onto the A-disk as
+`LETTER MEMO`, and `MAIL` shows it straight away. The CP commands are there from CMS as they are (`QUERY TIME`,
+`QUERY NAMES`, `MSG`, `SPOOL`, `LINK`, `DETACH`, `DEFINE`, `PURGE`, `ORDER`, `CHANGE`, `TRANSFER`, `IPL CMS`,
+`LOGOFF`), `CP` alone or `#CP` gives CP the terminal until `BEGIN`, and CP's line editing works: `#` ends a line
+and starts another, `@` takes back a character, `"` makes the next one plain. `LINK MAINT 191 291 RR` and then
+`ACCESS 291 B` reach another user's disk. `HELP` lists its topics, and among them the terminal's own words, which
+work here as on every machine. After `LOGOFF`, `LOGON GUEST` takes the password the log message gives.
+
+MAINT, the system programmer, is the privileged account (classes A to G): `LOGON MAINT` with the
+`root password:` in `machines/vm370-1980/machine.js`. The system programmer keeps the CP directory, passwords and
+all, on his 191 disk, which anyone may link to; as MAINT, the locked files open, `SET LOGMSG` replaces the log
+message, `MSG ALL` and `WNG ALL` reach everyone, and `SHUTDOWN` stops the machine. The empty line is the machine's:
+its `cms.js` sets `Phosphor.blank`, which the engine calls instead of starting a new prompt when a line is empty.
+The messages were checked against VM/370 Release 6 running under Hercules (the "SixPack"), and against IBM's
+Release 6 manuals wherever the SixPack has changed them. There is no 3270 full-screen terminal, and XEDIT,
+FILELIST, RDRLIST and REXX are not here: they came later, with VM/SP.
+
+### Multics
+
+The Honeywell runs Multics MR8.0, installed here in June 1980, so its clock says 1981. The terminal is on a line to
+it: the banner gives the load and the users, `login Guest` (any password; `help` before logging in says so) prints
+`Password:` and the mask a printing terminal typed the password over, then the login messages, and the guest's
+`start_up.ec` prints the site's welcome as the message of the day and `You have mail.` There is no prompt: after
+every command line comes the ready message, `r 12:34 0.123 4`, the time, the CPU seconds and the page faults. Ctrl-C
+is the QUIT key: the command stops, and the ready message says `level 2` until `release` (`rl`) or `start` (`sr`),
+which goes back into a qedx that was interrupted.
+
+Commands have long and short names: `list` (`ls`), `print` (`pr`), `print_wdir` (`pwd`), `change_wdir` (`cwd`),
+`create_dir` (`cd`), `delete` (`dl`), `delete_dir` (`dd`), `rename` (`rn`), `copy` (`cp`), `move` (`mv`), `add_name`
+(`an`), `status` (`st`), `list_acl` (`la`), `set_acl` (`sa`), `who`, `where` (`wh`), `qedx` (`qx`), `exec_com` (`ec`),
+`read_mail` (`rdm`), `print_mail` (`prm`), `send_mail` (`sdm`), `send_message` (`sm`), `help` and `list_help` (`lh`),
+`logout`, and more. Pathnames run down from the root with `>`: the guest's home is `>user_dir_dir>Guest>Guest`
+(`>udd>Guest>Guest` for short), a leading `<` goes up one directory, and `*` and `**` are star names. Command lines
+take `;` between commands, quotes, active functions in brackets (`string [wd]`, `[date]`, `[user name]`) and
+parentheses (`dl (a b)` runs `dl` twice), and, as Multics did, `#` erases the character before it and `@` the whole
+line. `qedx` is a real editor, with no prompt: `a` to type lines, `\f` to stop, `1,$p`, `s/old/new/`, `w name`, `q`.
+An `exec_com` segment (`name.ec`) runs with `&1` to `&9`, `&if [...] &then ... &else`, `&goto`, `&print` and `&quit`.
+
+The letter is the mail in `Guest.mbx`; `help` prints the info segments in `>doc>info` a block at a time, and `help`
+on its own lists, under a heading of their own, the terminal's own words (`about`, `source`, `sound`, `fill`,
+`effects`, `connect`) and your text commands with them. What the guest writes, renames or deletes in the home
+directory is kept in the browser (see [Saves](#saves)), up to the guest's quota of 1024 records, 4 MB; past that a
+write says `Record quota overflow.` `Repair.SysAdmin` is the privileged account that reads and changes nearly
+everything: `login Repair` takes the `root password:` in `machines/multics-1981/machine.js` (with
+`root login: repair`), and the operators left it in an exec_com anyone may print. QUIT is the machine's: its
+`commands.js` sets `Phosphor.onInterrupt`, which the engine calls on Ctrl-C and whose answer it shows instead of `^C`.
+
+The messages and formats were checked against Multics MR12.8 running under the DPS8M simulator, and against the
+MR8.0 manuals where the two differ: the 1980 banner, `Segment foo not found.`, `You are protected from preemption
+until 1007.8.`, the mail and help dialogues and the `qedx` requests are the manuals'. Multics is case sensitive:
+`LIST` is not `list`, and the terminal's words are typed in lower case.
+
+### TRS-80 Model III
+
+The Model III has no terminal: the glass is its own screen, 64 columns by 16 rows, with its block graphics. It boots
+TRSDOS 1.3 from drive 0, with Tandy's notices and the questions every boot asked, `Enter Date` and `Enter Time`, which
+the owner answers from the clock (it is 1981 in there), and then `TRSDOS Ready` and its row of dots. `DIR` lists the
+disk, `FREE` shows its free space map, `LIST` dumps a file in hex as TRSDOS 1.3 did, `KILL`, `RENAME`, `TIME`, `DATE`,
+`CLOCK`, `CLS`, `LIB`, `HELP` and `ERROR n` work, and most of the rest of TRSDOS's library answers with its own error
+numbers. `BASIC` asks `How Many Files?` and `Memory Size?` (Enter for both) and brings up Disk BASIC at `READY` and
+`>`: type numbered lines to make a program, `LIST`, `RUN`, `NEW`, `SAVE"NAME/BAS"`, `LOAD`, `KILL`, and `CMD"S"` to go
+back to TRSDOS. The disk lives in your browser. `CSAVE"A"` and `CLOAD"A"` use the cassette, also kept in the browser,
+with the relay's click and the two asterisks in the corner, one blinking, as it loads; `SYSTEM` gives its `*?` prompt
+for a machine-language tape. Ctrl-C (or Escape) is BREAK. Held while the machine starts (press it during the first
+second), BREAK skips the disk, as on the real one: `Cass?` and `Memory Size?`, then the ROM's Level II BASIC, with its
+two-letter messages (`?SN Error`) where Disk BASIC spells them out (`Syntax Error`). Both BASICs have Level II's three
+kinds of number (`A%`, `A!`, `A#`, and `DEFINT` and the rest), `PRINT @`, `PRINT USING`, `SET`, `RESET` and `POINT` on
+the 128 by 48 block grid, `INKEY$`, `STRING$` and `TIME$`, and drop into EDIT mode at a line with a syntax error. The
+up arrow (or `^`) types the power sign, which the Model III shows as an arrow.
+
+The terminal's own commands are words typed at `TRSDOS Ready` or at `>`: `ABOUT`, `MAIL`, `SOURCE` and your own text
+commands show on the terminal's glass, and a key brings the Model III back; `FILL`, `SOUND`, `EFFECTS` and `CONNECT`
+answer on its screen, and TRSDOS's `HELP` lists them after its own. They come from `PHOSPHOR/CMD`, which TRSDOS runs at
+boot (its `AUTO`), as utilities of the time hooked themselves in. `ZORK1` and `ZORK2` start Infocom's games. BASIC,
+TRSDOS and the disk are written for this terminal and contain nothing of Tandy's or Microsoft's, and the boot screen's
+picture is drawn for it; the screens, prompts, messages and what BASIC prints were checked against a Model III running
+TRSDOS 1.3 in xtrs, and its ROM BASIC in MAME. A few Commodore words typed at a prompt get an answer from a Model III
+owner of 1981 (the `JOKES` table in `trs80.js`).
 
 ### Apple IIe
 
@@ -281,6 +386,36 @@ their notes while the keyclicks are on, and `FAST` blanks the 40-column screen, 
 COMMAND ERROR`, and `DRAW` and the rest `?NO GRAPHICS AREA ERROR`. `SYS 32800,123,45,6`, in C128 mode, shows the credits
 that Commodore's programmers hid in the ROM, as the real machine does. A few other machines' commands typed at
 `READY.` get an answer from a Commodore owner of 1985; their texts are the `RIVALS` table in `screen.js`.
+
+### The bulletin board
+
+`connect bbs` plugs the terminal into a 2400 bps modem instead of a computer. It types the board's number at the
+modem, `ATDT555-0142`; with the sound on, the return that dials is the visitor's, because a browser plays nothing
+until someone has pressed a key, and then the modem's speaker plays the dial tone, the digits, the ring, the answer
+tone and the handshake before `CONNECT 2400`. The board, Afterglow BBS, is filled from the site: the letter, the
+about section and the `now` file are its General messages, each project row in the letter is a message of its
+own, the home folder's files (nothing hidden or locked) are the sysop's notes and the first file area, and the
+welcome, the about section and your own `== command: ==` sections with help text are among its bulletins. A
+`== board ==` section changes its name, number and sysop.
+
+A caller picks a handle and, on a board of 1986 or later, ANSI colour or plain ASCII; the board then has
+bulletins, message bases to read and post in, a file area whose downloads end as they would on a terminal with
+no disk (the text files can be shown with ASCII), a graffiti wall, the user list and last callers, a sysop who is
+never there when paged, an hour a call, and two doors, Star Haul and Deep Mine. The terminal's own words work at
+its main menu, `?` lists them under their own heading, and `+++` on a line by itself talks to the modem: `ATH`
+hangs up, `ATO` goes back on line. Goodbye ends in `NO CARRIER`, and after it, or a hang-up, the terminal goes back
+to the machine the visitor came from. What a caller adds (handle, posts, wall, comments, door games) is kept in the
+browser only. The sysop is `{owner}`, and the password is the `root password:` in `machines/bbs-1990/machine.js`
+(or `password:` in `== board ==`; a call from DOS or CP/M uses `PASSWORD` in `machines/shared/bbs.js`); someone
+left it in a log in the file area.
+
+The board can also be reached from MS-DOS and CP/M: `TERM` is a terminal program on each (`C:\COMM\TERM.EXE`,
+`A:TERM.COM`), which lists the numbers and passes AT commands to the modem; ^C goes back to the prompt. The PC's
+modem is a 2400 and the CP/M machine's a 1200, so the board comes up at that speed, in that machine's year: in
+1982 it talks plain ASCII. The board, modem and doors are in `machines/shared/` (`bbs.js`, `modem.js`,
+`bbs-doors.js`, `bbs.css`); its board, text, callers and files are all invented for this terminal. The colours are
+the machine's to ask for: `\u0005` and a hex digit in a line types the rest of it in that colour, which the
+machine's CSS gives as `.k0` to `.kf`, and `\u0005` with anything else goes back to plain.
 
 ### Choosing machines
 
@@ -471,9 +606,18 @@ owner typed them in:
 | `DIAMOND` | a page of diamonds |
 | `SINE WAVE` | the words, swinging down the screen |
 
+**TRS-80 Model III**, on the disk (`DIR` lists it; `BASIC`, then `RUN"BULLSEYE/BAS"`, and `LIST` shows how it is
+made): `BULLSEYE` (darts for up to 20 players) and `BUZZWORD` (phrases for reports), David Ahl's programs from
+*BASIC Computer Games*, and `WORM` (steer a worm round the screen in block graphics with the arrow keys), written
+for this terminal; and `ZORK1` and `ZORK2` at `TRSDOS Ready`, the same story files as on DOS and CP/M.
+
 **MS-DOS and CP/M**: Zork I and Zork II, Infocom's own story files on an interpreter written
 for this terminal. On DOS, `CD \ZORK` then `ZORK1` or `ZORK2`, or `C:\ZORK\ZORK1` from
 anywhere. On CP/M, `ZORK1` from user area 0, and `USER 3` then `ZORK2`.
+
+**The bulletin board** has two doors, written for this terminal: Star Haul, trading ore, grain and tech between
+five stations with ten jumps a day, and Deep Mine, how deep you dare dig before the roof comes down. Both keep
+their players and best scores in the browser.
 
 **Apple IIe**, on the disk (`CATALOG` lists it; `RUN` and the name starts one, and `LIST` shows how it is made):
 `GUESS` (a number from 1 to 100), `BAGELS` (three digits, from clues), `LANDER` (bring a craft down on the Moon) and
@@ -539,6 +683,11 @@ Nothing is sent anywhere, and clearing the site's data in the browser clears the
 The C128's disk is a save file too: what the visitor writes, renames or scratches is
 kept under `phosphor-9/c128/disk`; the files the disk came with (the games, and the programs and files
 made from `site/`) are made again at each power-on. The Apple IIe's disk is kept under `phosphor-9/apple2/disk`.
+The TRS-80's disk is kept under `phosphor-9/trs80/disk`, and its cassette under `phosphor-9/trs80/tape`.
+VM/370's A-disk, what the guest wrote, renamed or erased on it, is kept under `phosphor-9/vm370/guest191`, and the
+Multics guest's home directory under `phosphor-9/multics/home`: only what the guest made, changed or deleted, so the
+site's own files come back fresh, with any changes laid over them. The bulletin board keeps its callers, posts,
+wall lines, comments and door games under `phosphor-9/bbs/`.
 
 ### Switching a game off
 
@@ -601,8 +750,8 @@ A game is a file that defines a command, and an entry that names it:
    (`/usr/games`), so it shows in `ls` and `which`; a new `later.js` defines its own or calls
    `Phosphor.later` directly.
    On VMS the helper is `image('games/coin.js','coin')`, and `RUN [GAMES]COIN` also needs
-   `['coin',1024]` added to the list of images in its `fs.js`. DOS, CP/M and IRIX have no
-   `later.js`; add one to the machine's `files` in `machines/machines.js` to give them games.
+   `['coin',1024]` added to the list of images in its `fs.js`. DOS, CP/M, IRIX, VM/370, Multics
+   and the bulletin board have no `later.js`; add one to the machine's `files` in `machines/machines.js` to give them games.
 
 Edits inside `machines/` are replaced when you upgrade. To keep a game of your own across
 upgrades, put both parts in `site/`: the game in, say, `site/games/coin.js`, and the entry in
@@ -632,7 +781,9 @@ that puts the `zork` files), then `'../shared/zork.js'` from its `files` in
 
 On the Apple IIe, the games are files on its disk: delete their entries from `machines/apple2-1984/disk.js` (a
 visitor's browser keeps the disk it already has until its site data is cleared). The C128's games are entries in
-`machines/c128-1986/games.js`; delete one there.
+`machines/c128-1986/games.js`; delete one there. The TRS-80's games are entries in `machines/trs80-1981/disk.js`;
+delete one there (a visitor who has saved, killed or renamed a file on that disk keeps the disk they have until
+its site data is cleared).
 
 ## Looks
 
@@ -659,7 +810,8 @@ sends small `HEAD` requests for the page to your own server and times the answer
 off with `commands: -ping` if you would rather it did not.
 
 Games that kept a save or a score file in their day keep them in the visitor's own browser
-(`localStorage`; see [Saves](#saves)). The `fill` and `effects` commands remember their settings there too, and `machine: random`
+(`localStorage`; see [Saves](#saves)), as do the disks of the Apple IIe, the TRS-80 and the C128 and the guest's files on VM/370 and
+Multics. The bulletin board keeps the handle a caller picks, and what they post, there too. The `fill` and `effects` commands remember their settings there as well, and `machine: random`
 keeps its pick for the tab in the browser's session storage. Nothing is sent anywhere, and nothing else is stored.
 
 ## Upgrading
@@ -676,7 +828,7 @@ how. Changes are listed in [CHANGELOG.md](CHANGELOG.md).
 - **The games** keep the notices they came with, in their own files, and each is under
   those terms, not the AGPL; the new code written for them (the Z-machine, the DDL
   interpreter, the robots in `hunt` and Conquest's scheduler, the five V7 games rewritten
-  without source, Debian's `frotz`, `sl`, `cowsay`, `fortune` and `cmatrix` programs, the Apple's and the Commodores' BASICs, and the C128's READ program) is under the AGPL with the rest.
+  without source, Debian's `frotz`, `sl`, `cowsay`, `fortune` and `cmatrix` programs, the Apple's, the TRS-80's and the Commodores' BASICs and TRSDOS, the C128's READ program, and the bulletin board's doors) is under the AGPL with the rest.
   NetHack is the exception: its file, including the C library, file system and vt100 written for
   its port, is under the NetHack General Public License, as the file says. The table below sums up what each notice
   says and where the doubts are. It is a summary, not legal advice: if you publish the games,
@@ -697,9 +849,12 @@ how. Changes are listed in [CHANGELOG.md](CHANGELOG.md).
 | Colossal Cave (4.3BSD, VMS and TOPS-20) | NetBSD | BSD licence, kept | |
 | 4.3BSD: `number`, `primes`, `factor`, `banner`, `hangman`, `worm`, `robots`, `snake` (`games.js`, `banner-font.js`) | NetBSD | BSD licence, kept | |
 | Rogue | Rogue 5.4.4 | BSD licence, kept, with the notice for the parts based on the work of Nicholas J. Kisseberth | |
-| Zork I and II (DOS, CP/M, Linux, Apple IIe) | Infocom's story files, release 119 and 63 | MIT licence (Microsoft, 2025), kept | The licence covers the software, read here as including the story files; Zork is a trademark and the licence does not cover the name |
+| Zork I and II (DOS, CP/M, Linux, Apple IIe, TRS-80) | Infocom's story files, release 119 and 63 | MIT licence (Microsoft, 2025), kept | The licence covers the software, read here as including the story files; Zork is a trademark and the licence does not cover the name |
 | Apple IIe: `GUESS`, `BAGELS`, `LANDER`, `KINGDOM` | New, for this terminal | AGPL, with the rest of `machines/` | |
 | C128: `HELLO`, `NICOMACHUS`, `ONE CHECK`, `BUZZWORD`, `DIAMOND`, `SINE WAVE` | *BASIC Computer Games* (1978), the listings Vintage BASIC carries | Public domain: on 15 June 2022 David Ahl placed everything he had written or edited in the public domain; the book credits each of these to him alone. Quoted in `games.js` | He asks that his work be used for educational and historical purposes and not for profit, which is a wish, not a condition. Only his own programs are used: the book's other games are other people's |
+| TRS-80: `BULLSEYE`, `BUZZWORD` | *BASIC Computer Games* (1978), the listings coding-horror/basic-computer-games carries | Public domain: on 15 June 2022 David Ahl placed everything he had written or edited in the public domain; the book credits both to him alone. Quoted in `disk.js` | He asks that his work be used for educational and historical purposes and not for profit, which is a wish, not a condition. Typed in as a Model III owner would: `RND(0)` for `RND(1)`, `CLEAR 500` in `BULLSEYE`, the titles centred in 64 columns |
+| TRS-80: `WORM` | New, for this terminal | AGPL, with the rest of `machines/` | |
+| The bulletin board: Star Haul, Deep Mine | New, for this terminal | AGPL, with the rest of `machines/` | |
 | VMS: Star Trek | SST2K 2.10 | BSD licence, kept | It descends from older programs whose authors' grant to relicense is not on record; Star Trek is a trademark |
 | VMS: Empire | Chuck Simmons's C Empire, in Walter Bright's VMS release | Simmons's Empire General Public License, kept, with Bright's statement | Bright calls it a copy of his copyrighted Empire, whose own sources are non-commercial |
 | VMS: Monster | Rich Skrenta's VAX Pascal | "You may freely copy, distribute and change Monster", kept | No warranty disclaimer |

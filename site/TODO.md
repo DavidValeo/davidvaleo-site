@@ -33,8 +33,16 @@ placeholder and generic line in it, so nothing is missed.
 - `notes/todo`, `notes/ideas`, `src/hello.c`, `.plan` and `.profile`: example files.
 - `secrets`, `.trash/letter.bak` and `.trash/.deeper/note`: the example puzzle. The note points to `/etc` and
   the root password the machines leave lying about (`/etc/rc.old` on V7, 4.3BSD and IRIX, a cron job in
-  `/etc/cron.d` on Debian, `<SYSTEM>PTYCON.ATO` on TOPS-20); `secrets` is locked until you are root.
+  `/etc/cron.d` on Debian, `<SYSTEM>PTYCON.ATO` on TOPS-20, `USER DIRECT` on MAINT's 191 disk on VM/370,
+  `>udd>SysAdmin>lib>crash_recovery.ec` on Multics, and `NODE1.LOG` in the bulletin board's file area);
+  `secrets` is locked until you are root.
   Keep, change or delete it as a whole.
+
+## The bulletin board
+
+- Nothing to replace: the board fills itself from the sections above. Unset, it is called Afterglow BBS, at
+  555-0142, with `{owner}` as its sysop; a `== board ==` section in `site/content.js` (`name:`, `number:`,
+  `sysop:`, `password:`) makes it yours.
 
 ## Look (`site/theme.css`)
 

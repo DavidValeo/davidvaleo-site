@@ -119,6 +119,24 @@ behind gaijin.systems.
 - A tenth, a Commodore 128 (`c128`, 1986): BASIC 7.0 on its screen editor, in 40 columns or, with Escape then X,
   80; a 1571 disk kept in the browser; and `GO 64` for a Commodore 64 with BASIC V2. Six of David Ahl's
   type-in games are on the disk.
+- An eleventh, `vm370`: IBM VM/370 Release 6 with CMS (1979), on a typewriter terminal: LOGON, the CP and CMS
+  commands, the ready message, minidisks with LINK and ACCESS, the CMS editor, EXECs, the letter in the reader,
+  and the guest's A-disk kept in the browser; checked against Release 6 under Hercules. A machine can now answer
+  an empty line itself (`Phosphor.blank`).
+- A twelfth, a Radio Shack TRS-80 Model III (`trs80`, 1981): its own 64 by 16 screen with block graphics, TRSDOS 1.3
+  (`DIR`, `FREE`, `LIST`, `KILL`) and Disk BASIC with the disk kept in the browser, the ROM's Level II BASIC
+  with `BREAK` held at power-on, `CSAVE`/`CLOAD` to a cassette kept in the browser, `SYSTEM`, Zork I and II,
+  two of David Ahl's public-domain games and a new block-graphics one; checked against xtrs and MAME.
+- A thirteenth, a Honeywell Level 68 running Multics MR8.0 (`multics`, 1981): `login Guest`, ready messages, QUIT
+  and command levels, `>udd>Guest>Guest` with segments, ACLs and added names, `qedx`, `exec_com`, info segments,
+  and the letter in `read_mail`; the guest's files are kept in the browser. A machine can now take Ctrl-C itself
+  (`Phosphor.onInterrupt`).
+- And a dial-up bulletin board (`bbs`): `connect bbs` dials it on a 2400 bps modem, with the dial tone, digits, ring
+  and handshake through the speaker, and `CONNECT 2400`. Its messages, bulletins and files are the site's own words;
+  callers pick a handle, choose ANSI colour or ASCII, post, write on the wall and play two doors, Star Haul and
+  Deep Mine, all kept in the browser. `+++` and `ATH` hang up, and the terminal goes back to the machine you came
+  from. MS-DOS and CP/M have `TERM` to call it too. Like the C128, it sits out `machine: random`. New section
+  `== board ==`; the engine colours runs of a line for machines that ask (`.k0` to `.kf`).
 - Debian 13 and TOPS-20 have a super-user too, for those who look in the right place: on Debian, `su`,
   `su -c`, and as root `sudo`, `systemctl` and `shutdown`; on TOPS-20, OPERATOR, `ENABLE` and the `$` prompt.
   TOPS-20's `LOGIN` now says `?Incorrect password`, as the 6.1 EXEC does.
