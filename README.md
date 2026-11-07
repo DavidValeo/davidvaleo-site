@@ -328,10 +328,10 @@ up arrow (or `^`) types the power sign, which the Model III shows as an arrow.
 The terminal's own commands are words typed at `TRSDOS Ready` or at `>`: `ABOUT`, `MAIL`, `SOURCE` and your own text
 commands show on the terminal's glass, and a key brings the Model III back; `FILL`, `SOUND`, `EFFECTS` and `CONNECT`
 answer on its screen, and TRSDOS's `HELP` lists them after its own. They come from `PHOSPHOR/CMD`, which TRSDOS runs at
-boot (its `AUTO`), as utilities of the time hooked themselves in; killing or overwriting it turns them off at TRSDOS
-from the next boot, and clearing the site's data in the browser brings the disk back as it came. `ZORK1` and `ZORK2`
-start Infocom's games. BASIC,
-TRSDOS and the disk are written for this terminal and contain nothing of Tandy's or Microsoft's, and the boot screen's
+boot (its `AUTO`), as utilities of the time hooked themselves in; killing or overwriting it turns them off from the
+next boot (except in the ROM's BASIC, reached by holding BREAK at power-on), and clearing the site's data in the
+browser brings the disk back as it came. `ZORK1` and `ZORK2` start Infocom's games. BASIC, TRSDOS and the disk are
+written for this terminal and contain nothing of Tandy's or Microsoft's, and the boot screen's
 picture is drawn for it; the screens, prompts, messages and what BASIC prints were checked against a Model III running
 TRSDOS 1.3 in xtrs, and its ROM BASIC in MAME. A few Commodore words typed at a prompt get an answer from a Model III
 owner of 1981 (the `JOKES` table in `trs80.js`).
