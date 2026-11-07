@@ -9,6 +9,7 @@ Our code is AGPL too. The `source` command points at https://github.com/DavidVal
 |---|---|---|
 | `index.html` | title, description and noscript text; a `data:` favicon (no 404 on /favicon.ico); script tags for `content/*.js`, `site/variety.js`, `site/journal.js`, `site/games.js` | the page is ours; the engine loads our data and commands |
 | `machines/machines.js` | one entry, `phosphor`, added before `linux` | register our machine; the vintage entries stay, so `connect` reaches them and upstream merges stay clean |
+| `README.md` | a section about the fork added above the engine manual, which is kept whole | so the repo says what it is; merges only touch the top |
 | `site/config.js`, `site/content.js`, `site/home.js`, `site/theme.css` | rewritten | these are the template's "yours" files; they are meant to be replaced |
 
 Nothing else under `engine/` or the vintage `machines/` folders is touched.

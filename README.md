@@ -1,3 +1,63 @@
+# davidvaleo.com
+
+The terminal at [davidvaleo.com](https://davidvaleo.com): **phosphor**, a personal terminal from 2119
+that was left running on purpose. Log in as `guest`, type `cat readme`, and read the journal with `log`.
+
+It runs on [PHOSPHOR-9](https://github.com/GaijinSystems/phosphor) by Gaijin Systems. This repository is a
+fork: the section below is about what the fork adds, and everything after the line is the engine's own manual.
+
+## What the fork adds
+
+- **phosphor**, the home machine (`machines/phosphor-2119/`): a Linux shell from the engine with its own boot,
+  readme and file system on top. It has looked after itself since its last login in 2063.
+- **The journal** (`content/journal.js`, the `log` command, `~/log/`): letters written into the machine over the
+  years, which point to the things worth finding.
+- **Games**: the engine's `/usr/games` (frotz with Zork I and II, nethack, cowsay, sl, fortune, cmatrix),
+  plus **uplink**, an artillery game against the machine (`site/games/uplink.js`).
+- **connect** reaches the engine's vintage machines, from a 1979 PDP-11 to a 1993 Silicon Graphics Crimson, as they ship.
+- **A different visit each tab** (`site/variety.js`, `content/variants.js`): the welcome line, the screen tint,
+  where the eggs are hidden and the one password are rolled per tab.
+
+The site files are in `site/`, `content/` and `machines/phosphor-2119/`. `FORK-NOTES.md` lists every
+upstream file the fork changes.
+
+## Run it
+
+Open `index.html` in a browser, or serve the folder:
+
+    python3 tests/serve.py 8790
+
+and go to http://localhost:8790/. The preview server sends no-store, so a reload always shows the current files.
+
+## Test
+
+The tests drive the page in headless Chromium with [Playwright](https://playwright.dev/python/):
+
+    pip install playwright && python3 -m playwright install chromium
+    python3 tests/test_site.py http      # boot, journal, eggs, archive, no outside requests
+    python3 tests/test_uplink.py         # the uplink game
+
+Each starts its own server. `tests/test_site.py` also fails on any em dash in the fork's files, and on any name
+listed one per line in `tests/banned.txt` (optional, not tracked).
+
+## Deploy
+
+`./deploy.sh` copies the tracked, served files into `dist/` and deploys them to Cloudflare Pages with
+`wrangler`. Tests, notes and tooling stay out of what is served.
+
+## Keeping up with the engine
+
+    git remote add upstream https://github.com/GaijinSystems/phosphor.git
+    git fetch upstream && git merge upstream/main
+
+Conflicts can only come up in the files `FORK-NOTES.md` lists.
+
+## License
+
+GNU AGPL v3 or later, the same as the engine (see `LICENSE`). The `source` command on the site links here.
+
+---
+
 # PHOSPHOR-9
 
 A 1979 video terminal for your website. Visitors land at a glowing green screen with a
