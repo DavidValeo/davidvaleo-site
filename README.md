@@ -405,9 +405,8 @@ never there when paged, an hour a call, and two doors, Star Haul and Deep Mine. 
 its main menu, `?` lists them under their own heading, and `+++` on a line by itself talks to the modem: `ATH`
 hangs up, `ATO` goes back on line. Goodbye ends in `NO CARRIER`, and after it, or a hang-up, the terminal goes back
 to the machine the visitor came from. What a caller adds (handle, posts, wall, comments, door games) is kept in the
-browser only. The sysop is `{owner}`, and the password is the `root password:` in `machines/bbs-1990/machine.js`
-(or `password:` in `== board ==`; a call from DOS or CP/M uses `PASSWORD` in `machines/shared/bbs.js`); someone
-left it in a log in the file area.
+browser only. The sysop is `{owner}`, and the password is `PASSWORD` in `machines/shared/bbs.js` (or `password:` in
+`== board ==`, or, on the bbs machine, a `root password:` in site/); someone left it in a log in the file area.
 
 The board can also be reached from MS-DOS and CP/M: `TERM` is a terminal program on each (`C:\COMM\TERM.EXE`,
 `A:TERM.COM`), which lists the numbers and passes AT commands to the modem; ^C goes back to the prompt. The PC's
