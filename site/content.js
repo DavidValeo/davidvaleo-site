@@ -1,50 +1,34 @@
-/* Your terminal's words: the welcome message, the about section and the letter.
-   The example text below is CC0 (public domain); replace it with your own. See README.md
-   for the full list of sections and markup. Do not type a backtick, or a dollar sign
-   followed by {, anywhere between the two backticks below. */
-Phosphor.content(String.raw`
+/* davidvaleo.com on PHOSPHOR-9: the terminal's words. The welcome message, the about section and
+   the letter are the fallbacks; site/variety.js overrides some of them per roll from content/variants.js.
+   Copyright (C) 2026 David Valeo. GNU AGPL v3 or later; see LICENSE.
+   See README.md for the sections and markup, content/journal.js for the journal. Do not type a backtick,
+   or a dollar sign followed by {, anywhere between the two backticks below. No em dashes anywhere. */
+Phosphor.content(window.DV && DV.onArchive && DV.onArchive() ? '' : String.raw`
 
-# Printed after login (and kept in /etc/motd, on the Unix machines).
+# The owner login shown in ls -l, who and on the mail.
+name:      phosphor
+
+# Printed after login (and kept in /etc/motd). The roll adds one more line under it.
 == welcome ==
-welcome to {site}.
-~ type help and press return.
+hello. you found phosphor. have a look around.
+~ start with: cat readme
 
 # What the about command prints.
 == about ==
-this terminal belongs to {owner}.
-it is always {year} in here.
-~ (edit the about section in site/content.js)
+phosphor is a personal terminal, built to keep running after its owner logged off.
+it holds a journal he wrote over sixty years, addressed to whoever came next.
+since his last login it has run and repaired itself, about fifty years, unattended.
 
-# The letter (the mail command). The machine's "you have mail." shows when the guest logs in, while this has text.
-#
-# Write each paragraph as ONE line: the glass wraps it to fit, phones included.
-#
-# Project rows: name, a run of spaces, then the status or date. Pad every row to the same
-# width (41 characters here) so the right-hand column lines up; the ~~ marks are not
-# printed and do not count, and {year} counts as the four digits it becomes. On a narrow screen the run of spaces shrinks to fit.
-# ~~text~~ strikes text through: here, the real date, then the in-character one: the same month and day, in
-# whatever year the machine is.
-# Retired projects move to the attic file (site/home.js).
+# The letter (the mail command). The roll replaces this with the letter in content/variants.js.
 == mail ==
-welcome to {site}!
+last entry. i'm logging off for good and leaving phosphor running. it knows how to look after itself now. everything here is open. i kept exactly one password, for old times' sake. it's in /etc/passwd, where anyone can read it. and for the record: i played uplink against this machine again tonight and lost, again. i want a rematch. you'll have to take it for me.
 
-this is the letter every visitor finds waiting. say hello, say what this place is, and say what you are working on. it is one long line in site/content.js, and the glass wraps it.
+# Commands of our own. == command: NAME | HELP TEXT == then what it prints.
+== command: motto | what he left on the wall ==
+no gods, no masters, no sudo.
+~ leave things better than you found them.
 
-here is what is on the bench:
-~ tap or click a title to visit.
-
-my next project               coming soon -> https://example.com
-my first project    ~~2025-06-01~~ {year}-06-01 -> https://example.com
-
-~ no terminal should be without one!
-
-to reach the operator, write to:
-{email} -> mailto:{email}
-~ no modem detected. copy it down by hand.
-
-# A command of your own: == command: NAME | HELP TEXT == then what it prints.
-# Several names: == command: projects, proj | ... ==   No help text = hidden from help.
-== command: motto | words to live by ==
-keep the tube warm.
+== man: motto ==
+prints what he left on the wall.
 
 `);

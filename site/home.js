@@ -1,73 +1,32 @@
-/* The visitor's home folder: every == file: == and == dir: == below appears in ls.
-   The example files are CC0 (public domain); keep, change or delete them.
-
-   Paths are relative to the visitor's home (/usr/guest on V7); folders are made as needed. A name starting
-   with a dot is hidden: only ls -a shows it. A path starting with / goes
-   anywhere (== file: /etc/fortune ==). Lock files with "protected:" in site/config.js.
-   Do not type a backtick, or a dollar sign followed by {, between the two backticks. */
-Phosphor.content(String.raw`
-
-# Retired and discontinued projects, moved here from the letter.
-== file: attic ==
-retired and discontinued projects:
-~   nothing up here yet.
-
-== file: now ==
-what i am doing now:
-  ~ (edit the now file in site/home.js)
-
-== file: notes/todo ==
-[x] warm up the tube
-[x] teach it ls
-[ ] teach it vi
-[ ] find out who keeps logging in as guest
-[ ] empty the trash
-
-== file: notes/ideas ==
-- a terminal that remembers you.
-~   (no.)
-- a printer that only prints in lowercase.
-- more phosphor.
-
-== file: src/hello.c ==
-main()
-{
-    printf("hello, world\n");
-}
+/* davidvaleo.com on PHOSPHOR-9: the visitor's home folder. Every == file: == and == dir: == below
+   appears in ls. Paths are relative to the home; a name starting with a dot is hidden (ls -a); a path
+   starting with / goes anywhere. Lock files with "protected:" in site/config.js (secrets, .trash/core).
+   site/variety.js adds one egg spot per roll from content/variants.js. The story files (readme,
+   last-session) live in machines/phosphor-2119/machine.js.
+   Copyright (C) 2026 David Valeo. GNU AGPL v3 or later; see LICENSE.
+   Do not type a backtick, or a dollar sign followed by {, between the two backticks. No em dashes. */
+Phosphor.content(window.DV && DV.onArchive && DV.onArchive() ? '' : String.raw`
 
 == file: secrets ==
-so you know the word.
-there is not much of a secret. there never was. the machine is warm, and now it is yours.
-~ the old hands synced three times before they threw the switch.
-~ on the newer machines, there is halt.
-~ a reload brings everything back.
+you found the one lock i kept. there is nothing behind it but this note.
+
+i spent years arguing that nobody should be in charge of a computer, then made myself root, just this once, to leave you something. i think that's allowed.
+
+here is the whole secret: nobody is coming to run things for you. not a company, not a machine, not an admin. that's good news. it means you can.
+
+be kind to whoever uses this next. fix one thing before you go.
+
+no gods, no masters, no sudo.
 
 == file: .profile ==
-: .profile - read by sh at login
-PATH=:/bin:/usr/bin
+# read by the shell at login.
+PATH=/usr/local/bin:/usr/bin:/bin
 TERM=p9
 export PATH TERM
-stty erase '^h' kill '^u'
-umask 022
-
-== file: .plan ==
-plan for this week:
-  1. keep the tube warm.
-  2. answer the mail.
-  3. empty the trash. it can wait.
-
-== file: .trash/letter.bak ==
-dear operator,
-i have been inside this terminal for some time now.
-the keyboard is nice. the phosphor is warm.
-please do not unplug me.
-~ (never sent)
 
 == file: .trash/.deeper/note ==
-you found the bottom of the trash.
-there is nothing else down here.
-~ unless you know the magic word.
-~ the last operator was careless. read what is kept in /etc.
+one password is still on this machine, where old machines kept theirs.
+~ cat /etc/passwd
 ~ go back up: cd ..
 
 `);

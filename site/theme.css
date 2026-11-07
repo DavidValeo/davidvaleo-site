@@ -1,23 +1,67 @@
-/* Your terminal's look. Optional: delete everything here and nothing breaks.
-   To use a block below, remove the comment marks around it. Colours are any CSS colour.
+/* davidvaleo.com on PHOSPHOR-9: the look. Copyright (C) 2026 David Valeo. GNU AGPL v3 or later; see LICENSE.
+   Four tube tints (site/variety.js puts one class on <html>, one per browser tab) and a bezel that
+   belongs to a little after now: matte graphite, a thin rim of the tube's own light, a status lamp.
+   Colours keep high contrast on the dark glass. Names come from content/LORE.md. */
 
-   --phos  normal text. P1 green: #3dff7e  Amber: #ffb000  White: #e8f0ff
-   --dim   dim text (lines starting with ~)
-   --err   error text (lines starting with !)
-   --phos-rgb, --dim-rgb, --err-rgb  the same three colours as numbers, for the glow */
-
-/*
-:root{
-  --phos:#3dff7e;
-  --dim:#1d8f47;
-  --err:#ff5f56;
-  --phos-rgb:61,255,126;
-  --dim-rgb:29,143,71;
-  --err-rgb:255,95,86;
+/* ---------- tints: text, dim text, and the glass behind them ---------- */
+:root, :root.tint-ember {            /* woodstove amber (also the default) */
+  --phos: #ffb23e; --dim: #b27322; --phos-rgb: 255,178,62; --dim-rgb: 178,115,34;
+  --glass-a: #150e05; --glass-b: #0d0803; --glass-c: #040201; --rim: 255,178,62;
 }
-*/
+:root.tint-foxfire {                 /* pale green, glowing at the edges */
+  --phos: #a6ffcf; --dim: #4fae85; --phos-rgb: 166,255,207; --dim-rgb: 79,174,133;
+  --glass-a: #06130e; --glass-b: #040e0a; --glass-c: #010403; --rim: 166,255,207;
+}
+:root.tint-moth {                    /* grey-silver, cool */
+  --phos: #d6deeb; --dim: #8390a3; --phos-rgb: 214,222,235; --dim-rgb: 131,144,163;
+  --glass-a: #0e1116; --glass-b: #0a0c10; --glass-c: #030405; --rim: 214,222,235;
+}
+:root.tint-bluehour {                /* deep dusk blue */
+  --phos: #86b8ff; --dim: #4577c0; --phos-rgb: 134,184,255; --dim-rgb: 69,119,192;
+  --glass-a: #060d1b; --glass-b: #040913; --glass-c: #010206; --rim: 134,184,255;
+}
 
-/* Amber monitor, ready to use: remove the comment marks below. */
-/*
-:root{--phos:#ffb000;--dim:#a06a00;--phos-rgb:255,176,0;--dim-rgb:160,106,0}
-*/
+/* ---------- the glass ---------- */
+#screen {
+  background: radial-gradient(ellipse at 50% 46%, var(--glass-a) 0%, var(--glass-b) 50%, var(--glass-c) 100%);
+}
+body { background: radial-gradient(ellipse 70% 55% at 50% 46%, #0b0d10 0%, #060709 55%, #030304 100%); }
+
+/* ---------- the bezel: after now, not 1979 ---------- */
+#bezel {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,0) 18%),
+    linear-gradient(165deg, #1b1e22 0%, #121417 48%, #0a0b0d 100%);
+  border-radius: 20px 20px 26px 26px / 18px 18px 30px 30px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.07),
+    inset 0 -6px 14px rgba(0,0,0,.6),
+    0 0 0 1px rgba(var(--rim), .16),
+    0 0 26px rgba(var(--rim), .07),
+    0 30px 60px rgba(0,0,0,.7),
+    0 8px 18px rgba(0,0,0,.5);
+}
+#bezel::before {                    /* a status lamp, lit in the tube's own colour */
+  content: ""; position: absolute; right: calc(var(--sw) * .045); bottom: calc(var(--sw) * .021);
+  width: calc(var(--sw) * .009); height: calc(var(--sw) * .009); min-width: 5px; min-height: 5px; border-radius: 50%;
+  background: rgb(var(--rim)); box-shadow: 0 0 8px rgba(var(--rim), .9), 0 0 18px rgba(var(--rim), .45);
+  animation: lamp 4.2s ease-in-out infinite;
+}
+@keyframes lamp { 0%, 100% { opacity: .95 } 50% { opacity: .45 } }
+#screen { box-shadow: inset 0 0 40px 12px rgba(0,0,0,.85), inset 0 0 120px rgba(0,0,0,.55), 0 0 0 2px #050606, 0 0 0 3px rgba(var(--rim), .12); }
+.badge {
+  color: rgba(var(--rim), .42); text-shadow: 0 0 6px rgba(var(--rim), .25);
+  letter-spacing: .38em; text-transform: uppercase;
+}
+#bezel::after {
+  background: linear-gradient(180deg, #17191c, #0b0c0d);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 5px 8px rgba(0,0,0,.6);
+}
+
+/* ---------- people who ask for less motion get a still tube ---------- */
+@media (prefers-reduced-motion: reduce) {
+  #bezel::before { animation: none; }
+  .flicker, .band, .scan { animation: none !important; }
+  .flicker, .band { display: none; }
+  #crt { animation: none !important; }
+}

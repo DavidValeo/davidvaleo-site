@@ -16,19 +16,19 @@ Phosphor.content(String.raw`
 # The machine behind the glass, and which others the connect command offers (see
 # machines/machines.js). Unset: the first one, and all of them. One machine: no connect.
 # machine: random picks one of them for each browser tab (the C128 sits out the draw).
-# machine:  v7
-# machines: v7
+# machine and the roll: site/variety.js picks one per tab (and sets machine:). Only our machines are offered.
+machines: phosphor, v7, vm370, trs80, multics, cpm, apple2, tops20, c128, bsd, dos, vms, bbs, irix
 
 # Your name. The first word (up to 8 letters) is the owner's login, shown in ls -l,
 # who and on the mail. {owner} in any section's text becomes that word.
-name:      operator
+name:      phosphor
 
 # Your address, for the letter. {email} in any section's text becomes this.
-email:     operator@example.com
+email:     nobody@phosphor
 
 # Browser tab title, and the name on the monitor's bezel.
-title:     PHOSPHOR-9
-badge:     PHOSPHOR-9
+title:     phosphor
+badge:     PHOSPHOR
 
 # Typing speed: 1 = normal, 1.25 = 25% faster.
 speed:     1
@@ -46,17 +46,17 @@ effects:   auto
 
 # Where the source command sends people. The licence (GNU AGPL) asks that anyone using
 # a changed copy can get its source: if you change the code, point this at your copy.
-source:    https://github.com/GaijinSystems/phosphor
+source:    https://github.com/DavidValeo/davidvaleo-site
 
 # Switch commands off (or back on): a comma list, minus to remove. Works on the built-in
 # commands, the machine's (sudo) and the games (rogue), not on your own == command: == sections.
 # e.g.  commands: -ping      (ping, on the machines that have it, is the only command that
 # makes network requests)
-commands:
+commands:   -ping
 
 # Locked files and folders in the home directory: listed by ls, but cat says
 # "can't open". Paths work (.trash/core); a trailing / makes a locked folder.
-protected: photo01.pic, photo02.pic, secrets, .trash/core
+protected: secrets, .trash/core
 
 # The coiled cable under the monitor: turns is a count (desktop: the count on a wide screen;
 # turns is used on phones and wherever desktop is unset); the rest are in screen pixels.

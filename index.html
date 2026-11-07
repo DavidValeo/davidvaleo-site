@@ -13,7 +13,9 @@
 -->
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
 <meta name="color-scheme" content="dark">
-<title>PHOSPHOR-9</title>
+<title>phosphor</title>
+<meta name="description" content="phosphor, a personal terminal that has run itself for fifty years, holding a journal of letters to whoever finds it.">
+<link rel="icon" href="data:,">
 <link rel="stylesheet" href="engine/phosphor.css">
 <link rel="stylesheet" href="site/theme.css">
 </head>
@@ -35,7 +37,13 @@
   <div id="cablewrap"><svg id="cable" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><g id="sway"></g></svg></div>
 </div>
 <input id="kb" type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="go" aria-label="Terminal input">
-<noscript><p style="color:#3dff7e;font-family:monospace;text-align:center">this terminal needs javascript.</p></noscript>
+<noscript>
+<main style="max-width:38rem;margin:2rem auto;padding:0 1rem;color:#cfe;background:#040504;font:18px/1.5 monospace">
+  <h1 style="font-size:1.3rem">phosphor</h1>
+  <p>phosphor is a terminal from 2119 and needs javascript to boot, so switch it on and come back.</p>
+</main>
+<style>#stage,#kb{display:none}</style>
+</noscript>
 
 <!-- the engine -->
 <script src="engine/phosphor.js"></script>
@@ -52,8 +60,16 @@
 <script src="machines/machines.js"></script>
 <!-- your site (it wins over the machine) -->
 <script src="site/config.js"></script>
+<!-- the words and the data (plain JS that sets window.DV, so it works from disk too) -->
+<script src="content/variants.js"></script>
+<script src="content/eggs.js"></script>
+<script src="content/journal.js"></script>
 <script src="site/content.js"></script>
 <script src="site/home.js"></script>
+<!-- after the words, so the per-tab roll wins; before Phosphor.start() -->
+<script src="site/variety.js"></script>
+<script src="site/journal.js"></script>
+<script src="site/games.js"></script>
 <script>Phosphor.start()</script>
 </body>
 </html>

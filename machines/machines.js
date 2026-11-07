@@ -21,5 +21,6 @@ Phosphor.machines({
   vms:{name:'vax-11/785, vax/vms v4.6',year:1988,dir:'machines/vms-1988',files:['later.js','machine.js','fs.js','commands.js']},
   bbs:{name:'dial-up bulletin board, 2400 bps',year:1990,random:false,dir:'machines/bbs-1990',files:['machine.js','../shared/modem.js','../shared/bbs.js','dialer.js']},
   irix:{name:'silicon graphics crimson, irix 4.0.5',year:1993,dir:'machines/irix-1993',files:['machine.js','commands.js','fs.js']},
+  phosphor:{name:'phosphor, the home machine',year:2119,badge:'PHOSPHOR',dir:'machines/phosphor-2119',files:['../dv-shared/core.js','later.js','machine.js','../linux/commands.js','commands.js','../dv-shared/eggs.js','../linux/fs.js','fs.js']},
   linux:{name:'kvm virtual server, debian 13',year:new Date().getFullYear(),dir:'machines/linux',files:['later.js','machine.js','commands.js','fs.js']}
 });

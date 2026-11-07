@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base href="../">
+<meta charset="utf-8">
+<!--
+  PHOSPHOR-9: a 1979 video terminal for your website.
+  https://github.com/GaijinSystems/phosphor  -  GNU AGPL v3 or later (see LICENSE)
+
+  Your words live in site/. This page only lists the files to load, in order:
+  engine, commands, the list of machines, then your site files; the engine then
+  loads the chosen machine. Works opened straight from disk (double-click) or from
+  any web server.
+-->
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
+<meta name="color-scheme" content="dark">
+<title>David Valeo</title>
+<meta name="description" content="David Valeo. A home terminal from a little after now.">
+<link rel="stylesheet" href="engine/phosphor.css">
+<link rel="stylesheet" href="site/theme.css">
+</head>
+<body>
+<div id="stage">
+  <div id="bezel">
+    <div id="screen" role="group" aria-label="Terminal">
+      <div id="crt">
+        <div id="term"><div id="out"></div></div>
+        <div id="glow" aria-hidden="true"></div>
+        <div class="fx flicker"></div>
+        <div class="band b2"></div>
+        <div class="fx scan"></div>
+        <div class="fx vig"></div>
+      </div>
+    </div>
+    <div class="badge">PHOSPHOR-9</div>
+  </div>
+  <div id="cablewrap"><svg id="cable" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><g id="sway"></g></svg></div>
+</div>
+<input id="kb" type="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="go" aria-label="Terminal input">
+<noscript>
+<main style="max-width:38rem;margin:2rem auto;padding:0 1rem;color:#cfe;background:#040504;font:18px/1.5 monospace">
+  <h1 style="font-size:1.3rem">David Valeo</h1>
+  <p>This page is a terminal from a little after now, and it needs JavaScript to run. Here is the plain version.</p>
+  <p>TODO-DAVID: one or two sentences about who you are and what you do.</p>
+  <p>TODO-DAVID: what you are working on right now.</p>
+  <ul>
+    <li><a href="mailto:you@example.com" style="color:#9fd">you@example.com</a></li>
+    <li><a href="https://github.com/DavidValeo" style="color:#9fd">github.com/DavidValeo</a></li>
+    <li>TODO-DAVID: any other link you want here</li>
+  </ul>
+</main>
+<style>#stage,#kb{display:none}</style>
+</noscript>
+
+<!-- the engine -->
+<script src="engine/phosphor.js"></script>
+<!-- built-in commands (switch single ones off with "commands: -name" in site/config.js) -->
+<script src="engine/commands/files.js"></script>
+<script src="engine/commands/shell.js"></script>
+<script src="engine/commands/people.js"></script>
+<script src="engine/commands/system.js"></script>
+<script src="engine/commands/text.js"></script>
+<script src="engine/commands/ed.js"></script>
+<script src="engine/commands/vi.js"></script>
+<script src="engine/commands/csh.js"></script>
+<!-- the machines that can be behind the glass -->
+<script src="machines/machines.js"></script>
+<!-- your site (it wins over the machine) -->
+<script src="site/config.js"></script>
+<!-- the words and the data (plain JS that sets window.DV, so it works from disk too) -->
+<script src="content/variants.js"></script>
+<script src="content/eggs.js"></script>
+<script src="content/journal.js"></script>
+<script src="site/content.js"></script>
+<script src="site/home.js"></script>
+<!-- after the words, so the per-tab roll wins; before Phosphor.start() -->
+<script src="site/variety.js"></script>
+<script src="site/journal.js"></script>
+<script src="site/games.js"></script>
+<script>Phosphor.start()</script>
+</body>
+</html>
