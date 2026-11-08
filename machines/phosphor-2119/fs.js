@@ -1,5 +1,5 @@
 /* davidvaleo.com on PHOSPHOR-9: machine "phosphor", its identity over the Linux file system
-   (runs after ../linux/fs.js). Copyright (C) 2026 David Valeo. GNU AGPL v3 or later; see LICENSE. */
+   (runs after ../linux/fs.js). Copyright (C) 2026-present David Valeo. GNU AGPL v3 or later; see LICENSE. */
 Phosphor.setup(function (P) {
   'use strict';
   var C = DV.cfg, sys = P.sys, ST = P.st;

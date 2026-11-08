@@ -1,7 +1,7 @@
 /* davidvaleo.com on PHOSPHOR-9: machine "phosphor-2119".
    phosphor: a personal terminal left running on purpose. Its builder wrote letters into its log until 2063
    (content/journal.js, the log command); since then it has looked after itself.
-   Copyright (C) 2026 David Valeo. GNU AGPL v3 or later; see LICENSE.
+   Copyright (C) 2026-present David Valeo. GNU AGPL v3 or later; see LICENSE.
    Same text format as the site files; see README.md. Do not type a backtick or a dollar sign
    followed by { between the two backticks below. No em dashes anywhere. */
 Phosphor.content(String.raw`

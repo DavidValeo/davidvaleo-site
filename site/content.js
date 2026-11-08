@@ -1,6 +1,6 @@
 /* davidvaleo.com on PHOSPHOR-9: the terminal's words. The welcome message, the about section and
    the letter are the fallbacks; site/variety.js overrides some of them per roll from content/variants.js.
-   Copyright (C) 2026 David Valeo. GNU AGPL v3 or later; see LICENSE.
+   Copyright (C) 2026-present David Valeo. GNU AGPL v3 or later; see LICENSE.
    See README.md for the sections and markup, content/journal.js for the journal. Do not type a backtick,
    or a dollar sign followed by {, anywhere between the two backticks below. No em dashes anywhere. */
 Phosphor.content(window.DV && DV.onArchive && DV.onArchive() ? '' : String.raw`

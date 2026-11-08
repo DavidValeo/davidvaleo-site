@@ -1,5 +1,5 @@
 /* davidvaleo.com on PHOSPHOR-9: the log command and ~/log/, the journal left on the machine.
-   Copyright (C) 2026 David Valeo. GNU AGPL v3 or later; see LICENSE.
+   Copyright (C) 2026-present David Valeo. GNU AGPL v3 or later; see LICENSE.
    Data: content/journal.js (DV.journal). Runs after site/variety.js and before Phosphor.start().
    The archive machines that connect reaches get none of this. */
 (function (P) {

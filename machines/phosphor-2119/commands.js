@@ -1,5 +1,5 @@
 /* davidvaleo.com on PHOSPHOR-9: machine "phosphor": what this machine is, laid over the Linux shell
-   (runs after ../linux/commands.js, before ../linux/fs.js). Copyright (C) 2026 David Valeo. GNU AGPL v3 or later. */
+   (runs after ../linux/commands.js, before ../linux/fs.js). Copyright (C) 2026-present David Valeo. GNU AGPL v3 or later. */
 (function (P) {
   'use strict';
   var D = P.debian;

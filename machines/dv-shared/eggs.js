@@ -1,5 +1,5 @@
 /* davidvaleo.com on PHOSPHOR-9: the eggs, as commands (loaded after ../linux/commands.js, so ours win).
-   Copyright (C) 2026 David Valeo. GNU AGPL v3 or later; see LICENSE.
+   Copyright (C) 2026-present David Valeo. GNU AGPL v3 or later; see LICENSE.
    Data lives in content/eggs.js (DV.eggs); the roll in site/variety.js (DV.roll). */
 (function (P) {
   'use strict';

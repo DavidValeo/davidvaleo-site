@@ -3,7 +3,7 @@
    starting with / goes anywhere. Lock files with "protected:" in site/config.js (secrets, .trash/core).
    site/variety.js adds one egg spot per roll from content/variants.js. The story files (readme,
    last-session) live in machines/phosphor-2119/machine.js.
-   Copyright (C) 2026 David Valeo. GNU AGPL v3 or later; see LICENSE.
+   Copyright (C) 2026-present David Valeo. GNU AGPL v3 or later; see LICENSE.
    Do not type a backtick, or a dollar sign followed by {, between the two backticks. No em dashes. */
 Phosphor.content(window.DV && DV.onArchive && DV.onArchive() ? '' : String.raw`
 

@@ -1,7 +1,7 @@
 /* davidvaleo.com on PHOSPHOR-9: uplink, a turn-based artillery game. Two relay masts on the rooftops of a
    2041 skyline lob data packets at each other. A common genre; the rules, drawings and text are our own.
    SPDX-License-Identifier: AGPL-3.0-or-later
-   New code for this site. Copyright (C) 2026 David Valeo. GNU AGPL v3 or later; see LICENSE. */
+   New code for this site. Copyright (C) 2026-present David Valeo. GNU AGPL v3 or later; see LICENSE. */
 (function(P){
 'use strict';
 var W=80,        /* the play field is 80 columns wide whatever the glass is; a narrower glass pans */

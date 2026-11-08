@@ -1,6 +1,6 @@
 /* davidvaleo.com on PHOSPHOR-9: games of our own, loaded when first run.
    SPDX-License-Identifier: AGPL-3.0-or-later
-   New code for this site. Copyright (C) 2026 David Valeo. GNU AGPL v3 or later; see LICENSE. */
+   New code for this site. Copyright (C) 2026-present David Valeo. GNU AGPL v3 or later; see LICENSE. */
 (function (P) {
   'use strict';
   P.later('../../site/games/uplink.js', {names: ['uplink'], path: '/usr/games',

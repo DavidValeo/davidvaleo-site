@@ -1,5 +1,5 @@
 /* davidvaleo.com on PHOSPHOR-9: what the per-tab roll chooses from. Plain data, loaded by a
-   script tag, no fetch. Copyright (C) 2026 David Valeo. GNU AGPL v3 or later; see LICENSE.
+   script tag, no fetch. Copyright (C) 2026-present David Valeo. GNU AGPL v3 or later; see LICENSE.
    No em dashes anywhere. Welcome lines are spoken: keep them plain.
    Nothing about the real owner. */
 window.DV = window.DV || {};

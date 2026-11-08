@@ -1,5 +1,5 @@
 /* davidvaleo.com on PHOSPHOR-9: shared helpers for our machines (loaded before ../linux/commands.js).
-   Copyright (C) 2026 David Valeo. GNU AGPL v3 or later; see LICENSE.
+   Copyright (C) 2026-present David Valeo. GNU AGPL v3 or later; see LICENSE.
    Our machines reuse the Linux shell in machines/linux (commands.js, fs.js, games) and lay their own
    identity on top, so upstream merges of machines/linux keep working. */
 (function (P) {

@@ -1,5 +1,5 @@
 /* davidvaleo.com on PHOSPHOR-9: the eggs. Plain data, loaded by a script tag, no fetch.
-   Copyright (C) 2026 David Valeo. GNU AGPL v3 or later; see LICENSE.
+   Copyright (C) 2026-present David Valeo. GNU AGPL v3 or later; see LICENSE.
    Nothing about the real owner. No em dashes anywhere. */
 window.DV = window.DV || {};
 DV.eggs = {

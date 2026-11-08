@@ -1,5 +1,5 @@
 /* davidvaleo.com on PHOSPHOR-9: one roll per browser tab.
-   Copyright (C) 2026 David Valeo. GNU AGPL v3 or later; see LICENSE.
+   Copyright (C) 2026-present David Valeo. GNU AGPL v3 or later; see LICENSE.
 
    Picks the machine, tube tint, welcome line, boot flavor, lead chat persona, where the eggs hide,
    the magic word (and the clue that holds it) and the tone of the letter, all from one seed kept in

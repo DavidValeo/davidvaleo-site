@@ -1,5 +1,5 @@
 /* davidvaleo.com on PHOSPHOR-9: the journal, letters left in the log (the log command, and ~/log/).
-   Copyright (C) 2026 David Valeo. GNU AGPL v3 or later; see LICENSE. No em dashes anywhere. */
+   Copyright (C) 2026-present David Valeo. GNU AGPL v3 or later; see LICENSE. No em dashes anywhere. */
 window.DV = window.DV || {};
 DV.journal = [
   {"date": "2004-02-20", "title": "first entry", "text": "built this machine tonight. i want it running long after i'm not, which sounds grander than it is. mostly it means plain parts, plain files, and notes a stranger could follow. so, stranger: hello. i don't know what year it is for you. i hope the screens got better and the manuals got shorter. one rule here: leave things better than you found them."},
